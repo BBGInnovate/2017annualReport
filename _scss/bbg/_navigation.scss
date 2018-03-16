@@ -1,0 +1,43 @@
+ul#main-nav {padding-left: 0;}
+
+.hb-effect-10 #main-nav > li > a span::before {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 0%;
+}
+#main-nav li a > span {color: $white;}
+
+.bg--red {
+	background-color: $red;
+	a > span {color: $white;}
+}
+
+.bg--blue-dark {background-color: $blue-dark;}
+.bg--gold {background-color: $gold;}
+.bg--tan {background-color: $tan;}
+
+#main-nav .current-menu-item.bg--red {
+	background-color: rgba(0,0,0,0);
+	a > span {color: $red;}
+}
+#main-nav .current-menu-item.bg--blue-dark {
+	background-color: $white;
+	a > span {color: $blue-dark;}
+}
+#main-nav .current-menu-item.bg--gold {
+	background-color: $white;
+	a > span {color: $gold;}
+}
+#main-nav .current-menu-item.bg--tan {
+	background-color: $white;
+	a > span {color: $tan;}
+}
+
+@include media($medium-screen) {
+	#main-nav li a {padding: 0 5px;}
+}
+
+@include media($large-screen) {
+	#main-nav li a {padding: 0 11px;}
+}
