@@ -15,5 +15,42 @@ $(window).on('resize', function() {
 	sizePostCats();
 });
 
+// CHART TEST
+var chart1 = document.getElementById('chart_test').getContext('2d');
+var testChart = new Chart(chart1, {
+	type: 'bar',
+	data: {
+		labels: ['Miami', 'Sarasota', 'Niceville'],
+		datasets: [{
+			label: 'Testing ChartJS',
+			data: [
+				3210,
+				2510,
+				2213
+			],
+			// backgroundColor: '#ff00ff',
+			backgroundColor: [
+				'#00ffff',
+				'#ff00ff',
+				'#ffff00'
+			]
+		}]
+	},
+	options: {
+		title: {
+			display: true,
+			text: 'BBG and ChartJS',
+			fontSize: 25
+		},
+		legend: {
+			display: true,
+			position: 'right',
+		}
+	},
+	layout: {
+
+	}
+});
+
 }); // END READY
 })( jQuery );

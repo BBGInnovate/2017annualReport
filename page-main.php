@@ -6,6 +6,7 @@
  */
 ?>
 <?php get_header(); ?>
+
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <!-- BEGIN #main-content -->
 <?php
@@ -52,7 +53,6 @@ if (is_page('capacity')) {
 						}
 					?>
 					<?php the_content();?>
-					<p>JS Test shave()</p>
 				</div>
 
 <?php $side_posts = new WP_Query($cat_posts); ?>
@@ -74,6 +74,11 @@ while ($side_posts -> have_posts()) {
 <?php } ?>
 				</div>
 			</div>
+			<?php
+			if (is_page('disinformation')) {
+				echo '<canvas id="chart_test"></canvas>';
+			}
+			?>
 		</div>
 	</div>
 </div>

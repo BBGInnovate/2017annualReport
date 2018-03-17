@@ -21,6 +21,7 @@ add_action('wp_enqueue_scripts', 'wpb_add_google_fonts');
 function bbg_add_scripts () {
 	wp_enqueue_script('uswdsJs', get_stylesheet_directory_uri() . '/js/uswds/uswds.min.js');
 	wp_enqueue_script('krCustom', get_stylesheet_directory_uri() . '/js/bbg_scripts.js');
+	wp_enqueue_script('charts', get_stylesheet_directory_uri() . '/node_modules/chart.js/dist/Chart.bundle.js');
 }
 add_action ('wp_enqueue_scripts', 'bbg_add_scripts');
 
