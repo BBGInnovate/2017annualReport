@@ -1,0 +1,9 @@
+footer {
+	color: $white;
+	#footer-logo {
+		margin-bottom: 1em;
+	}
+	.footer-col {
+		// @include span-columns(4);
+	}
+}

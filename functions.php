@@ -25,4 +25,21 @@ function bbg_add_scripts () {
 }
 add_action ('wp_enqueue_scripts', 'bbg_add_scripts');
 
+
+function charts_field() {
+    register_post_type('chart', array(
+        'public' => true,
+        'menu_icon' => 'dashicons-chart-line',
+        'labels' => array(
+            'name' => 'Charts',
+            'add_new_item' => 'Add New Chart',
+            'edit_item' => 'Edit Chart',
+            'all_items' => 'All Charts',
+            'singular_name' => 'Chart'
+        ),
+        'taxonomies' => array('category')
+    ));
+}
+add_action('init', 'charts_field');
+
 ?>

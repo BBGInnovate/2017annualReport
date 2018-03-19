@@ -75,13 +75,24 @@ while ($side_posts -> have_posts()) {
 				</div>
 			</div>
 			<?php
-			if (is_page('disinformation')) {
-				echo '<canvas id="chart_test"></canvas>';
+			$displayCharts = new WP_Query(array(
+				'posts_per_page' => 1,
+				'post_type' => 'chart',
+				'category_name' => 'Disinformation'
+			));
+			if($displayCharts->have_posts()) {
+				$hasChart = true;
+				while($displayCharts->have_posts()) {
+					$displayCharts->the_post();
+					echo '<canvas id="chart_test"></canvas>';
+					$phpTitle = get_the_title();
+					$phpLabels = get_field('chart_labels');
+					$phpData = get_field('chart_data');
+				}
 			}
 			?>
 		</div>
 	</div>
 </div>
-
 <?php endwhile; endif;?>
 <?php get_footer(); ?>
