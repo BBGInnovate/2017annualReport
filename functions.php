@@ -59,10 +59,12 @@ function shortCodeExample($atts) {
 }
 add_shortcode('shortEx', 'shortCodeExample');
 
-// function add_video_mover() {
-// 	$mover  = '</div><div class="video-mover"></div><div class="copy-side">';
-// 	echo $mover;
-// }
-// add_shortcode('move_video', 'add_video_mover');
-
+function add_video_mover_div_open() {
+	return '<div id="move_video">';
+}
+add_shortcode('move_video_open', 'add_video_mover_div_open');
+function add_video_mover_div_close() {
+	return '</div>';
+}
+add_shortcode('move_video_close', 'add_video_mover_div_close');
 ?>

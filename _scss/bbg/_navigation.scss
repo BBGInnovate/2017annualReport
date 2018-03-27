@@ -8,36 +8,24 @@ ul#main-nav {padding-left: 0;}
 }
 #main-nav li a > span {color: $white;}
 
-.bg--red {
-	background-color: $red;
-	a > span {color: $white;}
+#hb-side-navigation.hb-non-transparent {
+	background: -moz-linear-gradient   (top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
+	background: -webkit-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
+	background: -webkit-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071bc', endColorstr='#000071bc',GradientType=0 );
+}
+#hb-side-navigation {
+	padding: 0;
+}
+.side-logo-wrapper {
+	padding: 1em;
 }
 
-.bg--blue-dark {background-color: $blue-dark;}
-.bg--gold {background-color: $gold;}
-.bg--tan {background-color: $tan;}
-
-#main-nav .current-menu-item.bg--red {
-	background-color: rgba(0,0,0,0);
-	a > span {color: $red;}
-}
-#main-nav .current-menu-item.bg--blue-dark {
-	background-color: $white;
-	a > span {color: $blue-dark;}
-}
-#main-nav .current-menu-item.bg--gold {
-	background-color: $white;
-	a > span {color: $gold;}
-}
-#main-nav .current-menu-item.bg--tan {
-	background-color: $white;
-	a > span {color: $tan;}
-}
 
 @include media($medium-screen) {
-	#main-nav li a {padding: 0 5px;}
+	
 }
 
 @include media($large-screen) {
-	#main-nav li a {padding: 0 11px;}
+	
 }

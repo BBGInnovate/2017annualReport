@@ -1,7 +1,8 @@
-$neat-grid: (
-  columns: 12,
-  gutter: 20px,
-);
+// OVERRIDE HB DEFAULTS
+#main-wrapper.hb-stretched-layout {
+	background-color: transparent;
+}
+// END OVERRIDE HB DEFAULTS
 
 #main-content {padding-top: $em-base;}
 .content-group {border-bottom: 1px solid $black6;}
