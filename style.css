@@ -3731,11 +3731,36 @@ h3 {
   border-bottom: 1px solid #666666; }
 
 .post-categories {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%;
   margin-top: 1em; }
+  .post-categories:last-child {
+    margin-right: 0; }
   .post-categories .side-cat {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%;
     margin-bottom: 1em; }
+    .post-categories .side-cat:last-child {
+      margin-right: 0; }
+    .post-categories .side-cat .aside-image {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 31.76157%; }
+      .post-categories .side-cat .aside-image:last-child {
+        margin-right: 0; }
     .post-categories .side-cat .aside-text {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 65.88078%;
       overflow: hidden; }
+      .post-categories .side-cat .aside-text:last-child {
+        margin-right: 0; }
       .post-categories .side-cat .aside-text p {
         margin-top: 0; }
       .post-categories .side-cat .aside-text .post-cat-title {
@@ -3753,6 +3778,82 @@ h3 {
       background-image: linear-gradient(to bottom, rgba(249, 249, 249, 0), #f9f9f9 90%);
       width: 100%;
       height: 4em; }
+
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 14px;
+    border: 1px solid #ff00ff; }
+  .content-group {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%; }
+    .content-group:last-child {
+      margin-right: 0; }
+  .post-categories .side-cat {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%; }
+    .post-categories .side-cat:last-child {
+      margin-right: 0; }
+    .post-categories .side-cat .aside-image {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 14.70196%; }
+      .post-categories .side-cat .aside-image:last-child {
+        margin-right: 0; }
+    .post-categories .side-cat .aside-text {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 82.94039%; }
+      .post-categories .side-cat .aside-text:last-child {
+        margin-right: 0; }
+      .post-categories .side-cat .aside-text p {
+        font-size: 1em; } }
+
+@media screen and (min-width: 1201px) {
+  body {
+    font-size: 16px;
+    border: 1px solid #00ffff; }
+  .content-group {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 65.88078%;
+    border-bottom: none; }
+    .content-group:last-child {
+      margin-right: 0; }
+  .post-categories {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    .post-categories:last-child {
+      margin-right: 0; }
+    .post-categories .side-cat {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 100%; }
+      .post-categories .side-cat:last-child {
+        margin-right: 0; }
+      .post-categories .side-cat .aside-image {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 40.29137%; }
+        .post-categories .side-cat .aside-image:last-child {
+          margin-right: 0; }
+      .post-categories .side-cat .aside-text {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 57.35098%; }
+        .post-categories .side-cat .aside-text:last-child {
+          margin-right: 0; } }
 
 ul#main-nav {
   padding-left: 0; }
@@ -3812,6 +3913,13 @@ footer {
   color: #ffffff; }
   footer #footer-logo {
     margin-bottom: 1em; }
+  footer .footer-col {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 31.76157%; }
+    footer .footer-col:last-child {
+      margin-right: 0; }
 
 #financials-copy {
   float: left;
@@ -3845,5 +3953,27 @@ footer {
     width: 48.82117%; }
     #financials-chart:last-child {
       margin-right: 0; } }
+
+#header-inner-bg {
+  display: none; }
+
+/* TEMPORARILY HIDE NAVBAR */
+.video-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #000000; }
+
+.video-tag {
+  position: absolute; }
+
+.copy-side {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 100%; }
+  .copy-side:last-child {
+    margin-right: 0; }
 
 /*# sourceMappingURL=style.css.map */

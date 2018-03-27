@@ -4,6 +4,6 @@ footer {
 		margin-bottom: 1em;
 	}
 	.footer-col {
-		// @include span-columns(4);
+		@include span-columns(4);
 	}
 }

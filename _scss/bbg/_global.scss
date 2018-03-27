@@ -6,15 +6,15 @@ $neat-grid: (
 #main-content {padding-top: $em-base;}
 .content-group {border-bottom: 1px solid $black6;}
 .post-categories {
-	// @include span-columns(12);
+	@include span-columns(12);
 	margin-top: 1em;
 	.side-cat {
-		// @include span-columns(12);
+		@include span-columns(12);
 		margin-bottom: 1em;
 
-		// .aside-image {@include span-columns(4);}
+		.aside-image {@include span-columns(4);}
 		.aside-text {
-			// @include span-columns(8);
+			@include span-columns(8);
 			overflow: hidden;
 			
 			p {margin-top: 0;}
@@ -40,35 +40,35 @@ $neat-grid: (
 }
 
 
-// @include media($medium-screen) {
-// 	body {font-size: 14px; border: 1px solid #ff00ff;}
-// 	.content-group {@include span-columns(12);}
-// 	.post-categories {
-// 		.side-cat {
-// 			@include span-columns(12);
+@include media($medium-screen) {
+	body {font-size: 14px; border: 1px solid #ff00ff;}
+	.content-group {@include span-columns(12);}
+	.post-categories {
+		.side-cat {
+			@include span-columns(12);
 
-// 			.aside-image {@include span-columns(2);}
-// 			.aside-text {
-// 				@include span-columns(10);
-// 				p {font-size: 1em;}
-// 			}
-// 		}
-// 	}
-// }
+			.aside-image {@include span-columns(2);}
+			.aside-text {
+				@include span-columns(10);
+				p {font-size: 1em;}
+			}
+		}
+	}
+}
 
-// @include media($large-screen) {
-// 	body {font-size: 16px; border: 1px solid #00ffff;}
-// 	.content-group {
-// 		@include span-columns(8);
-// 		border-bottom: none;
-// 	}
-// 	.post-categories {
-// 		@include span-columns(4);
-// 		.side-cat {
-// 			@include span-columns(12);
+@include media($large-screen) {
+	body {font-size: 16px; border: 1px solid #00ffff;}
+	.content-group {
+		@include span-columns(8);
+		border-bottom: none;
+	}
+	.post-categories {
+		@include span-columns(4);
+		.side-cat {
+			@include span-columns(12);
 
-// 			.aside-image {@include span-columns(5);}
-// 			.aside-text {@include span-columns(7);}
-// 		}
-// 	}
-// }
+			.aside-image {@include span-columns(5);}
+			.aside-text {@include span-columns(7);}
+		}
+	}
+}

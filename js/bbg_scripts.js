@@ -42,7 +42,7 @@ function encodedStrToArr(str, dataType) {
 	return arr;
 }
 // hasChart = stripEncodedEnds(hasChart);
-if (hasChart) {
+if (hasChart == true) {
 	jsonTitle = stripEncodedEnds(jsonTitle);
 	jsData = encodedStrToArr(jsonData, 'number');
 	jsLabels = encodedStrToArr(jsonLabels, 'text');
