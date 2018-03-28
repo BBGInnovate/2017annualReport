@@ -56,13 +56,13 @@ $.fn.isInViewport = function() {
 
 $(window).on('resize scroll', function() {
 // BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
-	if ($('#move_video').isInViewport()) {
-		var setBottom = $('#move_video').offset().top,
-			setBottom = setBottom - video.height();
+	if ($('.move_video').isInViewport()) {
+		var setTop = $('.move_video').offset().top;
+		var setTop = setTop - video.height();
 
 		videoWrapper.css({
 			'position': 'absolute',
-			'top': setBottom
+			'top': setTop
 		});
 	} else {
 		videoWrapper.css({
@@ -70,6 +70,7 @@ $(window).on('resize scroll', function() {
 			'top': 0
 		});
 	}
+	($('.move_video').offset().top < $(window).scrollTop()) ? video.hide() : video.show();
 });
 
 // TESTING
