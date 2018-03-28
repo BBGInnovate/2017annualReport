@@ -1,31 +1,53 @@
-ul#main-nav {padding-left: 0;}
-
-.hb-effect-10 #main-nav > li > a span::before {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 0%;
+// !important(s) used to override uswds' !important
+#mobile-menu-wrap {
+	background: $color-blue;
+	border-left: none;
+	.hb-top-holder {background: $color-blue !important; border-bottom: none !important;}
+	#mobile-menu {
+		ul li {
+			font-weight: 700;
+			text-transform: uppercase;
+			border-top: none;
+			a {text-decoration: none;}
+		}
+	}
 }
-#main-nav li a > span {color: $white;}
-
-#hb-side-navigation.hb-non-transparent {
-	background: -moz-linear-gradient   (top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
-	background: -webkit-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
-	background: -webkit-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071bc', endColorstr='#000071bc',GradientType=0 );
+.mobile-menu-open .mobile-menu-close {
+	right: 15px;
+	text-decoration: none;
+	border-left: none;
 }
 #hb-side-navigation {
-	padding: 0;
-}
-.side-logo-wrapper {
-	padding: 1em;
-}
+	.hb-resp-bg {
+		a {text-decoration: none;}
+		a:link, a:visited {color: $color-blue;}
+		a:hover, a:active {color: $color-gray-cool-light;}
 
-
-@include media($medium-screen) {
-	
+	}
 }
 
-@include media($large-screen) {
-	
+
+@media (min-width: 1025px) {
+	.side-logo-wrapper {padding: 1em;}
+	#hb-side-navigation.hb-non-transparent {
+		background:    -moz-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
+		background: -webkit-linear-gradient(top, rgba(0,113,188,1) 0%, rgba(0,113,188,0) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071bc', endColorstr='#000071bc',GradientType=0 );
+
+		.hb-side-nav li {
+			a {color: $white; text-decoration: none;}
+			a:hover, a:active {
+				color: #ffffff !important;
+				text-decoration: underline;
+				border-left-color: transparent;
+			}
+		}
+		// nav1 -> $color-blue-darker; nav2 -> $color-red-darkest; nav3 -> $color-gray-medium; nav4 -> $color-gold;
+		li.nav1 a:hover {background-color: rgba(152, 27, 30, 0.25);}
+		li.nav2 a:hover {background-color: rgba( 32, 84,147, 0.25);}
+		li.nav3 a:hover {background-color: rgba(253,184, 30, 0.25);}
+		li.nav4 a:hover {background-color: rgba(117,117,117, 0.25);}
+	}
+	#hb-side-navigation {padding: 0;}
+	ul.hb-side-nav {margin-left: 0; padding-left: 0;}
 }

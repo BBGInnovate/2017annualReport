@@ -2,6 +2,21 @@
 (function($) {
 $(document).ready(function() {
 
+function changeLogoOnSmallLargeScreens() {
+	var navLogoImg = $('.side-logo a span img'),
+		navLogoImgRetina = $('.side-logo a span img.retina'),
+		mediaPath = "http://annual-report2017.localhost/wp-content/uploads/2018/03/";
+	if ($(window).width() < 1025) {
+		navLogoImg.attr('src', mediaPath + 'BBG-AR_Logo_Default.png');
+		navLogoImgRetina.attr('src', mediaPath + 'BBG-AR_Logo_Retina.png');
+	}
+	else {
+		navLogoImg.attr('src', mediaPath + 'BBG-AR_Logo_Default_White_Text.png');
+		navLogoImgRetina.attr('src', mediaPath + 'BBG-AR_Logo_Retina_White_Text.png');
+	}
+};
+changeLogoOnSmallLargeScreens();
+
 // POST CAT TEXT BOX HEIGHT CONSISTENT WITH THUMBNAIL
 function sizePostCats() {
 	var postCatTextBox = $('.aside-text');
@@ -12,6 +27,7 @@ sizePostCats();
 
 // FUNCTIONS TO RUN ON RESIZE
 $(window).on('resize', function() {
+	changeLogoOnSmallLargeScreens();
 	sizePostCats();
 });
 
