@@ -6,7 +6,7 @@ function changeLogoOnSmallLargeScreens() {
 	var navLogoImg = $('.side-logo a span img'),
 		navLogoImgRetina = $('.side-logo a span img.retina'),
 		mediaPath = "http://annual-report2017.localhost/wp-content/uploads/2018/03/";
-	if ($(window).width() < 1025) {
+	if ($(window).width() < 1010) {
 		navLogoImg.attr('src', mediaPath + 'BBG-AR_Logo_Default.png');
 		navLogoImgRetina.attr('src', mediaPath + 'BBG-AR_Logo_Retina.png');
 	}

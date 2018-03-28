@@ -20,10 +20,8 @@
 	<div class="container">
 		<div class="page-content">
 			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<div class="copy-side">
-					<div id="wp-content">
-						<?php the_content();?>
-					</div>
+				<div id="wp-content">
+					<?php the_content();?>
 				</div>
 			</div>
 		</div>

@@ -58,17 +58,15 @@ $(window).on('resize scroll', function() {
 // BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
 	if ($('.move_video').isInViewport()) {
 		var setTop = $('.move_video').offset().top;
-		var setTop = setTop - video.height();
+		setTop = setTop - video.height();
 
-		videoWrapper.css({
-			'position': 'absolute',
-			'top': setTop
-		});
+		if ($(window).width() < 1010) {
+			setTop = setTop - $('.hb-resp-bg').outerHeight();
+		}
+
+		videoWrapper.css({'position': 'absolute', 'top': setTop});
 	} else {
-		videoWrapper.css({
-			'position': 'fixed',
-			'top': 0
-		});
+		videoWrapper.css({'position': 'fixed', 'top': 0});
 	}
 	($('.move_video').offset().top < $(window).scrollTop()) ? video.hide() : video.show();
 });

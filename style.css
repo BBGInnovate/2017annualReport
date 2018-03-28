@@ -3727,6 +3727,9 @@ h3 {
 #main-wrapper.hb-stretched-layout {
   background-color: transparent; }
 
+#wp-content {
+  margin-top: 8em; }
+
 #main-content {
   padding-top: 10px; }
 
