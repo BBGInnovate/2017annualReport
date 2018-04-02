@@ -2,7 +2,7 @@
 /**
  * @package WordPress
  * @subpackage Highend
- * Template name: Video BG Page
+ * Template name: Page Custom Home
  */
 ?>
 <?php get_header(); ?>
@@ -20,12 +20,13 @@
 	<div class="container">
 		<div class="page-content">
 			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<div id="wp-content">
+				<div id="wp-content" class="grid-contents">
 					<?php the_content();?>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 <?php endwhile; endif;?>
 <?php get_footer(); ?>

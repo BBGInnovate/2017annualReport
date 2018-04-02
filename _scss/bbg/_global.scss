@@ -4,9 +4,13 @@
 }
 // END OVERRIDE HB DEFAULTS
 
-#wp-content {margin-top: 8em;}
+#wp-content:first-child {margin-top: 8em;}
+.grid-contents {@include span-columns(12);}
+.grid-contents * {@include span-columns(7);}
+
 #main-content {padding-top: $em-base;}
 .content-group {border-bottom: 1px solid $black6;}
+
 .post-categories {
 	@include span-columns(12);
 	margin-top: 1em;
@@ -40,7 +44,6 @@
 		}
 	}
 }
-
 
 @include media($medium-screen) {
 	body {font-size: 14px; border: 1px solid #ff00ff;}

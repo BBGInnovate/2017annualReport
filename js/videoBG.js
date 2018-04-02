@@ -60,6 +60,7 @@ $(window).on('resize scroll', function() {
 		var setTop = $('.move_video').offset().top;
 		setTop = setTop - video.height();
 
+		// WITH HB MEDIA QUERY, WHEN NAV MOVES TO TOP
 		if ($(window).width() < 1010) {
 			setTop = setTop - $('.hb-resp-bg').outerHeight();
 		}

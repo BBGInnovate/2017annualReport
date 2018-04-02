@@ -56,6 +56,7 @@
 
 ?>
 <!-- BEGIN #hb-side-navigation -->
+
         <div id="hb-side-navigation" class="<?php echo $transparent_class; echo $style_class;?>">
             <div class="hb-side-background"<?php echo $image_bg; ?>></div>
             <div class="hb-resp-bg">
@@ -166,30 +167,30 @@
                         <?php
                             $hb_socials = hb_options('hb_top_header_socials');
                             if ( !empty ( $hb_socials ) ) {
-                                    foreach ($hb_socials as $hb_social) {
-                                        if ( $hb_social == 'custom-url' ){
-                                            $hb_social_n = 'link-5';
-                                        } else if ( $hb_social == 'vkontakte' ){
-                                            $hb_social_n = 'vk';
-                                        } else {
-                                            $hb_social_n = $hb_social;
-                                        }
-                                    ?>
-                                    <?php if ($hb_social_n != 'behance' && $hb_social_n != 'vk' && $hb_social_n != 'envelop') { ?>
-                                            <li>
-                                                <a href="<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="hb-moon-<?php echo $hb_social_n; ?>"></i></a> 
-                                            </li>
-                                        <?php
-                                        } else if ($hb_social_n == 'envelop') { ?>
-                                            <li>
-                                                <a href="mailto:<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="hb-moon-<?php echo $hb_social_n; ?>"></i></a> 
-                                            </li>
-                                        <?php } else { ?>
-                                            <li>
-                                                <a href="<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="icon-<?php echo $hb_social_n; ?>"></i></a> 
-                                            </li>
-                                        <?php }
+                                foreach ($hb_socials as $hb_social) {
+                                    if ( $hb_social == 'custom-url' ){
+                                        $hb_social_n = 'link-5';
+                                    } else if ( $hb_social == 'vkontakte' ){
+                                        $hb_social_n = 'vk';
+                                    } else {
+                                        $hb_social_n = $hb_social;
                                     }
+                                ?>
+                                <?php if ($hb_social_n != 'behance' && $hb_social_n != 'vk' && $hb_social_n != 'envelop') { ?>
+                                        <li>
+                                            <a href="<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="hb-moon-<?php echo $hb_social_n; ?>"></i></a> 
+                                        </li>
+                                    <?php
+                                    } else if ($hb_social_n == 'envelop') { ?>
+                                        <li>
+                                            <a href="mailto:<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="hb-moon-<?php echo $hb_social_n; ?>"></i></a> 
+                                        </li>
+                                    <?php } else { ?>
+                                        <li>
+                                            <a href="<?php echo hb_options('hb_' . $hb_social . '_link'); ?>" original-title="<?php echo ucfirst($hb_social); ?>"<?php echo $target; ?>><i class="icon-<?php echo $hb_social_n; ?>"></i></a> 
+                                        </li>
+                                    <?php }
+                                }
                             }
                         ?>
                     </ul>
@@ -203,7 +204,5 @@
 
             </div>
             <!-- END .side-nav-bottom-part -->
-
-
         </div>
         <!-- END #hb-side-navigation -->

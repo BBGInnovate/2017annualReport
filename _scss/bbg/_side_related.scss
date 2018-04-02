@@ -1,0 +1,29 @@
+.profile-grid-wrap {
+	@include span-columns(7);
+	@include grid-push(5);
+	margin-right: 0;
+}
+.profile-container {
+	@include span-columns(12);
+	text-align: right;
+	.profile-head {
+		@include span-columns(12);
+		> div {
+			@include span-columns(10);
+		}
+		border-bottom: 1px solid $color-gray-warm-light;
+	}
+	.profile-body {
+		@include span-columns(12);
+		.profile-text {
+			margin-top: 10px;
+			@include span-columns(10);
+			p {margin: 0 0 15px 0;}
+		}
+		.profile-image {
+			@include span-columns(2);
+			max-width: 100%;
+			height: auto;
+		}
+	}
+}

@@ -39,28 +39,18 @@ function charts_field() {
 }
 add_action('init', 'charts_field');
 
+// IS THIS NECESSARY WITH THE SIDE MENU?
 function hbChild_register_menu() {
 	register_nav_menu('footer-menu', __('Footer Menu', 'hbthemes'));
 }
 add_action('init', 'hbChild_register_menu');
 
-function shortCodeExample($atts) {
-	$atts = shortcode_atts(array(
-		'src' => '',
-		'title' => ''
-	), $atts);
-
-	$img  = '<img class="related-img" src="';
-	$img .= $atts['src'];
-	$img .= '" alt ="';
-	$img .= $atts['title'];
-	$img .= '">';
-	return $img;
-}
-add_shortcode('shortEx', 'shortCodeExample');
-
+// SHORTCODES
 function div_to_move_video() {
 	return '<div class="move_video">&nbsp;</div>';
 }
 add_shortcode('move_video', 'div_to_move_video');
+
+@include ('shortcodes/profile.php');
+
 ?>

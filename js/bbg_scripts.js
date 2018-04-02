@@ -17,13 +17,15 @@ function changeLogoOnSmallLargeScreens() {
 };
 changeLogoOnSmallLargeScreens();
 
-// POST CAT TEXT BOX HEIGHT CONSISTENT WITH THUMBNAIL
+// POST CATEGORY TEXT BOX HEIGHT CONSISTENT WITH THUMBNAIL
+// WILL THIS BE REPLACED BY RELATED SIDE POSTS?
 function sizePostCats() {
 	var postCatTextBox = $('.aside-text');
 	var postCatImgH = $('.aside-image').height();
 	postCatTextBox.css('height', postCatImgH);
 }
 sizePostCats();
+
 
 // FUNCTIONS TO RUN ON RESIZE
 $(window).on('resize', function() {
@@ -37,7 +39,7 @@ if (canvasDiv != null) {
 	canvasDiv.style.marginRight = 'auto';
 	canvasDiv.style.marginLeft = 'auto';
 }
-// ACCEPT VALUES FROM PHP AND CUSTOM POST TYPES FOR DYNAMIC CHARTS
+// DYNAMIC CHARTS: ACCEPT VALUES FROM PHP AND CUSTOM POST TYPES
 // STRIP JSON STRING OF BRACKETS, SEPARATE AT COMMAS, MAKE NUMBERS
 function stripEncodedEnds(str) {
 	str = str.substr(1);
@@ -57,7 +59,7 @@ function encodedStrToArr(str, dataType) {
 	}
 	return arr;
 }
-// hasChart = stripEncodedEnds(hasChart);
+
 if (hasChart == true) {
 	jsonTitle = stripEncodedEnds(jsonTitle);
 	jsData = encodedStrToArr(jsonData, 'number');
@@ -98,6 +100,11 @@ if (hasChart == true) {
 		}
 	});
 }
+
+// TESTS 
+// -------------------------
+
+// -------------------------
 
 }); // END READY
 })( jQuery );
