@@ -340,11 +340,11 @@
 		if ( vp_metabox('misc_settings.hb_special_header_style') ){
 			$extra_body_class .= ' hb-special-header-style';
 		}
-
+if (!is_front_page()) {
 		if ( hb_options('hb_header_layout_style') == "left-panel" ) {
 			$extra_body_class .= ' hb-side-navigation';
 		}
-
+}
 		if ( hb_options('hb_side_section') ) {
 			$extra_body_class .= ' has-side-section';
 		}

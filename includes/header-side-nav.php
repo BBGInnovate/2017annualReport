@@ -56,7 +56,7 @@
 
 ?>
 <!-- BEGIN #hb-side-navigation -->
-
+<?php if (!is_front_page()) { ?>
         <div id="hb-side-navigation" class="<?php echo $transparent_class; echo $style_class;?>">
             <div class="hb-side-background"<?php echo $image_bg; ?>></div>
             <div class="hb-resp-bg">
@@ -206,3 +206,4 @@
             <!-- END .side-nav-bottom-part -->
         </div>
         <!-- END #hb-side-navigation -->
+<?php } ?>

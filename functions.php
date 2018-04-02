@@ -51,6 +51,14 @@ function div_to_move_video() {
 }
 add_shortcode('move_video', 'div_to_move_video');
 
+function cta_next_page($atts) {
+	$cta_link  = '<a href="index.php/';
+	$cta_link .= $atts['slug'];
+	$cta_link .= '">Contintue</a>';
+	return $cta_link;
+}
+add_shortcode('next_page', 'cta_next_page');
+
 @include ('shortcodes/profile.php');
 
 ?>
