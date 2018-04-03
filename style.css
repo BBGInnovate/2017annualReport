@@ -3727,7 +3727,8 @@ h3, h4, h5 {
 
 h3 {
   font-weight: 300;
-  color: #323a45; }
+  color: #323a45;
+  margin: 0; }
 
 h4 {
   font-weight: 700;
@@ -3742,7 +3743,7 @@ h5 {
 h6 {
   text-transform: none;
   color: #981b1e;
-  margin-bottom: 0; }
+  margin: 0 0 0.25em 0; }
 
 #main-wrapper.hb-stretched-layout {
   background-color: transparent; }
@@ -3754,16 +3755,8 @@ h6 {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 100%; }
+  width: 91.4702%; }
   .grid-contents:last-child {
-    margin-right: 0; }
-
-.grid-contents * {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 57.35098%; }
-  .grid-contents *:last-child {
     margin-right: 0; }
 
 #main-content {
@@ -3825,6 +3818,13 @@ h6 {
   body {
     font-size: 14px;
     border: 1px solid #ff00ff; }
+  .grid-contents * {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%; }
+    .grid-contents *:last-child {
+      margin-right: 0; }
   .content-group {
     float: left;
     display: block;
@@ -3915,14 +3915,22 @@ h6 {
   text-decoration: none;
   border-left: none; }
 
-#hb-side-navigation .hb-resp-bg a {
-  text-decoration: none; }
+#hb-side-navigation {
+  width: 150px; }
+  #hb-side-navigation .hb-resp-bg a {
+    text-decoration: none; }
+  #hb-side-navigation .hb-resp-bg a:link, #hb-side-navigation .hb-resp-bg a:visited {
+    color: #0071bc; }
+  #hb-side-navigation .hb-resp-bg a:hover, #hb-side-navigation .hb-resp-bg a:active {
+    color: #dce4ef; }
 
-#hb-side-navigation .hb-resp-bg a:link, #hb-side-navigation .hb-resp-bg a:visited {
-  color: #0071bc; }
+.hb-side-nav {
+  width: auto; }
 
-#hb-side-navigation .hb-resp-bg a:hover, #hb-side-navigation .hb-resp-bg a:active {
-  color: #dce4ef; }
+.hb-side-nav li a {
+  letter-spacing: 0;
+  word-wrap: normal;
+  padding: 8px 15px; }
 
 @media (min-width: 1025px) {
   .side-logo-wrapper {
@@ -4011,64 +4019,95 @@ footer {
 #move_video {
   padding: 4em 0; }
 
-.profile-grid-wrap {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 57.35098%;
-  margin-left: calc(41.66667% - 28.33333px + 40px);
+.related-wrapper .related-container {
   margin-right: 0; }
-  .profile-grid-wrap:last-child {
-    margin-right: 0; }
+  .related-wrapper .related-container::after {
+    clear: both;
+    content: "";
+    display: block; }
+  .related-wrapper .related-container .related-head::after {
+    clear: both;
+    content: "";
+    display: block; }
+  .related-wrapper .related-container .related-body {
+    border-top: 1px solid #e4e2e0; }
+    .related-wrapper .related-container .related-body::after {
+      clear: both;
+      content: "";
+      display: block; }
+  .related-wrapper .related-container .related-text {
+    margin-top: 0.75em; }
+    .related-wrapper .related-container .related-text p {
+      margin: 0 0 15px 0; }
 
-.profile-container {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 100%;
+.related-wrapper .related-container.profile {
   text-align: right; }
-  .profile-container:last-child {
-    margin-right: 0; }
-  .profile-container .profile-head {
+  .related-wrapper .related-container.profile .related-head > div,
+  .related-wrapper .related-container.profile .related-text {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 100%;
-    border-bottom: 1px solid #e4e2e0; }
-    .profile-container .profile-head:last-child {
+    width: 74.41059%; }
+    .related-wrapper .related-container.profile .related-head > div:last-child,
+    .related-wrapper .related-container.profile .related-text:last-child {
       margin-right: 0; }
-    .profile-container .profile-head > div {
+  .related-wrapper .related-container.profile .related-image {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%; }
+    .related-wrapper .related-container.profile .related-image:last-child {
+      margin-right: 0; }
+
+@media screen and (min-width: 600px) {
+  .related-wrapper {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 74.41059%;
+    margin-left: calc(25% - 25px + 40px); }
+    .related-wrapper:last-child {
+      margin-right: 0; }
+    .related-wrapper .related-container.profile .related-head > div,
+    .related-wrapper .related-container.profile .related-text {
       float: left;
       display: block;
       margin-right: 2.35765%;
       width: 82.94039%; }
-      .profile-container .profile-head > div:last-child {
+      .related-wrapper .related-container.profile .related-head > div:last-child,
+      .related-wrapper .related-container.profile .related-text:last-child {
         margin-right: 0; }
-  .profile-container .profile-body {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 100%; }
-    .profile-container .profile-body:last-child {
-      margin-right: 0; }
-    .profile-container .profile-body .profile-text {
-      margin-top: 10px;
+    .related-wrapper .related-container.profile .related-image {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 14.70196%; }
+      .related-wrapper .related-container.profile .related-image:last-child {
+        margin-right: 0; }
+    .related-wrapper .related-container.story .related-head > div {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 40.29137%;
+      margin-left: calc(58.33333% - 31.66667px + 40px); }
+      .related-wrapper .related-container.story .related-head > div:last-child {
+        margin-right: 0; }
+    .related-wrapper .related-container.story .related-body {
       float: left;
       display: block;
       margin-right: 2.35765%;
       width: 82.94039%; }
-      .profile-container .profile-body .profile-text:last-child {
-        margin-right: 0; }
-      .profile-container .profile-body .profile-text p {
-        margin: 0 0 15px 0; }
-    .profile-container .profile-body .profile-image {
-      float: left;
-      display: block;
-      margin-right: 2.35765%;
-      width: 14.70196%;
-      max-width: 100%;
-      height: auto; }
-      .profile-container .profile-body .profile-image:last-child {
-        margin-right: 0; }
+      .related-wrapper .related-container.story .related-body:last-child {
+        margin-right: 0; } }
+
+@media screen and (min-width: 1201px) {
+  .related-wrapper {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 57.35098%;
+    margin-left: calc(41.66667% - 28.33333px + 40px); }
+    .related-wrapper:last-child {
+      margin-right: 0; } }
 
 /*# sourceMappingURL=style.css.map */

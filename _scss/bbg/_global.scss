@@ -5,8 +5,8 @@
 // END OVERRIDE HB DEFAULTS
 
 #wp-content:first-child {margin-top: 8em;}
-.grid-contents {@include span-columns(12);}
-.grid-contents * {@include span-columns(7);}
+.grid-contents {@include span-columns(11);}
+// .grid-contents * {@include span-columns(7);}
 
 #main-content {padding-top: $em-base;}
 .content-group {border-bottom: 1px solid $black6;}
@@ -47,6 +47,7 @@
 
 @include media($medium-screen) {
 	body {font-size: 14px; border: 1px solid #ff00ff;}
+	.grid-contents * {@include span-columns(10);}
 	.content-group {@include span-columns(12);}
 	.post-categories {
 		.side-cat {

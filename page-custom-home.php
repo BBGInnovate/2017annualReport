@@ -5,6 +5,7 @@
  * Template name: Page Custom Home
  */
 ?>
+
 <?php get_header(); ?>
 <div class="video-wrapper">
 	<video class="video-tag" autoplay loop poster="<?php echo content_url(); ?>/uploads/2018/03/Street-Pulse.jpg">
@@ -20,6 +21,7 @@
 	<div class="container">
 		<div class="page-content">
 			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Default.png">
 				<div id="wp-content" class="grid-contents">
 					<?php the_content();?>
 				</div>

@@ -4,26 +4,27 @@ function show_profile($atts) {
 
 	$profile_post = new WP_Query(array(
 		'posts_per_page' => 1,
-		'title' => $profile_name,
+		// $profile_name MUST BE THE TILE OF THE POST
+		'title' => $profile_name
 	));
 	while ($profile_post -> have_posts()) {
 		$profile_post -> the_post();
 		$image = get_field('profile_photo');
 		
 		$profile_box  = '</div>';
-		$profile_box .= '<div class="profile-grid-wrap" id="';
+		$profile_box .= '<div class="related-wrapper" id="';
 		$profile_box .= $profile_id;
 		$profile_box .= '">';
-		$profile_box .= 	'<div class="profile-container">';
-		$profile_box .= 		'<div class="profile-head">';
+		$profile_box .= 	'<div class="related-container profile">';
+		$profile_box .= 		'<div class="related-head">';
 		$profile_box .= 			'<div>';
 		$profile_box .= 				'<h5>';
 		$profile_box .= $profile_name;
 		$profile_box .= 				'</h5>';
 		$profile_box .= 			'</div>';
 		$profile_box .= 		'</div>';
-		$profile_box .= 		'<div class="profile-body">';
-		$profile_box .= 			'<div class="profile-text">';
+		$profile_box .= 		'<div class="related-body">';
+		$profile_box .= 			'<div class="related-text">';
 		$profile_box .= 				'<h6>';
 		$profile_box .= get_field('occupation');
 		$profile_box .= 				'</h6>';
@@ -31,7 +32,7 @@ function show_profile($atts) {
 		$profile_box .= get_the_excerpt();
 		$profile_box .= 				'</p>';
 		$profile_box .= 			'</div>';
-		$profile_box .= 			'<div class="profile-image">';
+		$profile_box .= 			'<div class="related-image">';
 		$profile_box .= 				'<img src="';
 		$profile_box .= $image['url'];
 		$profile_box .= 					'" alt="';
