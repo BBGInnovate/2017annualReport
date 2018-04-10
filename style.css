@@ -3725,14 +3725,20 @@ h2, h6 {
 h3, h4, h5 {
   font-family: "Alegreya Sans", sans-serif; }
 
+h2 {
+  font-size: 1.625em;
+  color: #323a45; }
+
 h3 {
+  font-size: 1.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #981b1e; }
+
+h4 {
   font-weight: 300;
   color: #323a45;
   margin: 0; }
-
-h4 {
-  font-weight: 700;
-  color: #981b1e; }
 
 h5 {
   font-size: 1.25em;
@@ -3744,6 +3750,9 @@ h6 {
   text-transform: none;
   color: #981b1e;
   margin: 0 0 0.25em 0; }
+
+a {
+  text-decoration: none; }
 
 #main-wrapper.hb-stretched-layout {
   background-color: transparent; }
@@ -3907,8 +3916,6 @@ h6 {
     font-weight: 700;
     text-transform: uppercase;
     border-top: none; }
-    #mobile-menu-wrap #mobile-menu ul li a {
-      text-decoration: none; }
 
 .mobile-menu-open .mobile-menu-close {
   right: 15px;
@@ -3917,8 +3924,6 @@ h6 {
 
 #hb-side-navigation {
   width: 150px; }
-  #hb-side-navigation .hb-resp-bg a {
-    text-decoration: none; }
   #hb-side-navigation .hb-resp-bg a:link, #hb-side-navigation .hb-resp-bg a:visited {
     color: #0071bc; }
   #hb-side-navigation .hb-resp-bg a:hover, #hb-side-navigation .hb-resp-bg a:active {

@@ -8,7 +8,6 @@
 			font-weight: 700;
 			text-transform: uppercase;
 			border-top: none;
-			a {text-decoration: none;}
 		}
 	}
 }
@@ -20,10 +19,8 @@
 #hb-side-navigation {
 	width: 150px;
 	.hb-resp-bg {
-		a {text-decoration: none;}
 		a:link, a:visited {color: $color-blue;}
 		a:hover, a:active {color: $color-gray-cool-light;}
-
 	}
 }
 

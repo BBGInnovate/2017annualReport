@@ -39,6 +39,56 @@ function charts_field() {
 }
 add_action('init', 'charts_field');
 
+function profiles_field() {
+	register_post_type('profile', array(
+		'public' => true,
+		'menu_icon' => 'dashicons-id',
+		'menu_position' => 20,
+		'labels' => array(
+			'name' => 'Profiles',
+			'add_new_item' => 'Add New Profile',
+			'edit_item' => 'Edit Profile',
+			'all_items' => 'All Profiles',
+			'singular_name' => 'Profile'
+		),
+		'taxonomies' => array('category'),
+		'supports' => array(
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt',
+			'author',
+			'revisions'
+		),
+	));
+}
+add_action('init', 'profiles_field');
+
+function awards_field() {
+	register_post_type('award', array(
+		'public' => true,
+		'menu_icon' => 'dashicons-awards',
+		'menu_position' => 20,
+		'labels' => array(
+			'name' => 'Awards',
+			'add_new_item' => 'Add New Award',
+			'edit_item' => 'Edit Award',
+			'all_items' => 'All Awards',
+			'singular_name' => 'Award'
+		),
+		'taxonomies' => array('category'),
+		'supports' => array(
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt',
+			'author',
+			'revisions'
+		),
+	));
+}
+add_action('init', 'awards_field');
+
 // IS THIS NECESSARY WITH THE SIDE MENU?
 function hbChild_register_menu() {
 	register_nav_menu('footer-menu', __('Footer Menu', 'hbthemes'));
@@ -54,7 +104,7 @@ add_shortcode('move_video', 'div_to_move_video');
 function cta_next_page($atts) {
 	$cta_link  = '<a href="index.php/';
 	$cta_link .= $atts['slug'];
-	$cta_link .= '">Contintue</a>';
+	$cta_link .= '"><h4>Contintue</h4></a>';
 	return $cta_link;
 }
 add_shortcode('next_page', 'cta_next_page');

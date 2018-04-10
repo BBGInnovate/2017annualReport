@@ -4,15 +4,20 @@ $font-serif: 'Carerra', $georgia !default;
 h2, h6 {font-family: $font-serif;}
 h3, h4, h5 {font-family: $font-sans;}
 
-h2 {}
+h2 {
+	font-size: 1.625em;
+	color: $color-gray-dark;
+}
 h3 {
+	font-size: 1.1em;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: $color-red-darkest;
+}
+h4 {
 	font-weight: 300;
 	color: $color-gray-dark;
 	margin: 0;
-}
-h4 {
-	font-weight: 700;
-	color: $color-red-darkest;
 }
 h5 {
 	font-size: 1.25em;

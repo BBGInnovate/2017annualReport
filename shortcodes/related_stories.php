@@ -22,9 +22,9 @@ function show_related_story($atts) {
 		$related_story .= 		'</div>';
 		$related_story .= 		'<div class="related-body">';
 		$related_story .= 			'<div class="related-text">';
-		$related_story .= 				'<h3>';
+		$related_story .= 				'<h5>';
 		$related_story .= 					get_the_title();
-		$related_story .= 				'</h3>';
+		$related_story .= 				'</h5>';
 		$related_story .= 				'<h6>';
 		$related_story .= 					get_the_date();
 		$related_story .= 				'</h6>';

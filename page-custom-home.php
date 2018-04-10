@@ -20,8 +20,9 @@
 <div id="main-content">
 	<div class="container">
 		<div class="page-content">
+			<img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Default.png">
 			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Default.png">
+				<h2><?php echo get_the_title(); ?></h2>
 				<div id="wp-content" class="grid-contents">
 					<?php the_content();?>
 				</div>
