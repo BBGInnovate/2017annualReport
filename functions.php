@@ -64,6 +64,31 @@ function profiles_field() {
 }
 add_action('init', 'profiles_field');
 
+function threats_to_press_field() {
+	register_post_type('threats_to_press', array(
+		'public' => true,
+		'menu_icon' => 'dashicons-shield',
+		'menu_position' => 20,
+		'labels' => array(
+			'name' => 'Threats to Press',
+			'add_new_item' => 'Add Threat',
+			'edit_item' => 'Edit Threat',
+			'all_items' => 'All Threats',
+			'singular_name' => 'Threat to Press'
+		),
+		'taxonomies' => array('category'),
+		'supports' => array(
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt',
+			'author',
+			'revisions'
+		),
+	));
+}
+add_action('init', 'threats_to_press_field');
+
 function awards_field() {
 	register_post_type('award', array(
 		'public' => true,
