@@ -23,27 +23,37 @@ function bbg_add_scripts () {
 }
 add_action ('wp_enqueue_scripts', 'bbg_add_scripts');
 
-function charts_field() {
-	register_post_type('chart', array(
+// CUSTOM POST TYPES
+function awards_field() {
+	register_post_type('award', array(
 		'public' => true,
-		'menu_icon' => 'dashicons-chart-line',
+		'menu_icon' => 'dashicons-awards',
+		'menu_position' => 30,
 		'labels' => array(
-			'name' => 'Charts',
-			'add_new_item' => 'Add New Chart',
-			'edit_item' => 'Edit Chart',
-			'all_items' => 'All Charts',
-			'singular_name' => 'Chart'
+			'name' => 'Awards',
+			'add_new_item' => 'Add New Award',
+			'edit_item' => 'Edit Award',
+			'all_items' => 'All Awards',
+			'singular_name' => 'Award'
 		),
-		'taxonomies' => array('category')
+		'taxonomies' => array('category'),
+		'supports' => array(
+			'title',
+			'editor',
+			'thumbnail',
+			'excerpt',
+			'author',
+			'revisions'
+		),
 	));
 }
-add_action('init', 'charts_field');
+add_action('init', 'awards_field');
 
 function profiles_field() {
 	register_post_type('profile', array(
 		'public' => true,
 		'menu_icon' => 'dashicons-id',
-		'menu_position' => 20,
+		'menu_position' => 30,
 		'labels' => array(
 			'name' => 'Profiles',
 			'add_new_item' => 'Add New Profile',
@@ -68,7 +78,7 @@ function threats_to_press_field() {
 	register_post_type('threats_to_press', array(
 		'public' => true,
 		'menu_icon' => 'dashicons-shield',
-		'menu_position' => 20,
+		'menu_position' => 30,
 		'labels' => array(
 			'name' => 'Threats to Press',
 			'add_new_item' => 'Add Threat',
@@ -89,30 +99,40 @@ function threats_to_press_field() {
 }
 add_action('init', 'threats_to_press_field');
 
-function awards_field() {
-	register_post_type('award', array(
+function incidents_field() {
+	register_post_type('incidents', array(
 		'public' => true,
-		'menu_icon' => 'dashicons-awards',
-		'menu_position' => 20,
+		'menu_icon' => 'dashicons-warning',
+		'menu_position' => 30,
 		'labels' => array(
-			'name' => 'Awards',
-			'add_new_item' => 'Add New Award',
-			'edit_item' => 'Edit Award',
-			'all_items' => 'All Awards',
-			'singular_name' => 'Award'
+			'name' => 'Incidents',
+			'add_new_item' => 'Add New incident',
+			'edit_item' => 'Edit incident',
+			'all_items' => 'All Incidents',
+			'singular_name' => 'Incident'
 		),
-		'taxonomies' => array('category'),
-		'supports' => array(
-			'title',
-			'editor',
-			'thumbnail',
-			'excerpt',
-			'author',
-			'revisions'
-		),
+		'taxonomies' => array('category')
 	));
 }
-add_action('init', 'awards_field');
+add_action('init', 'incidents_field');
+
+function charts_field() {
+	register_post_type('chart', array(
+		'public' => true,
+		'menu_icon' => 'dashicons-chart-line',
+		'menu_position' => 30,
+		'labels' => array(
+			'name' => 'Charts',
+			'add_new_item' => 'Add New Chart',
+			'edit_item' => 'Edit Chart',
+			'all_items' => 'All Charts',
+			'singular_name' => 'Chart'
+		),
+		'taxonomies' => array('category')
+	));
+}
+add_action('init', 'charts_field');
+
 
 // IS THIS NECESSARY WITH THE SIDE MENU?
 function hbChild_register_menu() {
