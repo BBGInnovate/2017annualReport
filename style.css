@@ -3757,6 +3757,9 @@ a {
 #main-wrapper.hb-stretched-layout {
   background-color: transparent; }
 
+#top-logo {
+  margin-top: 5em; }
+
 #wp-content:first-child {
   margin-top: 8em; }
 
@@ -3764,7 +3767,7 @@ a {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 91.4702%; }
+  width: 82.94039%; }
   .grid-contents:last-child {
     margin-right: 0; }
 
@@ -3873,7 +3876,7 @@ a {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 65.88078%;
+    width: 57.35098%;
     border-bottom: none; }
     .content-group:last-child {
       margin-right: 0; }
@@ -4023,6 +4026,15 @@ footer {
 
 #move_video {
   padding: 4em 0; }
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.2) 100%); }
 
 .related-wrapper .related-container {
   margin-right: 0; }

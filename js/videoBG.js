@@ -1,17 +1,16 @@
 (function($) {
 $(document).ready(function() {
 
-var winW = $(window).width();
-var winH = $(window).height();
-
-// KEEP VIDEO HD PROPORTIONS (PERCENTAGE)
-var pcx = 1.77778;
-var dynWidth = winH * pcx;
-var dynHeight = winW / pcx;
-
-var videoBox = $('.video-box');
-var videoWrapper = $('.video-wrapper');
-var video = $('.video-tag');
+// INITIALIZE VIDEO RELATED VARS IF NEEDED
+if ($('.video-wrapper').length != 0) {
+	var videoWrapper = $('.video-wrapper'),
+		video = $('.video-tag'),
+		// HD PROPORTIONS (PERCENTAGE)
+		pcx = 1.77778,
+		videoOverlay = $('<div class="video-overlay"></div>');
+	windowVideoSize();
+	videoWrapper.prepend(videoOverlay);
+}
 
 function sizeVideo(videoW, videoH) {
 	videoWrapper.css({
@@ -38,9 +37,8 @@ function windowVideoSize() {
 		sizeVideo(winW, dynHeight);
 	}
 }
-windowVideoSize();
 
-$(window).on('resize', function(){
+$(window).on('resize', function() {
 	windowVideoSize();
 });
 
@@ -55,9 +53,10 @@ $.fn.isInViewport = function() {
 };
 
 $(window).on('resize scroll', function() {
-// BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
-	if ($('.move_video').isInViewport()) {
-		var setTop = $('.move_video').offset().top;
+	// BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
+	videoPusher = $('.move_video');
+	if (videoPusher.isInViewport()) {
+		var setTop = videoPusher.offset().top;
 		setTop = setTop - video.height();
 
 		// WITH HB MEDIA QUERY, WHEN NAV MOVES TO TOP
@@ -65,12 +64,17 @@ $(window).on('resize scroll', function() {
 			setTop = setTop - $('.hb-resp-bg').outerHeight();
 		}
 
-		videoWrapper.css({'position': 'absolute', 'top': setTop});
+		videoWrapper.add(videoWrapper).css({'position': 'absolute', 'top': setTop});
 	} else {
 		videoWrapper.css({'position': 'fixed', 'top': 0});
 	}
-	($('.move_video').offset().top < $(window).scrollTop()) ? video.hide() : video.show();
+	(videoPusher.offset().top < $(window).scrollTop()) ? video.hide() : video.show();
 });
+
+
+
+
+
 
 // TESTING
 // ------------------------------------------------------------------------------------------

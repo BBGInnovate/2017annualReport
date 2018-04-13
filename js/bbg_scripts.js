@@ -74,7 +74,6 @@ if (hasChart == true) {
 			datasets: [{
 				label: 'Testing ChartJS',
 				data: jsData,
-				// backgroundColor: '#ff00ff',
 				backgroundColor: [
 					'#9f1d25',
 					'#147bd1',
@@ -97,6 +96,17 @@ if (hasChart == true) {
 		},
 		layout: {
 			padding: {}
+		}
+	});
+}
+
+// GIVE STYLE TO PARAGRAPHS IN VIDEO REALM
+if ($('.video-wrapper').length != 0) {
+	var level1_ptags = $('.grid-contents').children('p');
+	level1_ptags.each(function() {
+		$(this).css('margin-bottom','4em');
+		if ($(this).next().hasClass('move_video')) {
+			return false;
 		}
 	});
 }
