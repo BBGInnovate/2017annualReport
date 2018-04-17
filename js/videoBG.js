@@ -3,6 +3,7 @@ $(document).ready(function() {
 
 // INITIALIZE VIDEO RELATED VARS IF NEEDED
 if ($('.video-wrapper').length != 0) {
+	console.log($('.video-wrapper').length);
 	var videoWrapper = $('.video-wrapper'),
 		video = $('.video-tag'),
 		// HD PROPORTIONS (PERCENTAGE)
@@ -53,22 +54,24 @@ $.fn.isInViewport = function() {
 };
 
 $(window).on('resize scroll', function() {
-	// BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
-	videoPusher = $('.move_video');
-	if (videoPusher.isInViewport()) {
-		var setTop = videoPusher.offset().top;
-		setTop = setTop - video.height();
+	if ($('.video-wrapper').length != 0) {
+		// BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
+		videoPusher = $('.move_video');
+		if (videoPusher.isInViewport()) {
+			var setTop = videoPusher.offset().top;
+			setTop = setTop - video.height();
 
-		// WITH HB MEDIA QUERY, WHEN NAV MOVES TO TOP
-		if ($(window).width() < 1010) {
-			setTop = setTop - $('.hb-resp-bg').outerHeight();
+			// WITH HB MEDIA QUERY, WHEN NAV MOVES TO TOP
+			if ($(window).width() < 1010) {
+				setTop = setTop - $('.hb-resp-bg').outerHeight();
+			}
+
+			videoWrapper.add(videoWrapper).css({'position': 'absolute', 'top': setTop});
+		} else {
+			videoWrapper.css({'position': 'fixed', 'top': 0});
 		}
-
-		videoWrapper.add(videoWrapper).css({'position': 'absolute', 'top': setTop});
-	} else {
-		videoWrapper.css({'position': 'fixed', 'top': 0});
+		(videoPusher.offset().top < $(window).scrollTop()) ? video.hide() : video.show();
 	}
-	(videoPusher.offset().top < $(window).scrollTop()) ? video.hide() : video.show();
 });
 
 
@@ -78,7 +81,7 @@ $(window).on('resize scroll', function() {
 
 // TESTING
 // ------------------------------------------------------------------------------------------
-console.log("browser window: " + winW + " x " + winH);
+console.log("browser window: " + $(window).width() + " x " + $(window).height());
 
 // GET COORDS OF MOUSE POS
 function printMousePos(event) {

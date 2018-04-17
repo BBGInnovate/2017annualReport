@@ -113,7 +113,32 @@ if ($('.video-wrapper').length != 0) {
 
 // TESTS 
 // -------------------------
-
+if ($('.bg_scroll').length != 0) {
+	$('#footer').add('#hb-side-navigation').hide();
+	var fullBGDiv = $('<div class="full-bg"></div>');
+	var fullBGInner = $('<div class="full-bg-inner"></div>');
+	fullBGDiv.append(fullBGInner);
+	$('body').prepend(fullBGDiv);
+	
+	var lastScroll = 0;
+	$(window).scroll(function(event){
+		var st = $(this).scrollTop();
+		var opc = (st) / 100000;
+		var fade = fullBGInner.css('opacity');
+		var newFade;
+		if (st > lastScroll){
+			newFade = Number(fade) + opc;
+		}
+		else {
+			newFade = Number(fade) - opc;
+		}
+		if (newFade > 0.5 && opc < 1) {
+			fullBGInner.css('opacity', newFade);
+		}
+		console.log(newFade);
+		lastScroll = st;
+	});
+}
 // -------------------------
 
 }); // END READY
