@@ -114,29 +114,42 @@ if ($('.video-wrapper').length != 0) {
 // TESTS 
 // -------------------------
 if ($('.bg_scroll').length != 0) {
-	$('#footer').add('#hb-side-navigation').hide();
+	$('#footer').add('#hb-side-navigation').hide(); // TESTING
+	$('p').css('color','#ffffff');
+	// SET UP OPACTIY DIV
 	var fullBGDiv = $('<div class="full-bg"></div>');
 	var fullBGInner = $('<div class="full-bg-inner"></div>');
 	fullBGDiv.append(fullBGInner);
 	$('body').prepend(fullBGDiv);
-	
+	// INIT SCROLL, FADE VARS
 	var lastScroll = 0;
-	$(window).scroll(function(event){
-		var st = $(this).scrollTop();
-		var opc = (st) / 100000;
-		var fade = fullBGInner.css('opacity');
-		var newFade;
-		if (st > lastScroll){
-			newFade = Number(fade) + opc;
+	var fade = fullBGInner.css('opacity');
+	var maxFade = 0.9;
+	var minFade = fullBGInner.css('opacity');
+	var increment = 0.005;
+	var newFade;
+
+	function scrollFade() {
+		fade = fullBGInner.css('opacity');
+		var st = $(this).scrollTop()
+		if (st > lastScroll) {
+			// SCROLL DOWN
+			(fade > maxFade) ? fade = maxFade : newFade = Number(fade) + increment;
+		} else {
+			// SCROLL UP
+			(fade < minFade) ? fade = minFade : newFade = Number(fade) - increment;
 		}
-		else {
-			newFade = Number(fade) - opc;
-		}
-		if (newFade > 0.5 && opc < 1) {
-			fullBGInner.css('opacity', newFade);
-		}
-		console.log(newFade);
+		fullBGInner.css('opacity', newFade);
+		fade = fullBGInner.css('opacity');
 		lastScroll = st;
+
+		console.log(st);
+		console.log(fade);
+	}
+	scrollFade();
+	
+	$(window).scroll(function(event){
+		scrollFade();
 	});
 }
 // -------------------------
