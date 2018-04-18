@@ -123,28 +123,21 @@ if ($('.bg_scroll').length != 0) {
 	$('body').prepend(fullBGDiv);
 	// INIT SCROLL, FADE VARS
 	var lastScroll = 0;
-	var fade = fullBGInner.css('opacity');
-	var maxFade = 0.9;
-	var minFade = fullBGInner.css('opacity');
-	var increment = 0.005;
+	var fade = Number(fullBGInner.css('opacity'));
+	var maxFade = 1;
+	var minFade = Number(fullBGInner.css('opacity'));
+	var fadeGroup = (maxFade - minFade) * 100;
+	var increment = 0.05;
 	var newFade;
 
 	function scrollFade() {
-		fade = fullBGInner.css('opacity');
-		var st = $(this).scrollTop()
-		if (st > lastScroll) {
-			// SCROLL DOWN
-			(fade > maxFade) ? fade = maxFade : newFade = Number(fade) + increment;
-		} else {
-			// SCROLL UP
-			(fade < minFade) ? fade = minFade : newFade = Number(fade) - increment;
-		}
+		fade = Number(fullBGInner.css('opacity'));
+		var bodyPx = ($(this).scrollTop() / $('body').height());
+		newFade = ((bodyPx * fadeGroup) / 100) + minFade;
 		fullBGInner.css('opacity', newFade);
+		// UPDATE VALUES
 		fade = fullBGInner.css('opacity');
-		lastScroll = st;
-
-		console.log(st);
-		console.log(fade);
+		lastScroll = $(this).scrollTop();
 	}
 	scrollFade();
 	
