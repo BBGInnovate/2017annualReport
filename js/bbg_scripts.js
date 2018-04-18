@@ -111,41 +111,40 @@ if ($('.video-wrapper').length != 0) {
 	});
 }
 
-// TESTS 
-// -------------------------
-if ($('.bg_scroll').length != 0) {
+// BACKGROUND SCROLL FADER
+if ($('.scroll-fader').length != 0) {
 	$('#footer').add('#hb-side-navigation').hide(); // TESTING
-	$('p').css('color','#ffffff');
-	// SET UP OPACTIY DIV
+	// INIT OPACITY DIV OVER BACKGROUND IMAGE
 	var fullBGDiv = $('<div class="full-bg"></div>');
 	var fullBGInner = $('<div class="full-bg-inner"></div>');
 	fullBGDiv.append(fullBGInner);
 	$('body').prepend(fullBGDiv);
+
+	// INIT OTHER SCROLL-FADER ELEMENTS WITH $.EACH WHEN READY
+
 	// INIT SCROLL, FADE VARS
 	var lastScroll = 0;
 	var fade = Number(fullBGInner.css('opacity'));
 	var maxFade = 1;
 	var minFade = Number(fullBGInner.css('opacity'));
 	var fadeGroup = (maxFade - minFade) * 100;
-	var increment = 0.05;
 	var newFade;
 
-	function scrollFade() {
-		fade = Number(fullBGInner.css('opacity'));
+	function scrollFade(elem) {
+		fade = Number(elem.css('opacity'));
 		var bodyPx = ($(this).scrollTop() / $('body').height());
 		newFade = ((bodyPx * fadeGroup) / 100) + minFade;
-		fullBGInner.css('opacity', newFade);
+		elem.css('opacity', newFade);
 		// UPDATE VALUES
-		fade = fullBGInner.css('opacity');
+		fade = elem.css('opacity');
 		lastScroll = $(this).scrollTop();
 	}
-	scrollFade();
+	scrollFade(fullBGInner);
 	
 	$(window).scroll(function(event){
-		scrollFade();
+		scrollFade(fullBGInner);
 	});
 }
-// -------------------------
 
 }); // END READY
 })( jQuery );

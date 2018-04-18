@@ -11,8 +11,8 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 <!-- BEGIN #main-content -->
-<div id="main-content">
-	<div class="container bg_scroll">
+<div id="main-content" class="scroll-fader">
+	<div class="container">
 		<img id="top-logo" src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Default.png">
 		<div class="page-content">
 			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
