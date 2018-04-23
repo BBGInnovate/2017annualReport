@@ -45,7 +45,7 @@ body {widht: 100%; height: 100%;}
 		}
 	}
 }
-
+.scroll-fader {color: $black;}
 .full-bg {
 	position: fixed;
 	width: 100%;
@@ -62,7 +62,7 @@ body {widht: 100%; height: 100%;}
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: $black;
+	background-color: $white;
 	opacity: 0.5;
 }
 
