@@ -4,14 +4,16 @@
  * @subpackage Highend
  * Template name: Page Custom Home
  */
-?>
 
-<?php get_header(); ?>
+require 'shortcodes/related_profiles.php';
+require 'shortcodes/related_stories.php';
+
+get_header();
+?>
 
 <div class="video-wrapper coverImgBg">
 	<video class="video-tag" autoplay loop poster="<?php echo content_url(); ?>/uploads/2018/03/Street-Pulse.jpg">
 		<source src="<?php echo get_stylesheet_directory_uri(); ?>/videos/463476424.mp4" type="video/mp4">
-		<!-- <source src="https: //cdn.theguardian.tv/interactive/mp4/wildfires/dunalley_intro_hi.mp4" type="video/mp4"> -->
 	</video>
 </div>
 

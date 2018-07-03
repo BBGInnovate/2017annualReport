@@ -154,7 +154,4 @@ function cta_next_page($atts) {
 }
 add_shortcode('next_page', 'cta_next_page');
 
-@include ('shortcodes/related_profiles.php');
-@include ('shortcodes/related_stories.php');
-
 ?>

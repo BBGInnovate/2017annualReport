@@ -12,9 +12,7 @@ function show_profile($atts) {
 			$image = get_field('profile_snippet_thumbnail');
 			
 			$profile_box  = '</div>';
-			$profile_box .= '<div class="related-wrapper" id="';
-			$profile_box .= $profile_id;
-			$profile_box .= '">';
+			$profile_box .= '<div class="related-wrapper">';
 			$profile_box .= 	'<div class="related-container profile">';
 			$profile_box .= 		'<div class="related-head">';
 			$profile_box .= 			'<div>';
