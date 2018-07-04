@@ -3563,7 +3563,7 @@ fieldset {
       left: auto;
       position: relative; } }
 
-input[type=search] {
+input[type="search"] {
   /* stylelint-disable-line selector-no-qualifying-type */
   box-sizing: border-box;
   appearance: none; }
@@ -3726,27 +3726,29 @@ h3, h4, h5 {
   font-family: "Alegreya Sans", sans-serif; }
 
 h2 {
-  font-size: 1.625em;
+  font-size: 4rem;
   color: #323a45; }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 2.2rem;
   font-weight: 700;
   text-transform: uppercase;
   color: #981b1e; }
 
 h4 {
+  font-size: 2.4rem;
   font-weight: 300;
   color: #323a45;
   margin: 0; }
 
 h5 {
-  font-size: 1.25em;
+  font-size: 2rem;
   font-weight: 300;
   color: #205493;
   margin: 0; }
 
 h6 {
+  font-size: 1.6rem;
   text-transform: none;
   color: #981b1e;
   margin: 0 0 0.25em 0; }

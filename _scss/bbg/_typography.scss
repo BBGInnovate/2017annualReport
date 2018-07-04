@@ -5,27 +5,29 @@ h2, h6 {font-family: $font-serif;}
 h3, h4, h5 {font-family: $font-sans;}
 
 h2 {
-	font-size: 1.625em;
+	font-size: 4rem;
 	color: $color-gray-dark;
 }
 h3 {
-	font-size: 1.1em;
+	font-size: 2.2rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	color: $color-red-darkest;
 }
 h4 {
+	font-size: 2.4rem;
 	font-weight: 300;
 	color: $color-gray-dark;
 	margin: 0;
 }
 h5 {
-	font-size: 1.25em;
+	font-size: 2rem;
 	font-weight: 300;
 	color: $color-blue-darker;
 	margin: 0;
 }
 h6 {
+	font-size: 1.6rem;
 	text-transform: none;
 	color: $color-red-darkest;
 	margin: 0 0 0.25em 0;
