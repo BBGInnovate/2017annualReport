@@ -92,15 +92,37 @@ function show_related_story($atts) {
 
 add_shortcode('video-bg', 'display_background_video');
 function display_background_video($atts) {
+	$name = $atts['name'];
+	$poster = $atts['poster'];
 	$video_src = $atts['src'];
 
-	$bg_video  = '<div class="video-wrapper coverImgBg">';
+	$bg_video  = 	'</div>';
+	$bg_video .= '</div>';
+	// CLOSE CONTAINER SO VIDEO EXPANDS FULL WIDTH
+	$bg_video .= '<div class="' . $name . ' video-wrapper coverImgBg"';
+	$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;">';
 	$bg_video .= 	'<video class="video-tag" autoplay loop>';
-	$bg_video .= 		'<source src="';
-	$bg_video .= 			$video_src;
-	$bg_video .= 		'" type="video/mp4">';
+	$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 	$bg_video .= 	'</video>';
 	$bg_video .= '</div>';
+	// REOPEN CONTAINER
+	$bg_video .= '<div class="outer-container">';
+	$bg_video .= 	'<div class="grid-container">';
 	return $bg_video;
+}
+
+add_shortcode('move_video', 'move_video_up');
+function move_video_up($atts) {
+	$name = $atts['name'];
+	$video_pusher = '<div class="move-video ' . $name . '">x</div>';
+	return $video_pusher;
+}
+
+add_shortcode('next_page', 'cta_next_page');
+function cta_next_page($atts) {
+	$cta_link  = '<a href="index.php/';
+	$cta_link .= $atts['slug'];
+	$cta_link .= '"><h4>Contintue</h4></a>';
+	return $cta_link;
 }
 ?>

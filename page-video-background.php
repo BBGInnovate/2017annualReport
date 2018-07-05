@@ -20,19 +20,26 @@ if (have_posts()) {
 }
 ?>
 
-<div id="main-content">
-	<div class="container">
-		<img id="top-logo" src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Default.png">
-		<div class="page-content">
-			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<div id="wp-content" class="grid-contents">
-					<?php
-						echo '<h2>' . $page_title . '</h2>';
-						echo $page_content;
-					?>
-				</div>
-			</div>
-		</div>
+<!-- <source src="https://cdn.theguardian.tv/interactive/mp4/wildfires/dunalley_intro_hi.mp4" type="video/mp4"> -->
+
+<div class="outer-container">
+	<div class="grid-container">
+		<?php
+			$header_logo  = '<img id="top-logo" src="';
+			$header_logo .= 	content_url() . '/uploads/2018/03/BBG-AR_Logo_Default.png" ';
+			$header_logo .= 	'title="" alt="BBG Annual Report 2017"';
+			$header_logo .= '>';
+			echo $header_logo;
+		?>
+	</div>
+</div>
+
+<div class="outer-container">
+	<div class="grid-container">
+		<?php
+			echo '<h2>' . $page_title . '</h2>';
+			echo $page_content;
+		?>
 	</div>
 </div>
 

@@ -140,18 +140,4 @@ function hbChild_register_menu() {
 }
 add_action('init', 'hbChild_register_menu');
 
-// SHORTCODES
-function div_to_move_video() {
-	return '<div class="move_video">&nbsp;</div>';
-}
-add_shortcode('move_video', 'div_to_move_video');
-
-function cta_next_page($atts) {
-	$cta_link  = '<a href="index.php/';
-	$cta_link .= $atts['slug'];
-	$cta_link .= '"><h4>Contintue</h4></a>';
-	return $cta_link;
-}
-add_shortcode('next_page', 'cta_next_page');
-
 ?>

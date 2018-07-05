@@ -5,7 +5,6 @@
  */
 ?>
 
-<!-- BEGIN #footer OPTION light-style -->
 <footer id="footer">
 	<div class="container">
 		<div class="page-content">
@@ -14,35 +13,18 @@
 			</div>
 			<div class="footer-col">
 				<?php wp_nav_menu(array('theme_location' => 'footer-menu')); ?>
-				<!-- <ul>
-					<li>Countering Disinformation</li>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur Adipiscing Elit</li>
-					<li>Eed do Eiusmod Tempor</li>
-				</ul> -->
-			</div>
-			<div class="footer-col">
-				<ul>
-					<li>Countering Disinformation</li>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur Adipiscing Elit</li>
-					<li>Eed do Eiusmod Tempor</li>
-				</ul></div>
-			<div class="footer-col">
-				<ul>
-					<li>Countering Disinformation</li>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur Adipiscing Elit</li>
-					<li>Eed do Eiusmod Tempor</li>
-				</ul>
 			</div>
 		</div>
 	</div>
 </footer>
-<!-- END #footer -->
+
+</div>
+<!-- END #main-wrapper -->
+<?php // OPENING TAGS FOR #main-wrapper and #hb-wrap ARE LOCATED IN header.php ?>
+</div>
+<!-- END #hb-wrap -->
+
+
 <?php global $hasChart; ?>
 <?php
 if ($hasChart) { 
@@ -61,9 +43,7 @@ if ($hasChart) {
 <script>
 	var hasChart = '<?php echo json_encode($hasChart); ?>';
 </script>
+
 <?php wp_footer(); ?>
 </body>
-<!-- END body -->
-
 </html>
-<!-- END html -->
