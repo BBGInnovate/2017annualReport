@@ -5,7 +5,7 @@
  * Template name: Video Background
  */
 
-require 'inc/shortcodes.php';
+require 'includes/shortcodes.php';
 
 get_header();
 

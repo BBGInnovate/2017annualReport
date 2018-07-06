@@ -9,7 +9,7 @@ var videoMovers;
 if ($('.video-wrapper').length != 0) {
 	console.log($('.video-wrapper').length);
 	var videoWrappers = $('.video-wrapper');
-	$.each()
+	// $.each()
 	var videoTags = $('.video-tag');
 	if ($('.move-video')) {
 		videoMovers = $('.move-video');
@@ -75,40 +75,46 @@ $.fn.isInViewport = function() {
 };
 
 // KEEP VIDEO TAG AND MOVE-VIDEO BLOCK TOGETER
-var curVideo = "";
-var curVideoName = "";
-var curVideoTop = "";
-var videoMovers = $('.move-video');
-var curVideoMover = "";
 var setTop = 0;
-var pastVideo = false;
+var hitMover = false;
 $(window).on('resize scroll', function() {
-	// TESTING
 	$.each($('.video-wrapper'), function() {
 		if ($('.video-wrapper').isInViewport()) {
-			curVideo = $(this);
-			var originalTop = curVideo.offset().top;
+			var curVideo = $(this);
+			// STARTING POSITION OF VIDEO
+			var previousDiv = curVideo.prev();
+			var videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
+			
 			var curVideoTag = curVideo.children('video');
-			curVideoTop = curVideo.offset().top;
-			var videoBottom = curVideoTop + curVideo.height();
+			var curVideoTop = curVideo.offset().top;
+			var curVideoBottom = curVideoTop + curVideo.height();
 			var classList = curVideo.attr('class');
 			var classList = classList.split(" ");
 			// THE FIRST CLASS IS THE NAME OF THE VIDEO
-			curVideoName = classList[0];
+			var curVideoName = classList[0];
 			var videoMover = $('.move-video.' + curVideoName);
-console.log("a video is in the viewport");
-			// CHECK VIDEO, MOVER POSITIONS
-			if (curVideoTop <= viewportTop) {
+
+			// LOCK, UNLOCK VIDEO IN PLACE
+			if ((hitMover == false) && videoAnchor < viewportTop) {
 				curVideo.addClass('freeze-video-position');
-				console.log("the video is at the top");
 			}
-			if (videoMover.isInViewport()) {
-				pastVideo = true;
+			if (videoAnchor > viewportTop) {
+				curVideo.removeClass('freeze-video-position');
+			}
+			if ((curVideo.hasClass('freeze-video-position')) && (videoMover.offset().top < viewportBottom) && (videoAnchor < viewportTop)) {
+				hitMover = true;
 				setTop = videoMover.offset().top;
 				setTop = setTop - curVideo.height();
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', setTop);
-				console.log("a video mover is in the viewport");
+			}
+			if ((hitMover) && (videoMover.offset().top > viewportBottom)) {
+				curVideo.css('top', 0);
+				curVideo.addClass('freeze-video-position');
+			}
+			if ((hitMover) && (curVideo.hasClass('freeze-video-position')) && (videoAnchor > viewportTop)) {
+				curVideo.removeClass('freeze-video-position');
+				curVideo.css('top', videoAnchor);
 			}
 		}
 	});
