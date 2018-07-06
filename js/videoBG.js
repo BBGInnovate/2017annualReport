@@ -9,6 +9,7 @@ var videoMovers;
 if ($('.video-wrapper').length != 0) {
 	console.log($('.video-wrapper').length);
 	var videoWrappers = $('.video-wrapper');
+	$.each()
 	var videoTags = $('.video-tag');
 	if ($('.move-video')) {
 		videoMovers = $('.move-video');
@@ -80,61 +81,37 @@ var curVideoTop = "";
 var videoMovers = $('.move-video');
 var curVideoMover = "";
 var setTop = 0;
+var pastVideo = false;
 $(window).on('resize scroll', function() {
 	// TESTING
 	$.each($('.video-wrapper'), function() {
 		if ($('.video-wrapper').isInViewport()) {
 			curVideo = $(this);
+			var originalTop = curVideo.offset().top;
 			var curVideoTag = curVideo.children('video');
 			curVideoTop = curVideo.offset().top;
+			var videoBottom = curVideoTop + curVideo.height();
 			var classList = curVideo.attr('class');
 			var classList = classList.split(" ");
 			// THE FIRST CLASS IS THE NAME OF THE VIDEO
 			curVideoName = classList[0];
 			var videoMover = $('.move-video.' + curVideoName);
-
+console.log("a video is in the viewport");
 			// CHECK VIDEO, MOVER POSITIONS
-			if (curVideo.isInViewport()) {
-				console.log("The video is here");
-			}
 			if (curVideoTop <= viewportTop) {
-				console.log("The video has hit the top");
 				curVideo.addClass('freeze-video-position');
+				console.log("the video is at the top");
 			}
 			if (videoMover.isInViewport()) {
+				pastVideo = true;
 				setTop = videoMover.offset().top;
 				setTop = setTop - curVideo.height();
-			}
-			if (videoMover.offset().top <= viewportBottom) {
-				console.log('MOVE IT');
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', setTop);
-				// curVideo.css('top', 0);
+				console.log("a video mover is in the viewport");
 			}
 		}
 	});
-
-// 	if ($('.video-wrapper').length != 0) {
-// 		// BOTTOM POS OF VIDEO STILL FISHY WITH WP MENU BAR
-// 		videoPusher = $('.move-video');
-// 		if ($('.video-wrapper').isInViewport()) {
-// 			console.log('I see the video.');
-// 		}
-// 		if (videoPusher.isInViewport()) {
-// 			var setTop = videoPusher.offset().top;
-// 			setTop = setTop - videoTags.height();
-
-// 			// WITH HB MEDIA QUERY, WHEN NAV MOVES TO TOP
-// 			if ($(window).width() < 1010) {
-// 				setTop = setTop - $('.hb-resp-bg').outerHeight();
-// 			}
-
-// 			videoWrappers.add(videoWrappers).css({'position': 'absolute', 'top': setTop});
-// 		} else {
-// 			videoWrappers.css({'position': 'fixed', 'top': 0, 'left': 0});
-// 		}
-// 		(videoPusher.offset().top < $(window).scrollTop()) ? videoTags.hide() : videoTags.show();
-// 	}
 });
 
 
