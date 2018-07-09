@@ -7,9 +7,8 @@ var videoMovers;
 
 // INITIALIZE VIDEO RELATED VARS IF NEEDED
 if ($('.video-wrapper').length != 0) {
-	console.log($('.video-wrapper').length);
 	var videoWrappers = $('.video-wrapper');
-	// $.each()
+console.log('videoWrappers lenght: ' + videoWrappers.length);
 	var videoTags = $('.video-tag');
 	if ($('.move-video')) {
 		videoMovers = $('.move-video');
@@ -70,57 +69,74 @@ $.fn.isInViewport = function() {
 	
 	if (elementBottom > viewportTop && elementTop < viewportBottom) {
 		return true;
+	} else {
+		return false;
 	}
-	// return elementBottom > viewportTop && elementTop < viewportBottom;
 };
 
-// KEEP VIDEO TAG AND MOVE-VIDEO BLOCK TOGETER
+var videos = [];
+var videoClassTargets = [];
 var setTop = 0;
-var hitMover = false;
-$(window).on('resize scroll', function() {
-	$.each($('.video-wrapper'), function() {
-		if ($('.video-wrapper').isInViewport()) {
-			var curVideo = $(this);
-			// STARTING POSITION OF VIDEO
-			var previousDiv = curVideo.prev();
-			var videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
-			
-			var curVideoTag = curVideo.children('video');
-			var curVideoTop = curVideo.offset().top;
-			var curVideoBottom = curVideoTop + curVideo.height();
-			var classList = curVideo.attr('class');
-			var classList = classList.split(" ");
-			// THE FIRST CLASS IS THE NAME OF THE VIDEO
-			var curVideoName = classList[0];
-			var videoMover = $('.move-video.' + curVideoName);
+var hitAnchor = false;
+var i = 0;
 
-			// LOCK, UNLOCK VIDEO IN PLACE
-			if ((hitMover == false) && videoAnchor < viewportTop) {
-				curVideo.addClass('freeze-video-position');
-			}
-			if (videoAnchor > viewportTop) {
-				curVideo.removeClass('freeze-video-position');
-			}
-			if ((curVideo.hasClass('freeze-video-position')) && (videoMover.offset().top < viewportBottom) && (videoAnchor < viewportTop)) {
-				hitMover = true;
-				setTop = videoMover.offset().top;
-				setTop = setTop - curVideo.height();
-				curVideo.removeClass('freeze-video-position');
-				curVideo.css('top', setTop);
-			}
-			if ((hitMover) && (videoMover.offset().top > viewportBottom)) {
+$.each($('.video-wrapper'), function() {
+	var classList = $(this).attr('class');
+	classList = classList.split(" ");
+	var curVideoClass = classList[0];
+	videos[i] = $('.' + curVideoClass + '.video-wrapper');
+	i++;
+});
+
+function checkVideoPositions() {
+	var i = 0;
+	$.each(videos, function() {
+		var curVideo = $(this);
+		if (curVideo.isInViewport()) {
+			var classList = curVideo.attr('class');
+			classList = classList.split(" ");
+			var curVideoName = classList[0];
+			var curMover = $('.move-video.' + curVideoName);
+			var videoAnchor = "";
+			var previousDiv = curVideo.prev();
+			var previousContent = previousDiv.children().children();
+			if (previousContent.length == 1) {
 				curVideo.css('top', 0);
-				curVideo.addClass('freeze-video-position');
+				videoAnchor = 0;
+
+			} else {
+				videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
 			}
-			if ((hitMover) && (curVideo.hasClass('freeze-video-position')) && (videoAnchor > viewportTop)) {
+
+			if (videoAnchor < viewportTop) {
+				if (curMover.isInViewport()) {
+					hitAnchor = true;
+					curVideo.removeClass('freeze-video-position');
+					setTop = curMover.offset().top;
+					setTop = setTop - curVideo.height();
+					curVideo.removeClass('freeze-video-position');
+					curVideo.css('top', setTop);
+					console.log('unlock');
+				}
+				else {
+					if (hitAnchor) {
+						curVideo.css('top', 0);
+					}
+					curVideo.addClass('freeze-video-position');
+				}
+			}
+			if (hitAnchor && videoAnchor > viewportTop) {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
 			}
 		}
 	});
+}
+checkVideoPositions();
+
+$(window).on('resize scroll', function() {
+	checkVideoPositions();
 });
-
-
 
 
 

@@ -99,6 +99,7 @@ function display_background_video($atts) {
 	$bg_video  = 	'</div>';
 	$bg_video .= '</div>';
 	// CLOSE CONTAINER SO VIDEO EXPANDS FULL WIDTH
+	// $bg_video .= '<div id="' . $name . '" class="video-wrapper coverImgBg"';
 	$bg_video .= '<div class="' . $name . ' video-wrapper coverImgBg"';
 	$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;">';
 	$bg_video .= 	'<video class="video-tag" autoplay loop>';
@@ -114,7 +115,7 @@ function display_background_video($atts) {
 add_shortcode('move_video', 'move_video_up');
 function move_video_up($atts) {
 	$name = $atts['name'];
-	$video_pusher = '<div class="move-video ' . $name . '">x</div>';
+	$video_pusher = '<div class="move-video ' . $name . '">Move the '. $name . ' video.</div>';
 	return $video_pusher;
 }
 
