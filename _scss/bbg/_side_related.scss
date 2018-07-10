@@ -1,4 +1,10 @@
+.side-related {
+	.related-head {border-bottom: 1px solid #e6e6e6;}
+	.related-body {margin-top: 1.5rem;}
+}
+
 .related-wrapper {
+	clear: both;
 	// GLOBAL
 	.related-container {
 		@include grid-container;

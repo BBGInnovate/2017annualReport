@@ -3746,6 +3746,24 @@ input[type="search"] {
   float: left;
   margin-left: 20px; }
 
+.left-content-container {
+  width: calc(58.33333% - 31.66667px);
+  float: left;
+  margin-left: 20px; }
+
+.side-related {
+  margin-left: calc(41.66667% - 28.33333px + 40px); }
+
+.main-column-large {
+  width: calc(83.33333% - 36.66667px);
+  float: left;
+  margin-left: 20px; }
+
+.side-column-small {
+  width: calc(16.66667% - 23.33333px);
+  float: left;
+  margin-left: 20px; }
+
 h2, h6 {
   font-family: "Merriweather", "Georgia", "Cambria", "Times New Roman", "Times", serif; }
 
@@ -4078,45 +4096,52 @@ footer {
   bottom: 0;
   left: 0; }
 
-.related-wrapper .related-container {
-  margin-right: 0; }
-  .related-wrapper .related-container::after {
-    clear: both;
-    content: "";
-    display: block; }
-  .related-wrapper .related-container .related-head::after {
-    clear: both;
-    content: "";
-    display: block; }
-  .related-wrapper .related-container .related-body {
-    border-top: 1px solid #e4e2e0; }
-    .related-wrapper .related-container .related-body::after {
+.side-related .related-head {
+  border-bottom: 1px solid #e6e6e6; }
+
+.side-related .related-body {
+  margin-top: 1.5rem; }
+
+.related-wrapper {
+  clear: both; }
+  .related-wrapper .related-container {
+    margin-right: 0; }
+    .related-wrapper .related-container::after {
       clear: both;
       content: "";
       display: block; }
-  .related-wrapper .related-container .related-text {
-    margin-top: 0.75em; }
-    .related-wrapper .related-container .related-text p {
-      margin: 0 0 15px 0; }
-
-.related-wrapper .related-container.profile {
-  text-align: right; }
-  .related-wrapper .related-container.profile .related-head > div,
-  .related-wrapper .related-container.profile .related-text {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 74.41059%; }
-    .related-wrapper .related-container.profile .related-head > div:last-child,
-    .related-wrapper .related-container.profile .related-text:last-child {
-      margin-right: 0; }
-  .related-wrapper .related-container.profile .related-image {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 23.23176%; }
-    .related-wrapper .related-container.profile .related-image:last-child {
-      margin-right: 0; }
+    .related-wrapper .related-container .related-head::after {
+      clear: both;
+      content: "";
+      display: block; }
+    .related-wrapper .related-container .related-body {
+      border-top: 1px solid #e4e2e0; }
+      .related-wrapper .related-container .related-body::after {
+        clear: both;
+        content: "";
+        display: block; }
+    .related-wrapper .related-container .related-text {
+      margin-top: 0.75em; }
+      .related-wrapper .related-container .related-text p {
+        margin: 0 0 15px 0; }
+  .related-wrapper .related-container.profile {
+    text-align: right; }
+    .related-wrapper .related-container.profile .related-head > div,
+    .related-wrapper .related-container.profile .related-text {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 74.41059%; }
+      .related-wrapper .related-container.profile .related-head > div:last-child,
+      .related-wrapper .related-container.profile .related-text:last-child {
+        margin-right: 0; }
+    .related-wrapper .related-container.profile .related-image {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 23.23176%; }
+      .related-wrapper .related-container.profile .related-image:last-child {
+        margin-right: 0; }
 
 @media screen and (min-width: 600px) {
   .related-wrapper {

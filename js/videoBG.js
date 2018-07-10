@@ -60,6 +60,8 @@ $(window).on('resize', function() {
 	windowVideoSize();
 });
 
+
+// CONTROL VIDEO SCROLL
 // ELEMENT INSIDE VIEWPORT?
 $.fn.isInViewport = function() {
 	var elementTop = $(this).offset().top;
@@ -77,7 +79,7 @@ $.fn.isInViewport = function() {
 var videos = [];
 var videoClassTargets = [];
 var setTop = 0;
-var hitAnchor = false;
+var hitMover = false;
 var i = 0;
 
 $.each($('.video-wrapper'), function() {
@@ -87,6 +89,16 @@ $.each($('.video-wrapper'), function() {
 	videos[i] = $('.' + curVideoClass + '.video-wrapper');
 	i++;
 });
+
+function unlockVideo(video, mover) {
+	video.removeClass('freeze-video-position');
+	setTop = mover.offset().top;
+	setTop = setTop - video.height();
+	video.css('top', setTop);
+}
+function lockVideo(video) {
+	video.addClass('freeze-video-position');
+}
 
 function checkVideoPositions() {
 	var i = 0;
@@ -100,34 +112,42 @@ function checkVideoPositions() {
 			var videoAnchor = "";
 			var previousDiv = curVideo.prev();
 			var previousContent = previousDiv.children().children();
-			if (previousContent.length == 1) {
+			// if (previousContent.length == 1) {
+			// 	curVideo.css('top', 0);
+			// 	videoAnchor = 0;
+			// } else {
+			// 	videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
+			// }
+			if (curVideo.hasClass('top')) {
 				curVideo.css('top', 0);
 				videoAnchor = 0;
-
 			} else {
 				videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
 			}
 
 			if (videoAnchor < viewportTop) {
 				if (curMover.isInViewport()) {
-					hitAnchor = true;
+					hitMover = true;
 					curVideo.removeClass('freeze-video-position');
 					setTop = curMover.offset().top;
 					setTop = setTop - curVideo.height();
 					curVideo.removeClass('freeze-video-position');
 					curVideo.css('top', setTop);
-					console.log('unlock');
+console.log('1');
 				}
 				else {
-					if (hitAnchor) {
+					if (hitMover) {
 						curVideo.css('top', 0);
+console.log('2');
 					}
 					curVideo.addClass('freeze-video-position');
+console.log('3');
 				}
 			}
-			if (hitAnchor && videoAnchor > viewportTop) {
+			if (hitMover && videoAnchor > viewportTop) {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
+console.log('4');
 			}
 		}
 	});

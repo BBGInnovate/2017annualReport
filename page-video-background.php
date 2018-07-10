@@ -23,7 +23,7 @@ if (have_posts()) {
 <!-- <source src="https://cdn.theguardian.tv/interactive/mp4/wildfires/dunalley_intro_hi.mp4" type="video/mp4"> -->
 
 <div class="outer-container">
-	<div class="grid-container">
+	<div class="left-content-container">
 		<?php
 			$header_logo  = '<img id="top-logo" src="';
 			$header_logo .= 	content_url() . '/uploads/2018/03/BBG-AR_Logo_Default.png" ';
@@ -35,11 +35,14 @@ if (have_posts()) {
 </div>
 
 <div class="outer-container">
-	<div class="grid-container">
-		<?php
-			echo '<h2>' . $page_title . '</h2>';
-			echo $page_content;
-		?>
+	<div class="grid-container page-title">
+		<?php echo '<h2>' . $page_title . '</h2>'; ?>
+	</div>
+</div>
+
+<div class="outer-container">
+	<div class="left-content-container">
+		<?php echo '<h2>' . $page_content . '</h2>'; ?>
 	</div>
 </div>
 
