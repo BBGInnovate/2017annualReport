@@ -42,7 +42,7 @@ if (have_posts()) {
 
 <div class="outer-container">
 	<div class="left-content-container">
-		<?php echo '<h2>' . $page_content . '</h2>'; ?>
+		<?php echo $page_content; ?>
 	</div>
 </div>
 
