@@ -2,6 +2,7 @@
 add_shortcode('profile', 'show_profile');
 function show_profile($atts) {
 	$profile_name = $atts['name'];
+	$type = $atts['type'];
 
 	$profile_post = new WP_Query(array(
 		'post_type' => 'profile'
@@ -10,18 +11,27 @@ function show_profile($atts) {
 		$profile_post -> the_post();
 		if (get_the_title() == $profile_name) {
 			$image = get_field('profile_snippet_thumbnail');
+			if ($type == 'link') {
+				$profile_name = '<a href="'. get_the_permalink() . '">' . $atts['name'] . '</a>';
+			}
 			
 			$profile_box  = 	'</div>';
 			$profile_box .= '</div>';
 
 			$profile_box .= '<div class="outer-container">';
-			$profile_box .= 	'<div class="side-related">';
+			$profile_box .= 	'<div class="side-related profile">';
 			$profile_box .= 		'<div class="grid-container related-head">';
 			$profile_box .= 			'<h5>' . $profile_name . '</h5>';
 			$profile_box .= 		'</div>';
 			$profile_box .= 		'<div class="main-column-large related-body">';
 			$profile_box .= 			'<h6>' . get_field('profile_snippet_title') . '</h6>';
 			$profile_box .= 			'<p>' . get_the_excerpt() . '</p>';
+			if ($type == 'reveal') {
+				$profile_box .= 		'<div class="reveal-content">';
+				$profile_box .= 			get_the_content();
+				$profile_box .= 		'</div>';
+				$profile_box .= 		'<p class="show-more">show more</p>';
+			}
 			$profile_box .= 		'</div>';
 			$profile_box .= 		'<div class="side-column-small">';
 			$profile_box .= 			'<img src="' . $image['url'] . '" alt="' . $image['title'] . '">';

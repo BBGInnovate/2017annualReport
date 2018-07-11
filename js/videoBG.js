@@ -125,7 +125,6 @@ function checkVideoPositions() {
 			} else {
 				videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
 			}
-			console.log('two');
 			curVideo.siblings('.video-overlay').css({
 				'top': videoAnchor,
 				'height': curVideo.height()
