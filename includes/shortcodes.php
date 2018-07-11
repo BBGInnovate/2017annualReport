@@ -93,6 +93,7 @@ function display_background_video($atts) {
 	$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 	$bg_video .= 	'</video>';
 	$bg_video .= '</div>';
+	$bg_video .= '<div class="video-overlay"></div>';
 	// REOPEN CONTAINER
 	$bg_video .= '<div class="outer-container">';
 	$bg_video .= 	'<div class="left-content-container">';
@@ -104,7 +105,7 @@ function move_video_up($atts) {
 	$name = $atts['name'];
 	$video_pusher  = 	'</div>';
 	$video_pusher .= '</div>';
-	$video_pusher .= '<div class="move-video ' . $name . '">Move the '. $name . ' video.</div>';
+	$video_pusher .= '<div class="move-video ' . $name . '"></div>';
 	$video_pusher .= '<div class="outer-container">';
 	$video_pusher .= 	'<div class="left-content-container">';
 	return $video_pusher;

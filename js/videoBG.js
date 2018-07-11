@@ -76,6 +76,19 @@ $.fn.isInViewport = function() {
 	}
 };
 
+var setTop = 0;
+function unlockVideo(video, mover) {
+	video.removeClass('freeze-video-position');
+	setTop = mover.offset().top;
+	setTop = setTop - video.height();
+	video.css('top', setTop);
+}
+function lockVideo(video) {
+	video.addClass('freeze-video-position');
+	video.css('top', 0);
+}
+
+// GET ALL THE VIDEOS BY THEIR CLASS (NAME)
 var videos = [];
 var i = 0;
 $.each($('.video-wrapper'), function() {
@@ -83,32 +96,21 @@ $.each($('.video-wrapper'), function() {
 	classList = classList.split(" ");
 	var curVideoClass = classList[0];
 	videos[i] = $('.' + curVideoClass + '.video-wrapper');
+	// videos[i].siblings('.video-overlay').css({
+	// 	'top': videos[i].offset().top,
+	// });
+	var videoChildrenSet = videos[i].nextUntil('.move-video.' + curVideoClass);
+	$.each(videoChildrenSet, function() {
+		$(this).children().addClass('text-in-video-bg');
+	});
 	i++;
 });
-
-var setTop = 0;
-var lockedVideo = false;
-function unlockVideo(video, mover) {
-	video.removeClass('freeze-video-position');
-	setTop = mover.offset().top;
-	setTop = setTop - video.height();
-	video.css('top', setTop);
-	lockedVideo = false;
-}
-function lockVideo(video) {
-	video.addClass('freeze-video-position');
-	video.css('top', 0);
-	var lockedVideo = true;
-}
-
-// BUG WHEN WP TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
-var hitMover = false;
+// BUG WHEN TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
 function checkVideoPositions() {
-	var i = 0;
 	$.each(videos, function() {
 		var curVideo = $(this);
 		if (curVideo.isInViewport()) {
-			// VIDEO NAME CLASS, PAIR TO ITS MOVER
+			// GET VIDEO CLASS(NAME), PIN IT TO ITS MOVER CLASS (NAME)
 			var classList = curVideo.attr('class');
 			classList = classList.split(" ");
 			var curVideoName = classList[0];
@@ -120,43 +122,26 @@ function checkVideoPositions() {
 			if (curVideo.hasClass('top')) {
 				curVideo.css('top', 0);
 				videoAnchor = 0;
-				console.log('videoAnchor: ' + videoAnchor);
 			} else {
 				videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
-				console.log('videoAnchor: ' + videoAnchor);
 			}
-
+			console.log('two');
+			curVideo.siblings('.video-overlay').css({
+				'top': videoAnchor,
+				'height': curVideo.height()
+			});
+			// WHEN TO LOCK, UNLOCK VIDEO
 			if (videoAnchor <= viewportTop) {
 				if (curMover.isInViewport()) {
-					hitMover = true;
 					unlockVideo(curVideo, curMover);
-					// TESTS
-					console.log('1');
-					console.log('hitMover: ' + hitMover);
 				}
 				else {
-					if (hitMover) {
-						curVideo.css('top', 0);
-						// TESTS
-						console.log('2');
-						console.log('hitMover: ' + hitMover);
-					}
-					// else {
-					// 	hitMover = false;
-					// }
 					lockVideo(curVideo);
-					// TESTS
-					console.log('3');
-					console.log('hitMover: ' + hitMover);
 				}
 			}
-			// if (hitMover && videoAnchor > viewportTop) {
-			if (videoAnchor > viewportTop) {
+			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
-				// TESTS
-				console.log('4');
-				console.log('hitMover: ' + hitMover);
 			}
 		}
 	});
