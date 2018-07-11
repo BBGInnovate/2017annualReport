@@ -11,13 +11,10 @@ function show_profile($atts) {
 		$profile_post -> the_post();
 		if (get_the_title() == $profile_name) {
 			$image = get_field('profile_snippet_thumbnail');
-			if ($type == 'link') {
-				$profile_name = '<a href="'. get_the_permalink() . '">' . $atts['name'] . '</a>';
-			}
 			
 			$profile_box  = 	'</div>';
 			$profile_box .= '</div>';
-
+			
 			$profile_box .= '<div class="outer-container">';
 			$profile_box .= 	'<div class="side-related profile">';
 			$profile_box .= 		'<div class="grid-container related-head">';
@@ -30,7 +27,10 @@ function show_profile($atts) {
 				$profile_box .= 		'<div class="reveal-content">';
 				$profile_box .= 			get_the_content();
 				$profile_box .= 		'</div>';
-				$profile_box .= 		'<p class="show-more">show more</p>';
+				$profile_box .= 		'<p class="show-more reveal">Show More</p>';
+			}
+			elseif ($type == 'link') {
+				$profile_box .= 		'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
 			}
 			$profile_box .= 		'</div>';
 			$profile_box .= 		'<div class="side-column-small">';
@@ -61,21 +61,22 @@ function show_related_story($atts) {
 		$related_story .= '</div>';
 		$related_story .= '<div class="outer-container">';
 		$related_story .= 	'<div class="side-related">';
-		$related_story .= 		'<div class="grid-container related-head">';
-		$related_story .= 			'<div class="left-content-container">';
-		$related_story .= 				get_the_post_thumbnail();
+		$related_story .= 		'<div class="inner-container">';
+		$related_story .= 			'<div class="grid-container related-head">';
+		$related_story .= 				'<div class="side-related">';
+		$related_story .= 					'<a href="' . get_the_permalink() . '">';
+		$related_story .= 						get_the_post_thumbnail();
+		$related_story .= 					'</a>';
+		$related_story .= 				'</div>';
 		$related_story .= 			'</div>';
-		$related_story .= 		'</div>';
-		$related_story .= 		'<div class="grid-container related-body">';
-		$related_story .= 			'<h5>' . get_the_title() . '</h5>';
-		$related_story .= 			'<p>' . $story_copy . '</p>';
+		$related_story .= 			'<div class="grid-container related-body">';
+		$related_story .= 				'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
+		$related_story .= 				'<p>' . $story_copy . '</p>';
+		$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
+		$related_story .= 			'</div>';
 		$related_story .= 		'</div>';
 		$related_story .= 	'</div>';
 		$related_story .= '</div>';
-		// $related_story .= 				get_the_post_thumbnail();
-		// $related_story .= 				'<h5>' . get_the_title() . '</h5>';
-		// $related_story .= 				'<h6>' . get_the_date() . '</h6>';
-		// $related_story .= 				'<p>' . $story_copy . '</p>';
 		
 		$related_story .= '<div class="outer-container">';
 		$related_story .= 	'<div class="left-content-container">';

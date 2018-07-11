@@ -96,9 +96,6 @@ $.each($('.video-wrapper'), function() {
 	classList = classList.split(" ");
 	var curVideoClass = classList[0];
 	videos[i] = $('.' + curVideoClass + '.video-wrapper');
-	// videos[i].siblings('.video-overlay').css({
-	// 	'top': videos[i].offset().top,
-	// });
 	var videoChildrenSet = videos[i].nextUntil('.move-video.' + curVideoClass);
 	$.each(videoChildrenSet, function() {
 		$(this).children().addClass('text-in-video-bg');

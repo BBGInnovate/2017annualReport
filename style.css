@@ -3798,14 +3798,26 @@ h6 {
   color: #981b1e;
   margin: 0 0 0.25em 0; }
 
-a {
+a:link, a:visited {
+  color: #147bd1;
   text-decoration: none; }
+
+a:hover, a:active {
+  color: #9f1d25; }
+
+.profile_link {
+  color: inherit; }
 
 .move-video {
   width: 100%; }
 
 .show-more {
-  color: #8b8278; }
+  color: #8b8278;
+  cursor: pointer; }
+  .show-more a:link, .show-more a:visited {
+    color: #8b8278; }
+  .show-more a:hover, .show-more a:active {
+    color: #9f1d25; }
 
 #main-wrapper.hb-stretched-layout {
   background-color: transparent; }

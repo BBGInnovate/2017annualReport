@@ -32,3 +32,9 @@ h6 {
 	color: $color-red-darkest;
 	margin: 0 0 0.25em 0;
 }
+
+a:link, a:visited {
+	color: $blue;
+	text-decoration: none;
+}
+a:hover, a:active {color: $red;}

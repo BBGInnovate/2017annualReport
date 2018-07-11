@@ -3,6 +3,9 @@
 // RELATED PROFILES
 .show-more {
 	color: $tan;
+	cursor: pointer;
+	a:link, a:visited {color: $tan;}
+	a:hover, a:active {color: $red;}
 }
 
 // OVERRIDE HB DEFAULTS

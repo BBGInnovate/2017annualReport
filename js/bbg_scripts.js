@@ -148,18 +148,18 @@ if ($('.scroll-fader').length != 0) {
 
 // PROFILE EXPAND
 if ($('.profile').length > 0) {
-	var revealers = $('.profile .show-more');
+	var revealers = $('.profile .show-more.reveal');
 	var addtlContent = $('.reveal-content');
 	addtlContent.hide();
 	$.each(revealers, function() {
 		var curRevealer = $(this);
 		curRevealer.on('click', function() {
-			if (curRevealer.text() == 'show more') {
-				curRevealer.text('show less');
+			if (curRevealer.prev().css('display') == 'none') {
+				curRevealer.text('Show Less');
 				curRevealer.prev().slideDown();
 			}
 			else {
-				curRevealer.text('show more');
+				curRevealer.text('Show More');
 				curRevealer.prev().slideUp();
 			}
 		})
