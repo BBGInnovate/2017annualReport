@@ -116,7 +116,7 @@ function move_video_up($atts) {
 	$name = $atts['name'];
 	$video_pusher  = 	'</div>';
 	$video_pusher .= '</div>';
-	$video_pusher .= '<div class="move-video ' . $name . '"></div>';
+	$video_pusher .= '<div class="' . $name . ' move-video">x</div>';
 	$video_pusher .= '<div class="outer-container">';
 	$video_pusher .= 	'<div class="left-content-container">';
 	return $video_pusher;

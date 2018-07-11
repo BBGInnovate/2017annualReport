@@ -69,11 +69,8 @@ $.fn.isInViewport = function() {
 	viewportTop = $(window).scrollTop();
 	viewportBottom = viewportTop + $(window).height();
 	
-	if (elementBottom > viewportTop && elementTop < viewportBottom) {
-		return true;
-	} else {
-		return false;
-	}
+	return elementBottom > viewportTop && elementTop < viewportBottom;
+
 };
 
 var setTop = 0;
@@ -88,56 +85,83 @@ function lockVideo(video) {
 	video.css('top', 0);
 }
 
-// GET ALL THE VIDEOS BY THEIR CLASS (NAME)
-var videos = [];
-var i = 0;
-$.each($('.video-wrapper'), function() {
-	var classList = $(this).attr('class');
+// GET ALL VIDEOS
+var videos = $('.video-wrapper');
+// MAKE CONTENT OVER VIDEO WIDER
+$.each(videos, function() {
+	var thisVideo = $(this);
+	var classList = thisVideo.attr('class');
 	classList = classList.split(" ");
-	var curVideoClass = classList[0];
-	videos[i] = $('.' + curVideoClass + '.video-wrapper');
-	var videoChildrenSet = videos[i].nextUntil('.move-video.' + curVideoClass);
+	var videoName = classList[0];
+	var videoChildrenSet = thisVideo.nextUntil('.move-video.' + videoName);
 	$.each(videoChildrenSet, function() {
 		$(this).children().addClass('text-in-video-bg');
 	});
-	i++;
 });
+
+function displayVideoOverlay(video, anchor) {
+	video.siblings('.video-overlay').css({
+		'top': anchor,
+		'height': video.height()
+	});
+}
+
+function findVideoAnchor(video) {
+	if (video.hasClass('top')) {
+		video.css('top', 0);
+		return 0;
+	} else {
+		var previousDiv = video.prev();
+		var previousContent = previousDiv.children().children();
+		return previousDiv.offset().top + previousDiv.outerHeight();
+	}
+}
+
+function linkVideoToMover(elem) {
+	var classList = elem.attr('class');
+	classList = classList.split(" ");
+	return videoName = classList[0];
+}
+var curMoverLink = "";
+var videoAnchor = "";
+var overlayIndex = 0;
+
+$.each($('.move-video'), function() {
+	mover = $(this);
+	if (mover.isInViewport()) {
+		curMoverLink = linkVideoToMover(mover);
+		unlockVideo($('.video-wrapper.' + curMoverLink), $('.move-video.' + curMoverLink));
+		console.log('curMoverLink: ' + curMoverLink);
+	}
+});
+
 // BUG WHEN TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
 function checkVideoPositions() {
 	$.each(videos, function() {
 		var curVideo = $(this);
-		if (curVideo.isInViewport()) {
-			// GET VIDEO CLASS(NAME), PIN IT TO ITS MOVER CLASS (NAME)
-			var classList = curVideo.attr('class');
-			classList = classList.split(" ");
-			var curVideoName = classList[0];
-			var curMover = $('.move-video.' + curVideoName);
-			// ORIGINAL PLACE OF VIDEO FOR LOCKING, UNLOCKING
-			var videoAnchor = "";
-			var previousDiv = curVideo.prev();
-			var previousContent = previousDiv.children().children();
-			if (curVideo.hasClass('top')) {
-				curVideo.css('top', 0);
-				videoAnchor = 0;
-			} else {
-				videoAnchor = previousDiv.offset().top + previousDiv.outerHeight();
+		curMoverLink = linkVideoToMover(curVideo);
+		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
+			videoAnchor = findVideoAnchor(curVideo);
+			if (overlayIndex < videos.length) {
+				displayVideoOverlay(curVideo, videoAnchor);
+				overlayIndex++;
 			}
-			curVideo.siblings('.video-overlay').css({
-				'top': videoAnchor,
-				'height': curVideo.height()
-			});
 			// WHEN TO LOCK, UNLOCK VIDEO
 			if (videoAnchor <= viewportTop) {
-				if (curMover.isInViewport()) {
-					unlockVideo(curVideo, curMover);
+				console.log('0');
+				if ($('.move-video.' + curMoverLink).isInViewport()) {
+					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
+					console.log('1');
 				}
 				else {
 					lockVideo(curVideo);
+					console.log('2');
 				}
 			}
 			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
+				console.log('3');
 			}
 		}
 	});
