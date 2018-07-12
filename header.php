@@ -505,7 +505,7 @@ if (!is_front_page()) {
 				<header id="hb-header" class="<?php echo $additional_class; ?>">
 
 					<?php get_template_part( 'includes/header' , 'top-bar' ); ?>
-					<?php get_template_part( 'includes/header' , 'navigation' ); ?>
+					<?php //get_template_part( 'includes/header' , 'navigation' ); ?>
 
 				</header>
 				<!-- END #hb-header -->

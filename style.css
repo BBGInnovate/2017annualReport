@@ -3805,6 +3805,9 @@ a:link, a:visited {
 a:hover, a:active {
   color: #9f1d25; }
 
+input[type=submit] {
+  margin: 0; }
+
 .profile_link {
   color: inherit; }
 
@@ -4128,6 +4131,16 @@ h2 {
   width: 100%;
   z-index: 1;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 100%); }
+
+.standalone-video-bg {
+  padding: 6rem 0;
+  background-color: #000000; }
+  .standalone-video-bg .inner-video {
+    display: block;
+    width: 75%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center; }
 
 .side-related .related-head {
   border-bottom: 1px solid #e6e6e6; }

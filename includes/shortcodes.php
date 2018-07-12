@@ -131,6 +131,28 @@ function move_video_up($atts) {
 	return $video_pusher;
 }
 
+add_shortcode('standalone_video', 'display_inner_video');
+function display_inner_video($atts) {
+	$video_src = $atts['src'];
+	$caption = $atts['caption'];
+
+	$inner_video  = 	'</div>';
+	$inner_video .= '</div>';
+
+	$inner_video .= '<div class="standalone-video-bg">';
+	$inner_video .= 	'<video class="inner-video" autoplay>';
+	$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
+	$inner_video .= 	'</video>';
+	if (!empty($caption)) {
+		$inner_video .= '<p class="inner-video" style="color: #ffffff;">' . $caption . '</p>';
+	}
+	$inner_video .= '</div>';
+
+	$inner_video .= '<div class="outer-container">';
+	$inner_video .= 	'<div class="left-content-container">';
+	return $inner_video;
+}
+
 add_shortcode('next_page', 'cta_next_page');
 function cta_next_page($atts) {
 	$cta_link  = '<a href="index.php/';

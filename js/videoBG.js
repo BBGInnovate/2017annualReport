@@ -56,7 +56,6 @@ if ($('.video-wrapper').length != 0) {
 function getVideoTop() {
 	$.each(videoWrappers, function() {
 		var curVideoTop = $(this).offset().top;
-		console.log('curVideoTop: ' + curVideoTop);
 	});
 }
 
@@ -105,7 +104,6 @@ function displayVideoOverlay(video, anchor) {
 		'top': anchor,
 		'height': video.height()
 	});
-	console.log('overlay');
 }
 
 function findVideoAnchor(video) {
@@ -133,7 +131,6 @@ $.each($('.move-video'), function() {
 	if (mover.isInViewport()) {
 		curMoverLink = linkVideoToMover(mover);
 		unlockVideo($('.video-wrapper.' + curMoverLink), $('.move-video.' + curMoverLink));
-		console.log('curMoverLink: ' + curMoverLink);
 	}
 });
 
@@ -143,27 +140,22 @@ function checkVideoPositions() {
 		var curVideo = $(this);
 		curMoverLink = linkVideoToMover(curVideo);
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
-			console.log('0');
 			videoAnchor = findVideoAnchor(curVideo);
 			if (overlayIndex < videos.length) {
 				displayVideoOverlay(curVideo, videoAnchor);
 				overlayIndex++;
-				console.log('1');
 			}
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport()) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
-					console.log('2');
 				}
 				else {
 					lockVideo(curVideo);
-					console.log('3');
 				}
 			}
 			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
-				console.log('4');
 			}
 		}
 	});
@@ -173,8 +165,6 @@ checkVideoPositions();
 $(window).on('resize scroll', function() {
 	checkVideoPositions();
 });
-
-
 
 
 // TESTING
