@@ -108,7 +108,7 @@ function display_background_video($atts) {
 	}
 	$bg_video .= '>';
 	if (!empty($video_src)) {
-		$bg_video .= 	'<video class="video-tag" autoplay loop>';
+		$bg_video .= 	'<video class="video video-tag" autoplay loop>';
 		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 		$bg_video .= 	'</video>';
 	}
@@ -140,7 +140,7 @@ function display_inner_video($atts) {
 	$inner_video .= '</div>';
 
 	$inner_video .= '<div class="standalone-video-bg">';
-	$inner_video .= 	'<video class="inner-video" autoplay>';
+	$inner_video .= 	'<video class="video inner-video" autoplay>';
 	$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 	$inner_video .= 	'</video>';
 	if (!empty($caption)) {

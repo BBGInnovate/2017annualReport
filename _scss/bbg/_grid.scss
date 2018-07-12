@@ -10,8 +10,19 @@
 .nest-container {@include grid-collapse;}
 .inner-container {@include grid-container;}
 .grid-container {@include grid-column(12);}
-.left-content-container {@include grid-column(7);}
-.side-related {@include grid-push(5);}
+.left-content-container {@include grid-column(12);}
+.side-related {@include grid-column(12);}
+.main-column-large {@include grid-column(12)}
+.side-column-small {@include grid-column(12);}
+.profile {
+	.main-column-large {@include grid-column(7)}
+	.side-column-small {@include grid-column(5);}
+}
 
-.main-column-large {@include grid-column(10)}
-.side-column-small {@include grid-column(2);}
+@include media($medium) {
+	.left-content-container {@include grid-column(7);}
+	.side-related {@include grid-push(5);}
+
+	.main-column-large {@include grid-column(10)}
+	.side-column-small {@include grid-column(2);}
+}

@@ -100,17 +100,6 @@ if (hasChart == true) {
 	});
 }
 
-// GIVE STYLE TO PARAGRAPHS IN VIDEO REALM
-if ($('.video-wrapper').length != 0) {
-	var level1_ptags = $('.grid-contents').children('p');
-	level1_ptags.each(function() {
-		$(this).css('margin-bottom','4em');
-		if ($(this).next().hasClass('move_video')) {
-			return false;
-		}
-	});
-}
-
 // BACKGROUND SCROLL FADER
 if ($('.scroll-fader').length != 0) {
 	$('#footer').add('#hb-side-navigation').hide(); // TESTING

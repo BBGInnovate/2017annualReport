@@ -162,8 +162,27 @@ function checkVideoPositions() {
 }
 checkVideoPositions();
 
+// VIDEO TO ONLY PLAY WHEN IN VIEWPORT
+function checkVideoPlay() {
+	$.each(allVideos, function(){
+		if ($(this).isInViewport()) {
+			$(this).get(0).play();
+		}
+		else {
+			$(this).get(0).pause();
+		}
+	});
+}
+checkVideoPlay();
+
 $(window).on('resize scroll', function() {
 	checkVideoPositions();
+	checkVideoPlay();
+});
+
+var allVideos = $('.video');
+$.each(allVideos, function() {
+	$(this).get(0).pause();
 });
 
 
