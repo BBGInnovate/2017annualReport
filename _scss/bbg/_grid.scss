@@ -10,19 +10,32 @@
 .nest-container {@include grid-collapse;}
 .inner-container {@include grid-container;}
 .grid-container {@include grid-column(12);}
-.left-content-container {@include grid-column(12);}
-.side-related {@include grid-column(12);}
-.main-column-large {@include grid-column(12)}
-.side-column-small {@include grid-column(12);}
-.profile {
-	.main-column-large {@include grid-column(7)}
-	.side-column-small {@include grid-column(5);}
+
+.left-content-container {@include grid-column(11);}
+// .side-related {@include grid-push(5);}
+
+.main-column-large {@include grid-column(8)}
+.side-column-small {@include grid-column(4);}
+
+@include media($medium-screen) {
+	.left-content-container {@include grid-column(10);}
+	.side-related {@include grid-push(1);}
 }
 
-@include media($medium) {
+@include media($medium-medium-screen) {
+	.left-content-container {@include grid-column(10);}
+	.side-related {@include grid-push(3);}
+
+	.main-column-large {@include grid-column(9)}
+	.side-column-small {@include grid-column(3);}
+}
+
+@include media($medium-large-screen) {
+	.left-content-container {@include grid-column(10);}
+	.side-related {@include grid-push(4);}
+}
+
+@include media($large-screen) {
 	.left-content-container {@include grid-column(7);}
 	.side-related {@include grid-push(5);}
-
-	.main-column-large {@include grid-column(10)}
-	.side-column-small {@include grid-column(2);}
 }
