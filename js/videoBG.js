@@ -98,12 +98,14 @@ $.each(videos, function() {
 		$(this).children().addClass('text-in-video-bg');
 	});
 });
-
+$('.video-overlay').hide();
 function displayVideoOverlay(video, anchor) {
+	$('.video-overlay').show();
 	video.siblings('.video-overlay').css({
 		'top': anchor,
 		'height': video.height()
 	});
+	console.log('overlay');
 }
 
 function findVideoAnchor(video) {
@@ -141,27 +143,27 @@ function checkVideoPositions() {
 		var curVideo = $(this);
 		curMoverLink = linkVideoToMover(curVideo);
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
+			console.log('0');
 			videoAnchor = findVideoAnchor(curVideo);
 			if (overlayIndex < videos.length) {
 				displayVideoOverlay(curVideo, videoAnchor);
 				overlayIndex++;
+				console.log('1');
 			}
-			// WHEN TO LOCK, UNLOCK VIDEO
 			if (videoAnchor <= viewportTop) {
-				console.log('0');
 				if ($('.move-video.' + curMoverLink).isInViewport()) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
-					console.log('1');
+					console.log('2');
 				}
 				else {
 					lockVideo(curVideo);
-					console.log('2');
+					console.log('3');
 				}
 			}
 			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
-				console.log('3');
+				console.log('4');
 			}
 		}
 	});

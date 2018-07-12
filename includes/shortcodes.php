@@ -87,8 +87,12 @@ function show_related_story($atts) {
 add_shortcode('video_bg', 'display_background_video');
 function display_background_video($atts) {
 	$name = $atts['name'];
-	$poster = $atts['poster'];
-	$video_src = $atts['src'];
+	if (!empty($atts['poster'])) {
+		$poster = $atts['poster'];
+	}
+	if (!empty($atts['src'])) {
+		$video_src = $atts['src'];
+	}
 	if (!empty($atts['top'])) {
 		$position = $atts['top'];
 	} else {
@@ -99,10 +103,15 @@ function display_background_video($atts) {
 	$bg_video .= '</div>';
 	// CLOSE CONTAINER SO VIDEO EXPANDS FULL WIDTH
 	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper coverImgBg"';
-	$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;">';
-	$bg_video .= 	'<video class="video-tag" autoplay loop>';
-	$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
-	$bg_video .= 	'</video>';
+	if (!empty($atts['poster'])) {
+		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
+	}
+	$bg_video .= '>';
+	if (!empty($video_src)) {
+		$bg_video .= 	'<video class="video-tag" autoplay loop>';
+		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
+		$bg_video .= 	'</video>';
+	}
 	$bg_video .= '</div>';
 	$bg_video .= '<div class="video-overlay"></div>';
 	// REOPEN CONTAINER
@@ -116,7 +125,7 @@ function move_video_up($atts) {
 	$name = $atts['name'];
 	$video_pusher  = 	'</div>';
 	$video_pusher .= '</div>';
-	$video_pusher .= '<div class="' . $name . ' move-video">x</div>';
+	$video_pusher .= '<div class="' . $name . ' move-video"></div>';
 	$video_pusher .= '<div class="outer-container">';
 	$video_pusher .= 	'<div class="left-content-container">';
 	return $video_pusher;
