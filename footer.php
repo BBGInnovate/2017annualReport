@@ -24,26 +24,6 @@
 </div>
 <!-- END #hb-wrap -->
 
-
-<?php global $hasChart; ?>
-<?php
-if ($hasChart) { 
-	global $hasChart, $phpTitle, $phpLabels, $phpData;
-?>
-	<script>
-	var jsonData = '<?php echo json_encode($phpData); ?>';
-	var jsonLabels = '<?php echo json_encode($phpLabels); ?>';
-	var jsonTitle = '<?php echo json_encode($phpTitle); ?>';
-	</script>
-<?php
-} else {
-	$hasChart = false;
-}
-?>
-<script>
-	var hasChart = '<?php echo json_encode($hasChart); ?>';
-</script>
-
 <?php wp_footer(); ?>
 </body>
 </html>

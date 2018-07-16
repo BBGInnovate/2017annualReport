@@ -102,7 +102,7 @@ function display_background_video($atts) {
 	$bg_video  = 	'</div>';
 	$bg_video .= '</div>';
 	// CLOSE CONTAINER SO VIDEO EXPANDS FULL WIDTH
-	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper coverImgBg"';
+	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
 	if (!empty($atts['poster'])) {
 		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
 	}

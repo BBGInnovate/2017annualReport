@@ -20,19 +20,23 @@
 					</div>
 					<div id="financials-chart">
 					<?php
-						$hasChart = false;
-						$displayCharts = new WP_Query(array(
+						$has_chart = false;
+						$display_charts = new WP_Query(array(
 							'post_type' => 'chart',
 							'category_name' => 'Financials'
 						));
-						if ($displayCharts->have_posts()) {
-							$hasChart = true;
-							while ($displayCharts->have_posts()) {
-								$displayCharts->the_post();
-								echo '<canvas id="chart_test"></canvas>';
-								$phpTitle = get_the_title();
-								$phpLabels = get_field('chart_labels');
-								$phpData = get_field('chart_data');
+						if ($display_charts -> have_posts()) {
+							$has_chart = true;
+							$chart_set = array();
+							while ($display_charts -> have_posts()) {
+								$display_charts -> the_post();
+								$chart_data = array(
+									'php_title' => get_the_title(),
+									'php_type' => get_field('chart_type'),
+									'php_labels' => get_field('chart_labels'),
+									'php_data' => get_field('chart_data')
+								);
+								array_push($chart_set, $chart_data);
 							}
 						}
 					?>
@@ -44,4 +48,26 @@
 </div>
 
 <?php endwhile; endif;?>
+
+<?php if ($has_chart) { ?>
+<script>
+	var hasChart = '<?php echo json_encode($has_chart); ?>';
+</script>
+<?php foreach ($chart_set as $chart_data) { ?>
+	<script>
+		// var jsonTitle = '<?php //echo $chart_data['php_title']; ?>';
+		// var jsonType = '<?php //echo $chart_data['php_type']; ?>';
+		// var jsonLabels = '<?php //echo $chart_data['php_labels']; ?>';
+		// var jsonData = '<?php //echo $chart_data['php_data']; ?>';
+		// console.log('test jQ: ' + jsonTitle);
+		// displayChart(hasChart, jsonTitle, jsonType, jsonLabels, jsonData);
+	</script>
+<?php
+	}
+} else {
+	$has_chart = false;
+}
+?>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/charts.js"></script>
+
 <?php get_footer(); ?>

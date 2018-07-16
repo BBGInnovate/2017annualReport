@@ -1,6 +1,5 @@
 #financials-copy {
 	@include span-columns(12);
-	background: tint($red, 80%);
 }
 #financials-chart {@include span-columns(12);}
 

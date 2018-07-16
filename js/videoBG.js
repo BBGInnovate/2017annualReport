@@ -133,7 +133,7 @@ $.each($('.move-video'), function() {
 		unlockVideo($('.video-wrapper.' + curMoverLink), $('.move-video.' + curMoverLink));
 	}
 });
-
+console.log('test');
 // BUG WHEN TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
 function checkVideoPositions() {
 	$.each(videos, function() {
@@ -141,21 +141,29 @@ function checkVideoPositions() {
 		curMoverLink = linkVideoToMover(curVideo);
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
-			if (overlayIndex < videos.length) {
+			// if (overlayIndex < videos.length) {
 				displayVideoOverlay(curVideo, videoAnchor);
-				overlayIndex++;
-			}
+				console.log('1');
+				// overlayIndex++;
+			// }
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport()) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
+					console.log('2');
 				}
+				// else if (!$('.move-video.' + curMoverLink).isInViewport() && curVideo.isInViewport()) {
+				// 	lockVideo(curVideo);
+				// 	console.log('3 edit');
+				// }
 				else {
 					lockVideo(curVideo);
+					console.log('3');
 				}
 			}
 			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
+				console.log('4');
 			}
 		}
 	});

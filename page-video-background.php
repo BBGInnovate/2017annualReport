@@ -46,4 +46,6 @@ if (have_posts()) {
 	</div>
 </div>
 
+<script>console.log('play js');</script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/videoBG.js"></script>
 <?php get_footer(); ?>

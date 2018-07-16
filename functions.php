@@ -18,8 +18,6 @@ add_action('wp_enqueue_scripts', 'wpb_add_google_fonts');
 function bbg_add_scripts () {
 	wp_enqueue_script('uswdsJs', get_stylesheet_directory_uri() . '/js/uswds/uswds.min.js');
 	wp_enqueue_script('krCustom', get_stylesheet_directory_uri() . '/js/bbg_scripts.js');
-	wp_enqueue_script('charts', get_stylesheet_directory_uri() . '/node_modules/chart.js/dist/Chart.bundle.js');
-	wp_enqueue_script('videoBG', get_stylesheet_directory_uri() . '/js/videoBG.js');
 }
 add_action ('wp_enqueue_scripts', 'bbg_add_scripts');
 
@@ -115,24 +113,6 @@ function incidents_field() {
 	));
 }
 add_action('init', 'incidents_field');
-
-function charts_field() {
-	register_post_type('chart', array(
-		'public' => true,
-		'menu_icon' => 'dashicons-chart-line',
-		'menu_position' => 30,
-		'labels' => array(
-			'name' => 'Charts',
-			'add_new_item' => 'Add New Chart',
-			'edit_item' => 'Edit Chart',
-			'all_items' => 'All Charts',
-			'singular_name' => 'Chart'
-		),
-		'taxonomies' => array('category')
-	));
-}
-add_action('init', 'charts_field');
-
 
 // IS THIS NECESSARY WITH THE SIDE MENU?
 function hbChild_register_menu() {
