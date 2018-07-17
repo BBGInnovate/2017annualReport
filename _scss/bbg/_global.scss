@@ -1,3 +1,17 @@
+// RESET HB COLUMN RULES FROM REMOVING #main-content ON CUSTOM PAGES
+.hb-boxed-layout .row.fw-content-wrap,.hb-boxed-layout .row.video-content {margin-left: 35px!important; margin-right: 35px!important}
+.fw-columns .row.fw-content-wrap,.fw-columns .row.video-content {margin-left: 0 !important; margin-right: 0! important; padding: 0 !important}
+.position-static {position: static !important}
+.fullwidth .col-1,.fullwidth .col-2,.fullwidth .col-3,.fullwidth .col-4,.fullwidth .col-5,.fullwidth .col-6,.fullwidth .col-7,.fullwidth .col-8,.fullwidth .col-9,.fullwidth .col-10,.fullwidth .col-11,.fullwidth .col-12 {margin-left: -1px !important}
+.row.extra-wide-container .col-1 {margin-bottom: 20px !important; padding: 0 10px}
+.tab-pane .wpb_content_element,.wpb_content_element.nbm {margin-bottom: 0!important}
+.wpb_column {margin-bottom: 0}
+.wpb_row,.wpb_content_element,ul.wpb_thumbnails-fluid > li,.last_toggle_el_margin,.wpb_button {margin-bottom: 25px!important}
+.hb-fw-element img {display: block; width: 102%; position: relative; height: auto}
+.fw-image img {width: 100%!important}
+
+
+
 .move-video {width: 100%;}
 
 // RELATED PROFILES

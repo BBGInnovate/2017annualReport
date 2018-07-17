@@ -1,4 +1,11 @@
 <?php
+function exit_hb_structure() {
+	return '</div></div></article></div></div></div></div>';
+}
+function reopen_hb_structure() {
+	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
+}
+
 add_shortcode('profile', 'show_profile');
 function show_profile($atts) {
 	$profile_name = $atts['name'];
@@ -12,9 +19,7 @@ function show_profile($atts) {
 		if (get_the_title() == $profile_name) {
 			$image = get_field('profile_snippet_thumbnail');
 			
-			$profile_box  = 	'</div>';
-			$profile_box .= '</div>';
-			
+			$profile_box  = exit_hb_structure();
 			$profile_box .= '<div class="outer-container">';
 			$profile_box .= 	'<div class="side-related profile">';
 			$profile_box .= 		'<div class="grid-container related-head">';
@@ -38,9 +43,7 @@ function show_profile($atts) {
 			$profile_box .= 		'</div>';
 			$profile_box .= 	'</div>';
 			$profile_box .= '</div>';
-
-			$profile_box .= '<div class="outer-container">';
-			$profile_box .= 	'<div class="left-content-container">';
+			$profile_box .= reopen_hb_structure();
 			return $profile_box;
 		}
 	}
@@ -57,8 +60,8 @@ function show_related_story($atts) {
 	while ($related_story -> have_posts()) {
 		$related_story -> the_post();
 		$story_copy = wp_trim_words(get_the_excerpt(), 25);
-		$related_story  = 	'</div>';
-		$related_story .= '</div>';
+
+		$related_story  = exit_hb_structure();
 		$related_story .= '<div class="outer-container">';
 		$related_story .= 	'<div class="side-related">';
 		$related_story .= 		'<div class="inner-container">';
@@ -77,9 +80,7 @@ function show_related_story($atts) {
 		$related_story .= 		'</div>';
 		$related_story .= 	'</div>';
 		$related_story .= '</div>';
-		
-		$related_story .= '<div class="outer-container">';
-		$related_story .= 	'<div class="left-content-container">';
+		$related_story .= reopen_hb_structure();
 		return $related_story;
 	}
 }
@@ -99,9 +100,7 @@ function display_background_video($atts) {
 		$position = "";
 	}
 
-	$bg_video  = 	'</div>';
-	$bg_video .= '</div>';
-	// CLOSE CONTAINER SO VIDEO EXPANDS FULL WIDTH
+	$bg_video  = exit_hb_structure();
 	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
 	if (!empty($atts['poster'])) {
 		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
@@ -114,20 +113,17 @@ function display_background_video($atts) {
 	}
 	$bg_video .= '</div>';
 	$bg_video .= '<div class="video-overlay"></div>';
-	// REOPEN CONTAINER
-	$bg_video .= '<div class="outer-container">';
-	$bg_video .= 	'<div class="left-content-container">';
+	$bg_video .= reopen_hb_structure();
 	return $bg_video;
 }
 
 add_shortcode('move_video', 'move_video_up');
 function move_video_up($atts) {
 	$name = $atts['name'];
-	$video_pusher  = 	'</div>';
-	$video_pusher .= '</div>';
+
+	$video_pusher  = exit_hb_structure();
 	$video_pusher .= '<div class="' . $name . ' move-video"></div>';
-	$video_pusher .= '<div class="outer-container">';
-	$video_pusher .= 	'<div class="left-content-container">';
+	$video_pusher .= reopen_hb_structure();
 	return $video_pusher;
 }
 
@@ -136,9 +132,7 @@ function display_inner_video($atts) {
 	$video_src = $atts['src'];
 	$caption = $atts['caption'];
 
-	$inner_video  = 	'</div>';
-	$inner_video .= '</div>';
-
+	$inner_video  = exit_hb_structure();
 	$inner_video .= '<div class="standalone-video-bg">';
 	$inner_video .= 	'<video class="video inner-video" autoplay>';
 	$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
@@ -147,9 +141,7 @@ function display_inner_video($atts) {
 		$inner_video .= '<p class="inner-video" style="color: #ffffff;">' . $caption . '</p>';
 	}
 	$inner_video .= '</div>';
-
-	$inner_video .= '<div class="outer-container">';
-	$inner_video .= 	'<div class="left-content-container">';
+	$inner_video .= reopen_hb_structure();
 	return $inner_video;
 }
 

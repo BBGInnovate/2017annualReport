@@ -94,7 +94,8 @@ $.each(videos, function() {
 	var videoName = classList[0];
 	var videoChildrenSet = thisVideo.nextUntil('.move-video.' + videoName);
 	$.each(videoChildrenSet, function() {
-		$(this).children().addClass('text-in-video-bg');
+		$(this).children().children().removeClass('col-7');
+		$(this).children().children().addClass('text-in-video-bg');
 	});
 });
 $('.video-overlay').hide();
