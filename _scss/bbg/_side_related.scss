@@ -1,60 +1,27 @@
+.related-content {position: relative;}
+
 .side-related {
+	position: absolute;
+	z-index: 100;
+	padding-top: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.75);
 	.related-head {border-bottom: 1px solid #e6e6e6;}
 	.related-body {margin-top: 1.5rem;}
-}
-
-.related-wrapper {
-	clear: both;
-	// GLOBAL
-	.related-container {
-		@include grid-container;
-		margin-right: 0;
-		.related-head {@include grid-container;}
-		.related-body {
-			@include grid-container;
-			border-top: 1px solid $color-gray-warm-light;
-		}
-		.related-text {
-			margin-top: 0.75em;
-			p {margin: 0 0 15px 0;}
-		}
+	.show-more {
+		font-size: 1.6rem;
+		color: $red;
+		cursor: pointer;
+		a:link, a:visited {color: $red;}
+		a:hover, a:active {color: $tan;}
 	}
-	// PROFILES
-	.related-container.profile {
-		text-align: right;
-		.related-head > div, 
-		.related-text {@include span-columns(9);}
-		.related-image {@include span-columns(3);}
-	}
-	// STORIES, QUOTES FULL WIDTH
 }
 
 
 // MEDIA QUERIES
 @include media($medium-screen) {
-	.related-wrapper {
-		@include span-columns(9);
-		@include grid-push(3);
-		// PROFILES
-		.related-container.profile {
-			.related-head > div, 
-			.related-text {@include span-columns(10);}
-			.related-image {@include span-columns(2);}
-		}
-		// STORIES
-		.related-container.story {
-			.related-head > div {
-				@include span-columns(5);
-				@include grid-push(7);
-			}
-			.related-body {@include span-columns(10);}
-		}
-	}
+
 }
 
 @include media($large-screen) {
-	.related-wrapper {
-		@include span-columns(7);
-		@include grid-push(5);
-	}
+
 }

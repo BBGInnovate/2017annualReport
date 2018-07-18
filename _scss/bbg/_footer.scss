@@ -1,4 +1,6 @@
 footer {
+	a:link, a:visited {color: $white;}
+	a:hover, a:active {color: $blue-light;}
 	color: $white;
 	#footer-logo {
 		margin-bottom: 1em;

@@ -69,7 +69,6 @@ $.fn.isInViewport = function() {
 	viewportBottom = viewportTop + $(window).height();
 	
 	return elementBottom > viewportTop && elementTop < viewportBottom;
-
 };
 
 var setTop = 0;
@@ -142,29 +141,19 @@ function checkVideoPositions() {
 		curMoverLink = linkVideoToMover(curVideo);
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
-			// if (overlayIndex < videos.length) {
-				displayVideoOverlay(curVideo, videoAnchor);
-				console.log('1');
-				// overlayIndex++;
-			// }
+			displayVideoOverlay(curVideo, videoAnchor);
+
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport()) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
-					console.log('2');
 				}
-				// else if (!$('.move-video.' + curMoverLink).isInViewport() && curVideo.isInViewport()) {
-				// 	lockVideo(curVideo);
-				// 	console.log('3 edit');
-				// }
 				else {
 					lockVideo(curVideo);
-					console.log('3');
 				}
 			}
 			else {
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
-				console.log('4');
 			}
 		}
 	});

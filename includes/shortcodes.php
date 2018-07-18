@@ -3,86 +3,97 @@ function exit_hb_structure() {
 	return '</div></div></article></div></div></div></div>';
 }
 function reopen_hb_structure() {
-	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
+	global $stored_post_class;
+	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
 }
 
 add_shortcode('profile', 'show_profile');
 function show_profile($atts) {
 	$profile_name = $atts['name'];
 	$type = $atts['type'];
+	$profile_box = '';
 
-	$profile_post = new WP_Query(array(
-		'post_type' => 'profile'
+	$profile_query = new WP_Query(array(
+		'post_type' => 'profile',
+		'title' => $profile_name,
+		'posts_per_page' => 1
 	));
-	while ($profile_post -> have_posts()) {
-		$profile_post -> the_post();
-		if (get_the_title() == $profile_name) {
+	if ($profile_query->have_posts()) {
+		while ($profile_query->have_posts()) {
+			$profile_query->the_post();
 			$image = get_field('profile_snippet_thumbnail');
 			
 			$profile_box  = exit_hb_structure();
-			$profile_box .= '<div class="outer-container">';
+			$profile_box .= '<div class="outer-container related-content">';
 			$profile_box .= 	'<div class="side-related profile">';
-			$profile_box .= 		'<div class="grid-container related-head">';
-			$profile_box .= 			'<h5>' . $profile_name . '</h5>';
-			$profile_box .= 		'</div>';
-			$profile_box .= 		'<div class="main-column-large related-body">';
-			$profile_box .= 			'<h6>' . get_field('profile_snippet_title') . '</h6>';
-			$profile_box .= 			'<p>' . get_the_excerpt() . '</p>';
+			$profile_box .= 		'<div class="inner-container">';
+			$profile_box .= 			'<div class="grid-container related-head">';
+			$profile_box .= 				'<h6>' . $profile_name . '</h6>';
+			$profile_box .= 			'</div>';
+			$profile_box .= 			'<div class="main-column-large related-body">';
+			$profile_box .= 				'<h5>' . get_field('profile_snippet_title') . '</h5>';
+			$profile_box .= 				'<p class="aside">' . get_the_excerpt() . '</p>';
 			if ($type == 'reveal') {
-				$profile_box .= 		'<div class="reveal-content">';
-				$profile_box .= 			get_the_content();
-				$profile_box .= 		'</div>';
-				$profile_box .= 		'<p class="show-more reveal">Show More</p>';
+				$profile_box .= 			'<div class="reveal-content">';
+				$profile_box .= 				get_the_content();
+				$profile_box .= 			'</div>';
+				$profile_box .= 			'<p class="show-more reveal">Show More</p>';
 			}
 			elseif ($type == 'link') {
-				$profile_box .= 		'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
+				$profile_box .= 			'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
 			}
-			$profile_box .= 		'</div>';
-			$profile_box .= 		'<div class="side-column-small">';
-			$profile_box .= 			'<img src="' . $image['url'] . '" alt="' . $image['title'] . '">';
+			$profile_box .= 			'</div>';
+			$profile_box .= 			'<div class="side-column-small">';
+			$profile_box .= 				'<img src="' . $image['url'] . '" alt="' . $image['title'] . '">';
+			$profile_box .= 			'</div>';
 			$profile_box .= 		'</div>';
 			$profile_box .= 	'</div>';
 			$profile_box .= '</div>';
 			$profile_box .= reopen_hb_structure();
-			return $profile_box;
 		}
+		wp_reset_postdata();
 	}
+	return $profile_box;
 }
 
 add_shortcode('related-story', 'show_related_story');
 function show_related_story($atts) {
 	$related_story_title = $atts['title'];
-	$related_story = new WP_Query(array(
-		'posts_per_page' => 1,
-		// $profile_name MUST BE THE TILE OF THE POST
-		'title' => $related_story_title
-	));
-	while ($related_story -> have_posts()) {
-		$related_story -> the_post();
-		$story_copy = wp_trim_words(get_the_excerpt(), 25);
+	$related_story = '';
 
-		$related_story  = exit_hb_structure();
-		$related_story .= '<div class="outer-container">';
-		$related_story .= 	'<div class="side-related">';
-		$related_story .= 		'<div class="inner-container">';
-		$related_story .= 			'<div class="grid-container related-head">';
-		$related_story .= 				'<div class="side-related">';
-		$related_story .= 					'<a href="' . get_the_permalink() . '">';
-		$related_story .= 						get_the_post_thumbnail();
-		$related_story .= 					'</a>';
-		$related_story .= 				'</div>';
-		$related_story .= 			'</div>';
-		$related_story .= 			'<div class="grid-container related-body">';
-		$related_story .= 				'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
-		$related_story .= 				'<p>' . $story_copy . '</p>';
-		$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
-		$related_story .= 			'</div>';
-		$related_story .= 		'</div>';
-		$related_story .= 	'</div>';
-		$related_story .= '</div>';
-		$related_story .= reopen_hb_structure();
-		return $related_story;
+	$related_query = new WP_Query(array(
+		'title' => $related_story_title,
+		'posts_per_page' => 1
+	));
+	if ($related_query->have_posts()) {
+		while ($related_query->have_posts()) {
+			$related_query->the_post();
+			$story_copy = wp_trim_words(get_the_excerpt(), 25);
+
+			$related_story  = exit_hb_structure();
+			$related_story .= '<div class="outer-container related-content">';
+			$related_story .= 	'<div class="side-related">';
+			$related_story .= 		'<div class="inner-container">';
+			$related_story .= 			'<div class="grid-container related-head">';
+			$related_story .= 				'<div class="right-sub-content-container">';
+			$related_story .= 					'<a href="' . get_the_permalink() . '">';
+			$related_story .= 						get_the_post_thumbnail();
+			$related_story .= 					'</a>';
+			$related_story .= 				'</div>';
+			$related_story .= 			'</div>';
+			$related_story .= 			'<div class="grid-container related-body">';
+			$related_story .= 				'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
+			$related_story .= 				'<p class="aside">' . $story_copy . '</p>';
+			$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
+			$related_story .= 			'</div>';
+			$related_story .= 		'</div>';
+			$related_story .= 	'</div>';
+			$related_story .= '</div>';
+			$related_story .= reopen_hb_structure();
+		}
+		wp_reset_postdata();
 	}
+	return $related_story;
 }
 
 add_shortcode('video_bg', 'display_background_video');

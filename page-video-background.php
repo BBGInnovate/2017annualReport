@@ -14,14 +14,32 @@ if( is_singular ( 'clients' ) ||
 
 get_header();
 ?>
-
 <div class="container">
-	<div class="row main-row">
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php
+$stored_post_class = get_post_class( get_post_format() . '-post-format single' );
+$stored_post_class = implode($stored_post_class, " ");
+?>
+	<?php 
+		$sidebar_layout = vp_metabox('layout_settings.hb_page_layout_sidebar'); 
+		$sidebar_name = vp_metabox('layout_settings.hb_choose_sidebar');
+
+		if ( $sidebar_layout == "default" || $sidebar_layout == "" ) {
+			$sidebar_layout = hb_options('hb_page_layout_sidebar'); 
+			$sidebar_name = hb_options('hb_choose_sidebar');
+		}
+
+		$pagination_style = vp_metabox('page_settings.hb_pagination_settings.0.hb_pagination_style');
+		$blog_grid_column_class = vp_metabox('page_settings.hb_blog_grid_settings.0.hb_grid_columns');
+	?>
+	<div class="row <?php echo $sidebar_layout; ?> main-row">
+	<?php
+		if ( have_posts() ) : while ( have_posts() ) : the_post();
+			remove_filter('the_content', 'wpautop');
+	?>
 
 		<div class="col-12 hb-main-content">
 			<div class="single-blog-wrapper clearfix">
-				<article <?php post_class( get_post_format() . '-post-format single' ); ?>>
+				<article class="<?php echo $stored_post_class; ?>">
 					<?php 
 					if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
 						get_template_part('includes/single' , 'featured-format' ) ; 
@@ -29,7 +47,7 @@ get_header();
 					<div class="single-post-content">
 						<?php if (! is_attachment() ) { ?>	
 						<div class="post-header">
-							<h1 class="title entry-title" itemprop="headline"><?php the_title(); ?></h1>
+							<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
 							<div class="post-meta-info">
 								<span class="blog-author minor-meta">
 									<?php if ( hb_options('hb_blog_enable_date' ) ) { ?>
@@ -98,11 +116,20 @@ get_header();
 				?>
 			</div>
 		</div>
+		<!-- END .hb-main-content -->
+		<?php if ( $sidebar_layout != "fullwidth" ){ ?>
+			<!-- BEGIN .hb-sidebar -->
+			<div class="col-3  hb-equal-col-height hb-sidebar">
+			<?php 		
+				if ( $sidebar_name && function_exists('dynamic_sidebar') )
+					dynamic_sidebar($sidebar_name);
+			?>
+			</div>
+			<!-- END .hb-sidebar -->
+		<?php } ?>
 	<?php endwhile; endif; ?>	
 
 	</div>
 </div>
-
-<script>console.log('play js');</script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/videoBG.js"></script>
 <?php get_footer(); ?>

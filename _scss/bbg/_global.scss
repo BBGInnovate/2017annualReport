@@ -9,18 +9,10 @@
 .wpb_row,.wpb_content_element,ul.wpb_thumbnails-fluid > li,.last_toggle_el_margin,.wpb_button {margin-bottom: 25px!important}
 .hb-fw-element img {display: block; width: 102%; position: relative; height: auto}
 .fw-image img {width: 100%!important}
+.row .col-1, .row .col-2, .row .col-3, .row .col-4, .row .col-5, .row .col-6, .row .col-7, .row .col-8, .row .col-9, .row .col-10, .row .col-11, .row .col-12 {margin-bottom: 0;}
 
-
-
-.move-video {width: 100%;}
-
-// RELATED PROFILES
-.show-more {
-	color: $tan;
-	cursor: pointer;
-	a:link, a:visited {color: $tan;}
-	a:hover, a:active {color: $red;}
-}
+article.single .entry-content {margin-top: 0;}
+.move-video {width: 100%; margin-bottom: 3rem;}
 
 // OVERRIDE HB DEFAULTS
 #main-wrapper.hb-stretched-layout {

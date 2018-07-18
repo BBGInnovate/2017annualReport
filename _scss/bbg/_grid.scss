@@ -1,7 +1,7 @@
 .outer-container {
 	@include grid-container;
 	max-width: 1200px;
-	margin: 0 auto 3rem auto;
+	margin: 0 auto;
 }
 .custom-grid-container {
 	max-width: 1200px;
@@ -12,7 +12,8 @@
 .grid-container {@include grid-column(12);}
 
 .left-content-container {@include grid-column(11);}
-// .side-related {@include grid-push(5);}
+.side-related {@include grid-push(0);}
+.right-sub-content-container {@include grid-push(0);}
 
 .main-column-large {@include grid-column(8)}
 .side-column-small {@include grid-column(4);}
@@ -20,11 +21,13 @@
 @include media($medium-screen) {
 	.left-content-container {@include grid-column(10);}
 	.side-related {@include grid-push(1);}
+	.right-sub-content-container {@include grid-push(1);}
 }
 
 @include media($medium-medium-screen) {
 	.left-content-container {@include grid-column(10);}
 	.side-related {@include grid-push(3);}
+	.right-sub-content-container {@include grid-push(3);}
 
 	.main-column-large {@include grid-column(9)}
 	.side-column-small {@include grid-column(3);}
@@ -33,9 +36,10 @@
 @include media($medium-large-screen) {
 	.left-content-container {@include grid-column(10);}
 	.side-related {@include grid-push(4);}
+	.right-sub-content-container {@include grid-push(4);}
 }
 
 @include media($large-screen) {
 	.left-content-container {@include grid-column(7);}
-	.side-related {@include grid-push(5);}
+	.side-related {@include grid-push(7);}
 }
