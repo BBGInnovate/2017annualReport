@@ -45,78 +45,18 @@ display_logo_home_button();
 			<div class="single-blog-wrapper clearfix">
 				<!-- BEGIN .hentry -->
 				<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_format() . '-post-format single' ); ?> itemscope itemType="http://schema.org/BlogPosting">
-					<?php 
-					if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
-						get_template_part('includes/single' , 'featured-format' ) ; 
-					?>
-
 					<!-- BEGIN .single-post-content -->
 					<div class="single-post-content">
 	
 						<?php if (! is_attachment() ) { ?>	
 						<!-- BEGIN .post-header -->
 						<div class="post-header">
-							<h1 class="title entry-title" itemprop="headline"><?php the_title(); ?></h1>
-
-							<!-- BEGIN .post-meta-info -->
-							<div class="post-meta-info">
-								<span class="blog-author minor-meta">
-									<?php if ( hb_options('hb_blog_enable_date' ) ) { ?>
-									<span class="post-date date updated"><time datetime="<?php echo get_the_time('c'); ?>" itemprop="datePublished"><?php echo get_the_time('M j, Y'); ?></time></span>
-									<?php } ?>
-									
-									<?php if ( hb_options('hb_blog_enable_by_author') && hb_options('hb_blog_enable_date') ) { ?>
-									<span class="text-sep">|</span>
-									<?php } ?>
-
-									<?php if ( hb_options('hb_blog_enable_by_author') ) { ?>
-									<?php _e('Posted by' , 'hbthemes'); ?>
-									<span class="entry-author-link" itemprop="name">
-										<span class="vcard author">
-											<span class="fn">
-												<a href="<?php echo get_author_posts_url ( get_the_author_meta ('ID') ); ?>" title="<?php _e('Posts by ' , 'hbthemes'); the_author_meta('display_name');?>" rel="author"><?php the_author_meta('display_name'); ?></a>
-											</span>
-										</span>
-									</span>
-									<?php } ?>
-								</span>
-								<?php if ( hb_options('hb_blog_enable_by_author') || hb_options('hb_blog_enable_date') ) { ?>
-								<span class="text-sep">|</span>
-								<?php } ?>
-
-								<?php 
-								$categories = get_the_category();
-								if ( $categories && hb_options('hb_blog_enable_categories') ) {
-									?>
-									<!-- Category info -->
-									<span class="blog-categories minor-meta"> 
-									<?php
-									$cat_count = count($categories);
-									foreach($categories as $category) { 
-										$cat_count--;
-									?>
-										<a href="<?php echo get_category_link( $category->term_id ); ?>" title="<?php echo esc_attr( sprintf( __( "View all posts in %s", "hbthemes" ), $category->name ) ); ?>"><?php echo $category->cat_name; ?></a><?php if ( $cat_count > 0 ) echo ', '; ?>			
-									<?php } ?>
-									<span class="text-sep">|</span>
-								<?php } ?>
-
-								<?php
-								if ( comments_open() && hb_options('hb_blog_enable_comments') ) {
-									echo '<span class="comment-container minor-meta">';
-									echo 	'<a href="';
-									echo 		get_the_permalink ();
-									echo 		'#comments" class="comments-link scroll-to-comments" title="';
-									echo 		printf ( __("Comment on %s" , "hbthemes" ) , get_the_title());
-									echo 	'">';
-									echo 		comments_number( __( '0 comments' , 'hbthemes' ) , __( '1 comment' , 'hbthemes' ), __( '% comments' , 'hbthemes' ) );
-									echo 	'</a>';
-									echo '</span>';
-									echo '<span class="text-sep">|</span>';
-								}
-								?>
-							</div>
-							<!-- END .post-meta-info -->
-
+							<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
+							
+							<?php 
+							if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
+								get_template_part('includes/single' , 'featured-format' ) ; 
+							?>
 						</div>
 						<!-- END .post-header -->
 						<?php } ?>
