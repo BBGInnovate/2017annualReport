@@ -1,5 +1,14 @@
 .related-content {position: relative;}
 
+.side-related-image {
+	float: left;
+	width: 50%;
+	margin-left: -25%;
+	padding: 1.5rem 1.5rem 1.5rem 0;
+
+	img.related-image {margin-bottom: 0.5rem;}
+}
+
 .side-related {
 	position: absolute;
 	z-index: 100;
@@ -13,6 +22,10 @@
 		cursor: pointer;
 		a:link, a:visited {color: $red;}
 		a:hover, a:active {color: $tan;}
+	}
+	.related-image {
+		img {margin-bottom: 0.5rem;}
+		text-align: right;
 	}
 }
 

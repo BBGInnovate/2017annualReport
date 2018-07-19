@@ -13,7 +13,11 @@ if( is_singular ( 'clients' ) ||
 } 
 
 get_header();
+
+display_logo_home_button();
 ?>
+
+
 <div class="container">
 <?php
 $stored_post_class = get_post_class( get_post_format() . '-post-format single' );

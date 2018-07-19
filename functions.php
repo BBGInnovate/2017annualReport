@@ -120,4 +120,19 @@ function hbChild_register_menu() {
 }
 add_action('init', 'hbChild_register_menu');
 
+function display_logo_home_button() {
+	$header_logo  = '<div class="container">';
+	$header_logo .= 	'<div class="row right-sidebar main-row">';
+	$header_logo .= 		'<div class="col-12 hb-main-content">';
+	$header_logo .= 			'<a href="' . get_site_url() . '">';
+	$header_logo .= 				'<img id="top-logo" src="';
+	$header_logo .= 					content_url() . '/uploads/2018/03/BBG-AR_Logo_Default.png" ';
+	$header_logo .= 					'title="" alt="BBG Annual Report 2017"';
+	$header_logo .= 				'>';
+	$header_logo .= 			'</a>';
+	$header_logo .= 		'</div>';
+	$header_logo .= 	'</div>';
+	$header_logo .= '</div>';
+	echo $header_logo;
+}
 ?>

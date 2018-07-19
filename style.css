@@ -4246,6 +4246,14 @@ h2 {
 .related-content {
   position: relative; }
 
+.side-related-image {
+  float: left;
+  width: 50%;
+  margin-left: -25%;
+  padding: 1.5rem 1.5rem 1.5rem 0; }
+  .side-related-image img.related-image {
+    margin-bottom: 0.5rem; }
+
 .side-related {
   position: absolute;
   z-index: 100;
@@ -4263,5 +4271,9 @@ h2 {
       color: #9f1d25; }
     .side-related .show-more a:hover, .side-related .show-more a:active {
       color: #8b8278; }
+  .side-related .related-image {
+    text-align: right; }
+    .side-related .related-image img {
+      margin-bottom: 0.5rem; }
 
 /*# sourceMappingURL=style.css.map */

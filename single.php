@@ -10,8 +10,10 @@ if( is_singular ( 'clients' ) ||
  	is_singular ( 'hb_pricing_table' ) ) {
 	wp_redirect(home_url()); exit;
 } 
+get_header();
+
+display_logo_home_button();
 ?>
-<?php get_header(); ?>
 <!-- BEGIN #main-content -->
 <div id="main-content">
 	<div class="container">
@@ -99,18 +101,18 @@ if( is_singular ( 'clients' ) ||
 								<?php } ?>
 
 								<?php
-								// if ( comments_open() && hb_options('hb_blog_enable_comments') ) {
-								// 	echo '<span class="comment-container minor-meta">';
-								// 	echo 	'<a href="';
-								// 	echo 		get_the_permalink ();
-								// 	echo 		'#comments" class="comments-link scroll-to-comments" title="';
-								// 	echo 		printf ( __("Comment on %s" , "hbthemes" ) , get_the_title());
-								// 	echo 	'">';
-								// 	echo 		comments_number( __( '0 comments' , 'hbthemes' ) , __( '1 comment' , 'hbthemes' ), __( '% comments' , 'hbthemes' ) );
-								// 	echo 	'</a>';
-								// 	echo '</span>';
-								// 	echo '<span class="text-sep">|</span>';
-								// }
+								if ( comments_open() && hb_options('hb_blog_enable_comments') ) {
+									echo '<span class="comment-container minor-meta">';
+									echo 	'<a href="';
+									echo 		get_the_permalink ();
+									echo 		'#comments" class="comments-link scroll-to-comments" title="';
+									echo 		printf ( __("Comment on %s" , "hbthemes" ) , get_the_title());
+									echo 	'">';
+									echo 		comments_number( __( '0 comments' , 'hbthemes' ) , __( '1 comment' , 'hbthemes' ), __( '% comments' , 'hbthemes' ) );
+									echo 	'</a>';
+									echo '</span>';
+									echo '<span class="text-sep">|</span>';
+								}
 								?>
 							</div>
 							<!-- END .post-meta-info -->
@@ -138,33 +140,33 @@ if( is_singular ( 'clients' ) ||
 				</article>
 
 				<?php
-					// if (! is_attachment() ) {
-					// 	echo '<section class="bottom-meta-section clearfix">';
-					// 	if ( comments_open() && hb_options('hb_blog_enable_comments') ) {
-					// 		echo '<div class="float-left comments-holder">';
-					// 		echo 	'<a href="';
-					// 		echo 		get_the_permalink();
-					// 		echo 		'#comments" class="comments-link scroll-to-comments" title="';
-					// 		echo 		_e('View comments on ', 'hbthemes'); get_the_title(); 
-					// 		echo 	'">';
-					// 		echo 		comments_number( __( '0 Comments' , 'hbthemes' ) , __( '1 Comment' , 'hbthemes' ), __( '% Comments' , 'hbthemes' ) );
-					// 		echo 	'</a>';
-					// 		echo '</div>';
-					// 	}
+					if (! is_attachment() ) {
+						echo '<section class="bottom-meta-section clearfix">';
+						if ( comments_open() && hb_options('hb_blog_enable_comments') ) {
+							echo '<div class="float-left comments-holder">';
+							echo 	'<a href="';
+							echo 		get_the_permalink();
+							echo 		'#comments" class="comments-link scroll-to-comments" title="';
+							echo 		_e('View comments on ', 'hbthemes'); get_the_title(); 
+							echo 	'">';
+							echo 		comments_number( __( '0 Comments' , 'hbthemes' ) , __( '1 Comment' , 'hbthemes' ), __( '% Comments' , 'hbthemes' ) );
+							echo 	'</a>';
+							echo '</div>';
+						}
 
-					// 	if ( hb_options('hb_blog_enable_likes') ) {
-					// 		echo '<div class="float-right">';
-					// 		echo 	hb_print_likes(get_the_ID());
-					// 		echo '</div>';
-					// 	}
+						if ( hb_options('hb_blog_enable_likes') ) {
+							echo '<div class="float-right">';
+							echo 	hb_print_likes(get_the_ID());
+							echo '</div>';
+						}
 
-					// 	if ( hb_options('hb_blog_enable_share') ) {
-					// 		echo '<div class="float-right">';
-					// 		echo 	get_template_part ( 'includes/hb' , 'share' );
-					// 		echo '</div>';
-					// 	}
-					// 	echo '</section>';
-					// }
+						if ( hb_options('hb_blog_enable_share') ) {
+							echo '<div class="float-right">';
+							echo 	get_template_part ( 'includes/hb' , 'share' );
+							echo '</div>';
+						}
+						echo '</section>';
+					}
 
 					if ( hb_options('hb_blog_author_info') && is_singular('post')) {
 						get_template_part('includes/post','author-info'); 

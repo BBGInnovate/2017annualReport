@@ -7,8 +7,8 @@ function reopen_hb_structure() {
 	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
 }
 
-add_shortcode('profile', 'show_profile');
-function show_profile($atts) {
+add_shortcode('related-profile', 'show_related_profile');
+function show_related_profile($atts) {
 	$profile_name = $atts['name'];
 	$type = $atts['type'];
 	$profile_box = '';
@@ -96,6 +96,26 @@ function show_related_story($atts) {
 	return $related_story;
 }
 
+add_shortcode('related-image', 'show_related_image');
+function show_related_image($atts) {
+	$image_source = $atts['src'];
+	$image_caption = $atts['caption'];
+
+	$related_image_markup  = exit_hb_structure();
+	$related_image_markup .= '<div class="outer-container related-content">';
+	$related_image_markup .= 	'<div class="side-related">';
+	$related_image_markup .= 		'<div class="inner-container">';
+	$related_image_markup .= 			'<div class="grid-container related-image">';
+	$related_image_markup .= 				'<img src="' . $image_source . '" title="" alt="">';
+	$related_image_markup .= 				'<p class="aside">' . $image_caption . '</p>';
+	$related_image_markup .= 			'</div>';
+	$related_image_markup .= 		'</div>';
+	$related_image_markup .= 	'</div>';
+	$related_image_markup .= '</div>';
+	$related_image_markup .= reopen_hb_structure();
+	return $related_image_markup;
+}
+
 add_shortcode('video_bg', 'display_background_video');
 function display_background_video($atts) {
 	$name = $atts['name'];
@@ -118,7 +138,7 @@ function display_background_video($atts) {
 	}
 	$bg_video .= '>';
 	if (!empty($video_src)) {
-		$bg_video .= 	'<video class="video video-tag" autoplay loop>';
+		$bg_video .= 	'<video class="video video-tag" loop>';
 		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 		$bg_video .= 	'</video>';
 	}
