@@ -162,12 +162,20 @@ add_shortcode('standalone_video', 'display_inner_video');
 function display_inner_video($atts) {
 	$video_src = $atts['src'];
 	$caption = $atts['caption'];
+	if (empty($atts['youtube'])) {
+		$atts['youtube'] = '';
+	}
 
 	$inner_video  = exit_hb_structure();
 	$inner_video .= '<div class="standalone-video-bg">';
-	$inner_video .= 	'<video class="video inner-video" autoplay>';
-	$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
-	$inner_video .= 	'</video>';
+	if ($atts['youtube'] == 'youtube') {
+		$inner_video .= '<iframe class="embeded-youtube-standalone" src="' . $video_src . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	}
+	else {
+		$inner_video .= 	'<video class="video inner-video" autoplay>';
+		$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
+		$inner_video .= 	'</video>';
+	}
 	if (!empty($caption)) {
 		$inner_video .= '<p class="inner-video" style="color: #ffffff;">' . $caption . '</p>';
 	}

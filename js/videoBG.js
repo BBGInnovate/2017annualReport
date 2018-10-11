@@ -183,6 +183,17 @@ $.each(allVideos, function() {
 	$(this).get(0).pause();
 });
 
+if ($('.embeded-youtube-standalone').length > 0) {
+	$('.embeded-youtube-standalone').css({
+		'width': '70%',
+		'margin': '0 auto'
+	});
+	var pcx = 1.77778;
+	var videoW = $('.embeded-youtube-standalone').width();
+	var videoH = videoW / pcx;
+	$('.embeded-youtube-standalone').height(videoH);
+}
+
 
 // TESTING
 // ------------------------------------------------------------------------------------------
