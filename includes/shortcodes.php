@@ -7,7 +7,7 @@ function reopen_hb_structure() {
 	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
 }
 
-add_shortcode('related-profile', 'show_related_profile');
+add_shortcode('related_profile', 'show_related_profile');
 function show_related_profile($atts) {
 	$profile_name = $atts['name'];
 	$type = $atts['type'];
@@ -56,7 +56,7 @@ function show_related_profile($atts) {
 	return $profile_box;
 }
 
-add_shortcode('related-story', 'show_related_story');
+add_shortcode('related_story', 'show_related_story');
 function show_related_story($atts) {
 	$related_story_title = $atts['title'];
 	$related_story = '';
@@ -84,7 +84,7 @@ function show_related_story($atts) {
 			$related_story .= 			'<div class="grid-container related-body">';
 			$related_story .= 				'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
 			$related_story .= 				'<p class="aside">' . $story_copy . '</p>';
-			$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Visit Page</a></p>';
+			$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Read More</a></p>';
 			$related_story .= 			'</div>';
 			$related_story .= 		'</div>';
 			$related_story .= 	'</div>';
@@ -96,7 +96,7 @@ function show_related_story($atts) {
 	return $related_story;
 }
 
-add_shortcode('related-image', 'show_related_image');
+add_shortcode('related_image', 'show_related_image');
 function show_related_image($atts) {
 	$image_source = $atts['src'];
 	$image_caption = $atts['caption'];
@@ -114,6 +114,18 @@ function show_related_image($atts) {
 	$related_image_markup .= '</div>';
 	$related_image_markup .= reopen_hb_structure();
 	return $related_image_markup;
+}
+
+add_shortcode('full_width_featured_image', 'show_full_width_featured_image');
+function show_full_width_featured_image() {
+	$poster_src = get_the_post_thumbnail_url();
+
+	$poster  = exit_hb_structure();
+	$poster .= '<div class="featured-image-wrapper">';
+	$poster .= 	'<img src=' . $poster_src . '>';
+	$poster .= '</div>';
+	$poster .= reopen_hb_structure();
+	echo $poster;
 }
 
 add_shortcode('video_bg', 'display_background_video');

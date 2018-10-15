@@ -89,6 +89,22 @@ article.single.post .featured-image {
 	padding: 0;
 }
 
+// SHORTCODE
+.featured-image-wrapper {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 60rem;
+	overflow: hidden;
+
+	img {
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
 @include media($medium-screen) {
 	body {font-size: 14px;}
 	article.single.post .featured-image {

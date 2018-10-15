@@ -13,8 +13,7 @@ if( is_singular ( 'clients' ) ||
 } 
 
 get_header();
-
-display_logo_home_button();
+// display_logo_home_button();
 ?>
 
 
@@ -46,12 +45,21 @@ $stored_post_class = implode($stored_post_class, " ");
 				<article class="<?php echo $stored_post_class; ?>">
 					<?php 
 					if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
-						get_template_part('includes/single' , 'featured-format' ) ; 
+						$page_content = get_the_content();
+
+						// IF THE SHORTCODE FOR THE FULL WIDTH FEATURE IMAGE IS USED 
+						// DO NOT SHOW THE FEATURED IMAGE IN THE DEFAULT WAY
+						$feat_img_pos = strpos($page_content, '[full_width_featured_image]');
+						if (!is_numeric($feat_img_pos)) {
+							get_template_part('includes/single' , 'featured-format');
+						}
 					?>
 					<div class="single-post-content">
 						<?php if (! is_attachment() ) { ?>	
-						<div class="post-header">
-							<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
+						<div class="row">	
+							<div class="post-header">
+								<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
+							</div>
 						</div>
 						<?php } ?>
 						

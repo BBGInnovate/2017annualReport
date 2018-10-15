@@ -88,5 +88,9 @@ if ($('.profile').length > 0) {
 	})
 }
 
+if ($('.featured-image-wrapper').length > 0) {
+	$('.main-row').first().css('margin-top', '60rem');
+}
+
 }); // END READY
 })( jQuery );
