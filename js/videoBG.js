@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
 var viewportTop = $(window).scrollTop();
+
 var viewportBottom = viewportTop + $(window).height();
 var videoMovers;
 
@@ -66,6 +67,9 @@ $.fn.isInViewport = function() {
 	var elementTop = $(this).offset().top;
 	var elementBottom = elementTop + $(this).outerHeight();
 	viewportTop = $(window).scrollTop();
+	if ($('#wpadminbar').length > 0) {
+		elementTop + 32;
+	}
 	viewportBottom = viewportTop + $(window).height();
 	
 	return elementBottom > viewportTop && elementTop < viewportBottom;
@@ -122,6 +126,7 @@ function linkVideoToMover(elem) {
 	classList = classList.split(" ");
 	return videoName = classList[0];
 }
+
 var curMoverLink = "";
 var videoAnchor = "";
 var overlayIndex = 0;
@@ -129,29 +134,34 @@ var overlayIndex = 0;
 $.each($('.move-video'), function() {
 	mover = $(this);
 	if (mover.isInViewport()) {
-		curMoverLink = linkVideoToMover(mover);
+		curMoverLink = getFirstClassName(mover);
 		unlockVideo($('.video-wrapper.' + curMoverLink), $('.move-video.' + curMoverLink));
 	}
 });
 console.log('test');
 // BUG WHEN TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
+var windowTop;
 function checkVideoPositions() {
 	$.each(videos, function() {
 		var curVideo = $(this);
 		curMoverLink = linkVideoToMover(curVideo);
+
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
 			displayVideoOverlay(curVideo, videoAnchor);
 
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport()) {
+					console.log('1');
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
 				}
 				else {
+					console.log('2');
 					lockVideo(curVideo);
 				}
 			}
 			else {
+				console.log('3');
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
 			}
