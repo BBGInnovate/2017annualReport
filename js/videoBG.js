@@ -60,7 +60,6 @@ function getVideoTop() {
 	});
 }
 
-
 // CONTROL VIDEO SCROLL
 // ELEMENT INSIDE VIEWPORT?
 $.fn.isInViewport = function() {
@@ -68,10 +67,9 @@ $.fn.isInViewport = function() {
 	var elementBottom = elementTop + $(this).outerHeight();
 	viewportTop = $(window).scrollTop();
 	if ($('#wpadminbar').length > 0) {
-		elementTop + 32;
+		elementTop = elementTop + 32;
 	}
 	viewportBottom = viewportTop + $(window).height();
-	
 	return elementBottom > viewportTop && elementTop < viewportBottom;
 };
 
@@ -103,6 +101,9 @@ $.each(videos, function() {
 });
 $('.video-overlay').hide();
 function displayVideoOverlay(video, anchor) {
+	if ($('#wpadminbar').length > 0) {
+		anchor = anchor - 32;
+	}
 	$('.video-overlay').show();
 	video.siblings('.video-overlay').css({
 		'top': anchor,
@@ -132,14 +133,13 @@ var videoAnchor = "";
 var overlayIndex = 0;
 
 $.each($('.move-video'), function() {
-	mover = $(this);
+	var mover = $(this);
 	if (mover.isInViewport()) {
-		curMoverLink = getFirstClassName(mover);
+		curMoverLink = linkVideoToMover(mover);
 		unlockVideo($('.video-wrapper.' + curMoverLink), $('.move-video.' + curMoverLink));
 	}
 });
-console.log('test');
-// BUG WHEN TOOLBAR IS PRESENT (DISABLE WHEN TESTING)
+
 var windowTop;
 function checkVideoPositions() {
 	$.each(videos, function() {
@@ -149,19 +149,15 @@ function checkVideoPositions() {
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
 			displayVideoOverlay(curVideo, videoAnchor);
-
 			if (videoAnchor <= viewportTop) {
-				if ($('.move-video.' + curMoverLink).isInViewport()) {
-					console.log('1');
+				if ($('.move-video.' + curMoverLink).isInViewport() || ($('.move-video.' + curMoverLink).offset().top < viewportTop)) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
 				}
 				else {
-					console.log('2');
 					lockVideo(curVideo);
 				}
 			}
 			else {
-				console.log('3');
 				curVideo.removeClass('freeze-video-position');
 				curVideo.css('top', videoAnchor);
 			}
