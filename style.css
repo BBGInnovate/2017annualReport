@@ -3777,7 +3777,7 @@ input[type="search"] {
   .right-sub-content-container {
     margin-left: calc(8.33333% - 21.66667px + 40px); } }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   .left-content-container {
     width: calc(83.33333% - 36.66667px);
     float: left;
@@ -4024,6 +4024,18 @@ article.single.post .featured-image {
   margin: 0 0 3rem 0;
   padding: 0; }
 
+.featured-image-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60rem;
+  overflow: hidden; }
+  .featured-image-wrapper img {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%); }
+
 @media screen and (min-width: 600px) {
   body {
     font-size: 14px; }
@@ -4070,7 +4082,7 @@ article.single.post .featured-image {
       .post-categories .side-cat .aside-text p {
         font-size: 1em; } }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
   article.single.post .featured-image {
     margin: 0 0 1rem 0;
     padding: 0 1.5rem 0 0; } }
@@ -4228,18 +4240,6 @@ footer {
   position: absolute;
   z-index: -1; }
 
-.featured-image-wrapper {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 60rem;
-  overflow: hidden; }
-  .featured-image-wrapper img {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%); }
-
 .freeze-video-position {
   position: fixed;
   top: 0;
@@ -4272,37 +4272,33 @@ h2 {
     margin: 0 auto;
     text-align: center; }
 
-.related-content {
-  position: relative; }
-
-.side-related-image {
+.related-content .related-image {
+  width: calc(100% - 40px);
   float: left;
-  width: 50%;
-  margin-left: -25%;
-  padding: 1.5rem 1.5rem 1.5rem 0; }
-  .side-related-image img.related-image {
-    margin-bottom: 0.5rem; }
+  margin-left: 20px; }
 
-.side-related {
-  position: absolute;
-  z-index: 100;
-  padding-top: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.75); }
-  .side-related .related-head {
-    border-bottom: 1px solid #e6e6e6; }
-  .side-related .related-body {
-    margin-top: 1.5rem; }
-  .side-related .show-more {
-    font-size: 1.6rem;
-    color: #9f1d25;
-    cursor: pointer; }
-    .side-related .show-more a:link, .side-related .show-more a:visited {
-      color: #9f1d25; }
-    .side-related .show-more a:hover, .side-related .show-more a:active {
-      color: #8b8278; }
-  .side-related .related-image {
-    text-align: right; }
-    .side-related .related-image img {
-      margin-bottom: 0.5rem; }
+.related-content .related-copy {
+  width: calc(100% - 40px);
+  float: left;
+  margin-left: 20px;
+  padding-top: 0.5rem; }
+  .related-content .related-copy p {
+    font-size: 1.4rem; }
+
+@media screen and (min-width: 900px) {
+  .related-content .related-image {
+    width: calc(91.66667% - 38.33333px);
+    float: left;
+    margin-left: 20px;
+    margin-left: calc(8.33333% - 21.66667px + 40px); }
+  .related-content .related-copy {
+    border-top: 1px solid #e2e2e2; } }
+
+@media screen and (min-width: 1200px) {
+  .related-content .related-image {
+    width: calc(83.33333% - 36.66667px);
+    float: left;
+    margin-left: 20px;
+    margin-left: calc(16.66667% - 23.33333px + 40px); } }
 
 /*# sourceMappingURL=style.css.map */

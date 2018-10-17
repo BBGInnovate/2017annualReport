@@ -6,6 +6,20 @@ function reopen_hb_structure() {
 	global $stored_post_class;
 	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
 }
+function print_div_structure() {
+	$opening = "";
+	$closing = "";
+	if (is_page_template('page-network.php')) {
+		$opening = 'Opening div set';
+		$closing = 'Closing div set';
+	}
+	$div_sets = array(
+		'opening' => $opening,
+		'closing' => $closing
+	);
+	echo $div_sets['closing'];
+}
+print_div_structure();
 
 add_shortcode('related_profile', 'show_related_profile');
 function show_related_profile($atts) {
@@ -96,23 +110,26 @@ function show_related_story($atts) {
 	return $related_story;
 }
 
+
 add_shortcode('related_image', 'show_related_image');
 function show_related_image($atts) {
 	$image_source = $atts['src'];
 	$image_caption = $atts['caption'];
 
-	$related_image_markup  = exit_hb_structure();
-	$related_image_markup .= '<div class="outer-container related-content">';
-	$related_image_markup .= 	'<div class="side-related">';
+	$related_image_markup  = '</div>';
+	$related_image_markup .= '<div class="col-5 related-content">';
+	$related_image_markup .= 	'<div class="nest-container">';
 	$related_image_markup .= 		'<div class="inner-container">';
-	$related_image_markup .= 			'<div class="grid-container related-image">';
+	$related_image_markup .= 			'<div class="related-image">';
 	$related_image_markup .= 				'<img src="' . $image_source . '" title="" alt="">';
-	$related_image_markup .= 				'<p class="aside">' . $image_caption . '</p>';
 	$related_image_markup .= 			'</div>';
+	$related_image_markup .= 		'</div>';
+	$related_image_markup .= 		'<div class="inner-container related-copy">';
+	$related_image_markup .= 			'<p>' . $image_caption . '</p>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 	'</div>';
 	$related_image_markup .= '</div>';
-	$related_image_markup .= reopen_hb_structure();
+	$related_image_markup .= '<div class="col-7">';
 	return $related_image_markup;
 }
 
@@ -121,7 +138,11 @@ function show_full_width_featured_image() {
 	$poster_src = get_the_post_thumbnail_url();
 
 	$poster  = exit_hb_structure();
+	// $poster .= '<div class="featured-image-wrapper"';
+	// $poster .= 	'style="background-image: url(' . $poster_src . ');"';
+	// $poster .= '</div>';
 	$poster .= '<div class="featured-image-wrapper">';
+	
 	$poster .= 	'<img src=' . $poster_src . '>';
 	$poster .= '</div>';
 	$poster .= reopen_hb_structure();

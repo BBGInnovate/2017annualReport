@@ -40,7 +40,7 @@ $(window).on('resize', function() {
 
 
 // INITIALIZE FULL WIDTH BACKGROUND VIDEO
-if ($('.video-wrapper').length != 0) {
+if ($('.video-wrapper').length > 0) {
 	var videoWrappers = $('.video-wrapper');
 	var videoTags = $('.video-tag');
 	if ($('.move-video')) {

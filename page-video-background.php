@@ -2,7 +2,7 @@
 /**
  * @package WordPress
  * @subpackage Highend
- * Template name: Video Background
+ * Template name: Thematic Page
  */
 
 require 'includes/shortcodes.php';
@@ -36,46 +36,46 @@ $stored_post_class = implode($stored_post_class, " ");
 	?>
 	<div class="row <?php echo $sidebar_layout; ?> main-row">
 	<?php
-		if ( have_posts() ) : while ( have_posts() ) : the_post();
-			remove_filter('the_content', 'wpautop');
+		if (have_posts()) : 
+			while (have_posts()) : 
+				the_post();
+				remove_filter('the_content', 'wpautop');
 	?>
 
 		<div class="col-12 hb-main-content">
 			<div class="single-blog-wrapper clearfix">
-				<article class="<?php echo $stored_post_class; ?>">
-					<?php 
-					if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
-						$page_content = get_the_content();
+				<?php 
+				if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
+					$page_content = get_the_content();
+					$page_content = do_shortcode($page_content);
 
-						// IF THE SHORTCODE FOR THE FULL WIDTH FEATURE IMAGE IS USED 
-						// DO NOT SHOW THE FEATURED IMAGE IN THE DEFAULT WAY
-						$feat_img_pos = strpos($page_content, '[full_width_featured_image]');
-						if (!is_numeric($feat_img_pos)) {
-							get_template_part('includes/single' , 'featured-format');
+					// DONT SHOW FEATURE IMAGE IN FULL WIDTH FEATURE IMAGE SHORTCODE IS USED
+					$feat_img_pos = strpos($page_content, '[full_width_featured_image]');
+					if (!is_numeric($feat_img_pos)) {
+						get_template_part('includes/single' , 'featured-format');
+					}
+				?>
+				<div class="single-post-content">
+					<?php
+						if (!is_attachment()) {
+							echo '<h2 class="title entry-title" itemprop="headline">' . get_the_title() . ' </h2>';
 						}
-					?>
-					<div class="single-post-content">
-						<?php if (! is_attachment() ) { ?>	
-						<div class="row">	
-							<div class="post-header">
-								<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
-							</div>
-						</div>
-						<?php } ?>
-						
-						<?php if ( !has_post_format('quote') && !has_post_format('link') && !has_post_format('status') ) {?>
-						<div class="entry-content clearfix" itemprop="articleBody">
-							<?php the_content(); ?>
-							<div class="page-links"><?php wp_link_pages(array('next_or_number'=>'next', 'previouspagelink' => ' <i class="icon-angle-left"></i> ', 'nextpagelink'=>' <i class="icon-angle-right"></i>')); ?></div>
-						</div>
-						<?php } ?>
 
-						<?php 
-							if ( hb_options('hb_blog_enable_tags' ) )
-								the_tags('<div class="single-post-tags"><span>Tags: </span>','','</div>'); 
-						?>
-					</div>
-				</article>
+						if (!has_post_format('quote') && !has_post_format('link') && !has_post_format('status')) {
+							echo '<div class="entry-content clearfix" itemprop="articleBody">';
+							echo '<div class="col-7">';
+							echo 	$page_content;
+							echo '</div>';
+							echo 	'<div class="page-links">';
+							wp_link_pages(array('next_or_number'=>'next', 'previouspagelink' => ' <i class="icon-angle-left"></i> ', 'nextpagelink'=>' <i class="icon-angle-right"></i>'));
+							echo 	'</div>';
+							echo '</div>';
+						}
+ 
+						if ( hb_options('hb_blog_enable_tags' ) )
+							the_tags('<div class="single-post-tags"><span>Tags: </span>','','</div>'); 
+					?>
+				</div>
 
 				<?php
 					if ( hb_options('hb_blog_author_info') && is_singular('post')) {
@@ -88,19 +88,11 @@ $stored_post_class = implode($stored_post_class, " ");
 			</div>
 		</div>
 		<!-- END .hb-main-content -->
-		<?php if ( $sidebar_layout != "fullwidth" ){ ?>
-			<!-- BEGIN .hb-sidebar -->
-			<div class="col-3  hb-equal-col-height hb-sidebar">
-			<?php 		
-				if ( $sidebar_name && function_exists('dynamic_sidebar') )
-					dynamic_sidebar($sidebar_name);
-			?>
-			</div>
-			<!-- END .hb-sidebar -->
-		<?php } ?>
-	<?php endwhile; endif; ?>	
-
-	</div>
-</div>
+<?php
+	endwhile;
+endif;
+?>
+	</div><!-- END .row -->
+</div><!-- END .container -->
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/videoBG.js"></script>
 <?php get_footer(); ?>
