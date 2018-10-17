@@ -1,25 +1,22 @@
 <?php
-function exit_hb_structure() {
-	return '</div></div></article></div></div></div></div>';
-}
-function reopen_hb_structure() {
-	global $stored_post_class;
-	return '<div class="container"><div class="row main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
-}
 function print_div_structure() {
 	$opening = "";
 	$closing = "";
+	global $sidebar_layout;
+	global $stored_post_class;
 	if (is_page_template('page-network.php')) {
-		$opening = 'Opening div set';
-		$closing = 'Closing div set';
+		$opening = '<div class="container"><div class="row ' . $sidebar_layout . ' main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
+		$closing = '</div></div></article></div></div></div></div>';
+	} else if (is_page_template('page-thematic.php')) {
+		$opening = '<div class="container"><div class="row ' . $sidebar_layout . ' main-row"><div class="col-12 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody"><div class="col-7">';
+		$closing = '</div></div></div></article></div></div></div></div>';
 	}
 	$div_sets = array(
 		'opening' => $opening,
 		'closing' => $closing
 	);
-	echo $div_sets['closing'];
+	return $div_sets;
 }
-print_div_structure();
 
 add_shortcode('related_profile', 'show_related_profile');
 function show_related_profile($atts) {
@@ -136,16 +133,13 @@ function show_related_image($atts) {
 add_shortcode('full_width_featured_image', 'show_full_width_featured_image');
 function show_full_width_featured_image() {
 	$poster_src = get_the_post_thumbnail_url();
-
-	$poster  = exit_hb_structure();
-	// $poster .= '<div class="featured-image-wrapper"';
-	// $poster .= 	'style="background-image: url(' . $poster_src . ');"';
-	// $poster .= '</div>';
-	$poster .= '<div class="featured-image-wrapper">';
+	$div_structure = print_div_structure();
 	
+	$poster  = $div_structure['closing'];
+	$poster .= '<div class="featured-image-wrapper">';
 	$poster .= 	'<img src=' . $poster_src . '>';
 	$poster .= '</div>';
-	$poster .= reopen_hb_structure();
+	$poster .= $div_structure['opening'];
 	echo $poster;
 }
 

@@ -2,7 +2,7 @@
 /**
  * @package WordPress
  * @subpackage Highend
- * Template name: Thematic Page
+ * Template name: Deleted page
  */
 
 require 'includes/shortcodes.php';
@@ -58,7 +58,7 @@ $stored_post_class = implode($stored_post_class, " ");
 				<div class="single-post-content">
 					<?php
 						if (!is_attachment()) {
-							echo '<h2 class="title entry-title" itemprop="headline">' . get_the_title() . ' </h2>';
+							echo '<h1 class="title entry-title" itemprop="headline" style="border: 1px solid red">' . get_the_title() . ' </h2>';
 						}
 
 						if (!has_post_format('quote') && !has_post_format('link') && !has_post_format('status')) {

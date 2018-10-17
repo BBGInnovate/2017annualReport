@@ -88,9 +88,30 @@ if ($('.profile').length > 0) {
 	})
 }
 
-if ($('.featured-image-wrapper').length > 0) {
-	$('.main-row').first().css('margin-top', '60rem');
+// SHORTCODES
+// if ($('.featured-image-wrapper').length > 0) {
+// 	$('.main-row').first().css('margin-top', '60rem');
+// }
+console.log('0');
+// KEEPS FEATURED MEDIA SCALED AT HD PROPORTIONS
+function featuredMediaHD() {
+	var hd_scale = 1.77778;
+	var containerW = $(window).width();
+	var dynHeight = containerW / hd_scale;
+	$('.featured-image-wrapper').width(containerW);
+	$('.featured-image-wrapper').height(dynHeight);
+	var contentTopMargin = dynHeight;
+	$('.main-row').first().css('margin-top', contentTopMargin);
 }
+if ($('.featured-image-wrapper').length > 0) {
+	featuredMediaHD();
+}
+
+$(window).on('resize', function() {
+	if ($('.featured-image-wrapper').length > 0) {
+		featuredMediaHD();
+	}
+});
 
 }); // END READY
 })( jQuery );

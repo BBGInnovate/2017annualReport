@@ -35,7 +35,9 @@ function windowVideoSize() {
 $(window).on('resize', function() {
 	viewportTop = $(window).scrollTop();
 	viewportBottom = viewportTop + $(window).height();
-	windowVideoSize();
+	if ($('.move-video').length > 0) {
+		windowVideoSize();
+	}
 });
 
 
@@ -43,7 +45,7 @@ $(window).on('resize', function() {
 if ($('.video-wrapper').length > 0) {
 	var videoWrappers = $('.video-wrapper');
 	var videoTags = $('.video-tag');
-	if ($('.move-video')) {
+	if ($('.move-video').length > 0) {
 		videoMovers = $('.move-video');
 	}
 	// HD PROPORTIONS (PERCENTAGE)
