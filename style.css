@@ -4277,6 +4277,11 @@ h2 {
   float: left;
   margin-left: 20px; }
 
+.related-content .related-head {
+  width: calc(100% - 40px);
+  float: left;
+  margin-left: 20px; }
+
 .related-content .related-copy {
   width: calc(100% - 40px);
   float: left;
@@ -4284,6 +4289,22 @@ h2 {
   padding-top: 0.5rem; }
   .related-content .related-copy p {
     font-size: 1.4rem; }
+
+.related-content .related_content_large_side {
+  width: calc(75% - 35px);
+  float: left;
+  margin-left: 20px; }
+
+.related-content .related_content_small_side {
+  width: calc(25% - 25px);
+  float: left;
+  margin-left: 20px; }
+
+.related-content .profile .related-copy {
+  border-top: 1px solid #e2e2e2;
+  padding-top: 0rem; }
+  .related-content .profile .related-copy .related_content_large_side {
+    padding-top: 1rem; }
 
 @media screen and (min-width: 900px) {
   .related-content .related-image {
