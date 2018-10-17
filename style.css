@@ -4287,6 +4287,8 @@ h2 {
   float: left;
   margin-left: 20px;
   padding-top: 0.5rem; }
+  .related-content .related-copy h5 {
+    padding-top: 1rem; }
   .related-content .related-copy p {
     font-size: 1.4rem; }
 

@@ -4,6 +4,7 @@
 	.related-copy {
 		@include grid-column(12);
 		padding-top: 0.5rem;
+		h5 {padding-top: 1rem;}
 		p {font-size: 1.4rem;}
 	}
 	.related_content_large_side {@include grid-column(9);}

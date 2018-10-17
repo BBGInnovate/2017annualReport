@@ -74,45 +74,43 @@ function show_related_profile($atts) {
 	return $profile_box;
 }
 
-// add_shortcode('related_story', 'show_related_story');
-// function show_related_story($atts) {
-// 	$related_story_title = $atts['title'];
-// 	$related_story = '';
+add_shortcode('related_story', 'show_related_story');
+function show_related_story($atts) {
+	$related_story_title = $atts['title'];
+	$related_story = '';
 
-// 	$related_query = new WP_Query(array(
-// 		'title' => $related_story_title,
-// 		'posts_per_page' => 1
-// 	));
-// 	if ($related_query->have_posts()) {
-// 		while ($related_query->have_posts()) {
-// 			$related_query->the_post();
-// 			$story_copy = wp_trim_words(get_the_excerpt(), 25);
+	$related_query = new WP_Query(array(
+		'title' => $related_story_title,
+		'posts_per_page' => 1
+	));
+	if ($related_query->have_posts()) {
+		while ($related_query->have_posts()) {
+			$related_query->the_post();
+			$story_copy = wp_trim_words(get_the_excerpt(), 25);
 
-// 			$related_story  = exit_hb_structure();
-// 			$related_story .= '<div class="outer-container related-content">';
-// 			$related_story .= 	'<div class="side-related">';
-// 			$related_story .= 		'<div class="inner-container">';
-// 			$related_story .= 			'<div class="grid-container related-head">';
-// 			$related_story .= 				'<div class="right-sub-content-container">';
-// 			$related_story .= 					'<a href="' . get_the_permalink() . '">';
-// 			$related_story .= 						get_the_post_thumbnail();
-// 			$related_story .= 					'</a>';
-// 			$related_story .= 				'</div>';
-// 			$related_story .= 			'</div>';
-// 			$related_story .= 			'<div class="grid-container related-body">';
-// 			$related_story .= 				'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
-// 			$related_story .= 				'<p class="aside">' . $story_copy . '</p>';
-// 			$related_story .= 				'<p class="show-more"><a href="' . get_the_permalink() . '">Read More</a></p>';
-// 			$related_story .= 			'</div>';
-// 			$related_story .= 		'</div>';
-// 			$related_story .= 	'</div>';
-// 			$related_story .= '</div>';
-// 			$related_story .= reopen_hb_structure();
-// 		}
-// 		wp_reset_postdata();
-// 	}
-// 	return $related_story;
-// }
+			$related_story  = '</div>';
+			$related_story .= '<div class="col-5 related-content">';
+			$related_story .= 	'<div class="nest-container">';
+			$related_story .= 		'<div class="inner-container">';
+			$related_story .= 			'<div class="related-image">';
+			$related_story .= 				'<a href="' . get_the_permalink() . '">';
+			$related_story .= 					get_the_post_thumbnail();
+			$related_story .= 				'</a>';
+			$related_story .= 			'</div>';
+			$related_story .= 		'</div>';
+			$related_story .= 		'<div class="inner-container related-copy">';
+			$related_story .= 			'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
+			$related_story .= 			'<p class="story-text">' . $story_copy . '</p>';
+			$related_story .= 			'<p class="show-more"><a href="' . get_the_permalink() . '">Read More</a></p>';
+			$related_story .= 		'</div>';
+			$related_story .= 	'</div>';
+			$related_story .= '</div>';
+			$related_story .= '<div class="col-7">';
+		}
+		wp_reset_postdata();
+	}
+	return $related_story;
+}
 
 
 add_shortcode('related_image', 'show_related_image');
@@ -129,7 +127,7 @@ function show_related_image($atts) {
 	$related_image_markup .= 			'</div>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 		'<div class="inner-container related-copy">';
-	$related_image_markup .= 			'<p>' . $image_caption . '</p>';
+	$related_image_markup .= 			'<p class="caption">' . $image_caption . '</p>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 	'</div>';
 	$related_image_markup .= '</div>';
