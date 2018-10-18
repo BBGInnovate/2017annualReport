@@ -6,6 +6,7 @@
  */
 
 require 'includes/shortcodes.php';
+require 'includes/custom_field_data.php';
 
 if( is_singular ( 'clients' ) ||
  	is_singular ( 'hb_pricing_table' ) ) {

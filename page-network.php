@@ -6,6 +6,7 @@
  */
 
 require 'includes/shortcodes.php';
+require 'includes/custom_field_data.php';
 
 if( is_singular ( 'clients' ) ||
  	is_singular ( 'hb_pricing_table' ) ) {
@@ -110,8 +111,15 @@ $stored_post_class = implode($stored_post_class, " ");
 			<!-- END .hb-sidebar -->
 		<?php } ?>
 	<?php endwhile; endif; ?>
-
 	</div>
 </div>
+<?php
+	$fw_ess_grid = full_width_essential_grid();
+	if (!empty($fw_ess_grid)) {
+		echo $fw_ess_grid;
+	}
+?>
+
+
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/videoBG.js"></script>
 <?php get_footer(); ?>
