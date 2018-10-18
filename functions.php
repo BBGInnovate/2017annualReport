@@ -135,4 +135,23 @@ function display_logo_home_button() {
 	$header_logo .= '</div>';
 	echo $header_logo;
 }
+
+// REMOVE TOOLBAR ITEMS
+function shapeSpace_remove_toolbar_menu() {
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_menu('vc_inline-admin-bar-link');
+	$wp_admin_bar->remove_menu('highend_theme_options_link');
+}
+add_action('wp_before_admin_bar_render', 'shapeSpace_remove_toolbar_menu', 999); 
+
+function add_toolbar_items($admin_bar){
+	$admin_bar->add_menu(
+		array(
+			'id'    => 'shortcode-cheatsheet',
+			'title' => 'Shortcode Cheatsheet',
+			'href'  => '#',
+		)
+	);
+}
+add_action('admin_bar_menu', 'add_toolbar_items', 100);
 ?>
