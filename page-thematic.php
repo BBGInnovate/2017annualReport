@@ -39,7 +39,7 @@ $stored_post_class = implode($stored_post_class, " ");
 		if (have_posts()) : 
 			while (have_posts()) : 
 				the_post();
-				remove_filter('the_content', 'wpautop');
+				// remove_filter('the_content', 'wpautop');
 				$page_content = get_the_content();
 	?>
 

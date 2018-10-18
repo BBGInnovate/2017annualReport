@@ -142,6 +142,11 @@ $.each($('.move-video'), function() {
 	}
 });
 
+var allVideos = $('.video');
+$.each(allVideos, function() {
+	$(this).get(0).pause();
+});
+
 var windowTop;
 function checkVideoPositions() {
 	$.each(videos, function() {
@@ -184,11 +189,6 @@ checkVideoPlay();
 $(window).on('resize scroll', function() {
 	checkVideoPositions();
 	checkVideoPlay();
-});
-
-var allVideos = $('.video');
-$.each(allVideos, function() {
-	$(this).get(0).pause();
 });
 
 if ($('.embeded-youtube-standalone').length > 0) {

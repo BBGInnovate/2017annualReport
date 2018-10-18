@@ -51,7 +51,7 @@ function show_related_profile($atts) {
 			$profile_box .= 						'<p class="aside">' . get_the_excerpt() . '</p>';
 			if ($type == 'reveal') {
 				$profile_box .= 					'<div class="reveal-content">';
-				$profile_box .= 						get_the_content();
+				$profile_box .= 						'<p class="aside">' . get_the_content() . '</p>';
 				$profile_box .= 					'</div>';
 				$profile_box .= 					'<p class="show-more reveal">Show More</p>';
 			}
@@ -100,7 +100,7 @@ function show_related_story($atts) {
 			$related_story .= 		'</div>';
 			$related_story .= 		'<div class="inner-container related-copy">';
 			$related_story .= 			'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
-			$related_story .= 			'<p class="story-text">' . $story_copy . '</p>';
+			$related_story .= 			'<p class="aside">' . $story_copy . '</p>';
 			$related_story .= 			'<p class="show-more"><a href="' . get_the_permalink() . '">Read More</a></p>';
 			$related_story .= 		'</div>';
 			$related_story .= 	'</div>';
@@ -127,7 +127,7 @@ function show_related_image($atts) {
 	$related_image_markup .= 			'</div>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 		'<div class="inner-container related-copy">';
-	$related_image_markup .= 			'<p class="caption">' . $image_caption . '</p>';
+	$related_image_markup .= 			'<p class="aside">' . $image_caption . '</p>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 	'</div>';
 	$related_image_markup .= '</div>';
@@ -148,73 +148,76 @@ function show_full_width_featured_image() {
 	echo $poster;
 }
 
-// add_shortcode('video_bg', 'display_background_video');
-// function display_background_video($atts) {
-// 	$name = $atts['name'];
-// 	if (!empty($atts['poster'])) {
-// 		$poster = $atts['poster'];
-// 	}
-// 	if (!empty($atts['src'])) {
-// 		$video_src = $atts['src'];
-// 	}
-// 	if (!empty($atts['top'])) {
-// 		$position = $atts['top'];
-// 	} else {
-// 		$position = "";
-// 	}
+add_shortcode('video_bg', 'display_background_video');
+function display_background_video($atts) {
+	$name = $atts['name'];
+	if (!empty($atts['poster'])) {
+		$poster = $atts['poster'];
+	}
+	if (!empty($atts['src'])) {
+		$video_src = $atts['src'];
+	}
+	if (!empty($atts['top'])) {
+		$position = $atts['top'];
+	} else {
+		$position = "";
+	}
+	$hb_div_structure = print_hb_div_structure();
 
-// 	$bg_video  = exit_hb_structure();
-// 	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
-// 	if (!empty($atts['poster'])) {
-// 		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
-// 	}
-// 	$bg_video .= '>';
-// 	if (!empty($video_src)) {
-// 		$bg_video .= 	'<video class="video video-tag" loop>';
-// 		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
-// 		$bg_video .= 	'</video>';
-// 	}
-// 	$bg_video .= '</div>';
-// 	$bg_video .= '<div class="video-overlay"></div>';
-// 	$bg_video .= reopen_hb_structure();
-// 	return $bg_video;
-// }
+	$bg_video  = $hb_div_structure['closing'];
+	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
+	if (!empty($atts['poster'])) {
+		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
+	}
+	$bg_video .= '>';
+	if (!empty($video_src)) {
+		$bg_video .= 	'<video class="video video-tag" loop>';
+		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
+		$bg_video .= 	'</video>';
+	}
+	$bg_video .= '</div>';
+	$bg_video .= '<div class="video-overlay"></div>';
+	$bg_video .= $hb_div_structure['opening'];
+	return $bg_video;
+}
 
-// add_shortcode('move_video', 'move_video_up');
-// function move_video_up($atts) {
-// 	$name = $atts['name'];
+add_shortcode('move_video', 'move_video_up');
+function move_video_up($atts) {
+	$name = $atts['name'];
+	$hb_div_structure = print_hb_div_structure();
 
-// 	$video_pusher  = exit_hb_structure();
-// 	$video_pusher .= '<div class="' . $name . ' move-video"></div>';
-// 	$video_pusher .= reopen_hb_structure();
-// 	return $video_pusher;
-// }
+	$video_pusher  = $hb_div_structure['closing'];
+	$video_pusher .= '<div class="' . $name . ' move-video"></div>';
+	$video_pusher .= $hb_div_structure['opening'];
+	return $video_pusher;
+}
 
-// add_shortcode('standalone_video', 'display_inner_video');
-// function display_inner_video($atts) {
-// 	$video_src = $atts['src'];
-// 	$caption = $atts['caption'];
-// 	if (empty($atts['youtube'])) {
-// 		$atts['youtube'] = '';
-// 	}
+add_shortcode('standalone_video', 'display_inner_video');
+function display_inner_video($atts) {
+	$video_src = $atts['src'];
+	$caption = $atts['caption'];
+	if (empty($atts['youtube'])) {
+		$atts['youtube'] = '';
+	}
+	$hb_div_structure = print_hb_div_structure();
 
-// 	$inner_video  = exit_hb_structure();
-// 	$inner_video .= '<div class="standalone-video-bg">';
-// 	if ($atts['youtube'] == 'youtube') {
-// 		$inner_video .= '<iframe class="embeded-youtube-standalone" src="' . $video_src . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
-// 	}
-// 	else {
-// 		$inner_video .= 	'<video class="video inner-video" autoplay>';
-// 		$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
-// 		$inner_video .= 	'</video>';
-// 	}
-// 	if (!empty($caption)) {
-// 		$inner_video .= '<p class="inner-video" style="color: #ffffff;">' . $caption . '</p>';
-// 	}
-// 	$inner_video .= '</div>';
-// 	$inner_video .= reopen_hb_structure();
-// 	return $inner_video;
-// }
+	$inner_video  = $hb_div_structure['closing'];
+	$inner_video .= '<div class="standalone-video-bg">';
+	if ($atts['youtube'] == 'youtube') {
+		$inner_video .= '<iframe class="embeded-youtube-standalone" src="' . $video_src . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+	}
+	else {
+		$inner_video .= 	'<video class="video inner-video" autoplay>';
+		$inner_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
+		$inner_video .= 	'</video>';
+	}
+	if (!empty($caption)) {
+		$inner_video .= '<p class="inner-video" style="color: #ffffff;">' . $caption . '</p>';
+	}
+	$inner_video .= '</div>';
+	$inner_video .= $hb_div_structure['opening'];
+	return $inner_video;
+}
 
 add_shortcode('next_page', 'cta_next_page');
 function cta_next_page($atts) {
