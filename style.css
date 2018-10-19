@@ -3916,6 +3916,9 @@ input[type=submit] {
 .row .col-1, .row .col-2, .row .col-3, .row .col-4, .row .col-5, .row .col-6, .row .col-7, .row .col-8, .row .col-9, .row .col-10, .row .col-11, .row .col-12 {
   margin-bottom: 0; }
 
+#main-content .hb-sidebar {
+  margin-top: 0; }
+
 article.single .entry-content {
   margin-top: 0; }
 
@@ -4040,8 +4043,6 @@ article.single.post .featured-image {
   body {
     font-size: 14px; }
   article.single.post .featured-image {
-    float: left;
-    width: 60%;
     margin: 0 0 3rem 0;
     padding: 0 1.5rem 0 0; }
   .grid-contents * {

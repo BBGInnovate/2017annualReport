@@ -12,7 +12,7 @@ if( is_singular ( 'clients' ) ||
 } 
 get_header();
 
-display_logo_home_button();
+// display_logo_home_button();
 ?>
 <!-- BEGIN #main-content -->
 <div id="main-content">
@@ -34,7 +34,20 @@ display_logo_home_button();
 	<div class="row <?php echo $sidebar_layout; ?> main-row">
 	
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			
+		<?php
+			if (!is_attachment()) {
+				if (hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') ==  0) {
+					get_template_part('includes/single' , 'featured-format');
+				}
+				// BEGIN .post-header
+				echo '<div class="col-12 post-header">';
+				echo '<div class="row">';
+				echo 	'<h2 class="title entry-title" itemprop="headline">' . get_the_title() . '</h2>';
+				echo '</div>';
+				echo '</div>';
+				// END .post-header
+			}
+		?>
 		<!-- BEGIN .hb-main-content -->
 		<?php if ( $sidebar_layout != "fullwidth") { ?>
 			<div class="col-9 hb-equal-col-height hb-main-content">
@@ -47,20 +60,6 @@ display_logo_home_button();
 				<article id="post-<?php the_ID(); ?>" <?php post_class( get_post_format() . '-post-format single' ); ?> itemscope itemType="http://schema.org/BlogPosting">
 					<!-- BEGIN .single-post-content -->
 					<div class="single-post-content">
-	
-						<?php if (! is_attachment() ) { ?>	
-						<!-- BEGIN .post-header -->
-						<div class="post-header">
-							<h2 class="title entry-title" itemprop="headline"><?php the_title(); ?></h2>
-							
-							<?php 
-							if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
-								get_template_part('includes/single' , 'featured-format' ) ; 
-							?>
-						</div>
-						<!-- END .post-header -->
-						<?php } ?>
-						
 						<?php if ( !has_post_format('quote') && !has_post_format('link') && !has_post_format('status') ) {?>
 						<!-- BEGIN .entry-content -->
 						<div class="entry-content clearfix" itemprop="articleBody">

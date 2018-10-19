@@ -149,7 +149,7 @@ function add_toolbar_items($admin_bar){
 		array(
 			'id'    => 'shortcode-cheatsheet',
 			'title' => 'Shortcode Cheatsheet',
-			'href'  => '#',
+			'href'  => 'http://2017.bbg.gov/shortcode-cheatsheet/',
 		)
 	);
 }
