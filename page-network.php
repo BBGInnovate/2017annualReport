@@ -38,7 +38,7 @@ $stored_post_class = implode($stored_post_class, " ");
 	<div class="row <?php echo $sidebar_layout; ?> main-row">
 	<?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
-			remove_filter('the_content', 'wpautop');
+			// remove_filter('the_content', 'wpautop');
 	?>
 
 		<div class="col-12 hb-main-content">

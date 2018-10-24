@@ -21,14 +21,6 @@ h2 {
 	width: 75%;
 }
 
-.video-overlay {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	z-index: -1;
-	background: linear-gradient(to bottom, rgba(255,255,255, 0.5), rgba(255,255,255, 0) 100%);
-}
-
 // STANDALONE VIDEO
 .standalone-video-bg {
 	padding: 6rem 0;

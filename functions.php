@@ -147,9 +147,9 @@ add_action('wp_before_admin_bar_render', 'shapeSpace_remove_toolbar_menu', 999);
 function add_toolbar_items($admin_bar){
 	$admin_bar->add_menu(
 		array(
-			'id'    => 'shortcode-cheatsheet',
-			'title' => 'Shortcode Cheatsheet',
-			'href'  => 'http://2017.bbg.gov/shortcode-cheatsheet/',
+			'id'    => 'template-cheatsheet',
+			'title' => 'Template Cheatsheet',
+			'href'  => 'http://2017.bbg.gov/template-cheatsheet/',
 		)
 	);
 }

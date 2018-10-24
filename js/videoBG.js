@@ -40,7 +40,7 @@ $(window).on('resize', function() {
 	}
 });
 
-
+console.log('ok');
 // INITIALIZE FULL WIDTH BACKGROUND VIDEO
 if ($('.video-wrapper').length > 0) {
 	var videoWrappers = $('.video-wrapper');
@@ -50,10 +50,10 @@ if ($('.video-wrapper').length > 0) {
 	}
 	// HD PROPORTIONS (PERCENTAGE)
 	pcx = 1.77778,
-	videoOverlay = $('<div class="video-overlay"></div>');
+	// videoOverlay = $('<div class="video-overlay"></div>');
 
 	windowVideoSize();
-	videoWrappers.prepend(videoOverlay);
+	// videoWrappers.prepend(videoOverlay);
 }
 
 function getVideoTop() {
@@ -89,29 +89,17 @@ function lockVideo(video) {
 
 // GET ALL VIDEOS
 var videos = $('.video-wrapper');
-// MAKE CONTENT OVER VIDEO WIDER
-$.each(videos, function() {
-	var thisVideo = $(this);
-	var classList = thisVideo.attr('class');
-	classList = classList.split(" ");
-	var videoName = classList[0];
-	var videoChildrenSet = thisVideo.nextUntil('.move-video.' + videoName);
-	$.each(videoChildrenSet, function() {
-		$(this).children().children().removeClass('col-7');
-		$(this).children().children().addClass('text-in-video-bg');
-	});
-});
-$('.video-overlay').hide();
-function displayVideoOverlay(video, anchor) {
-	if ($('#wpadminbar').length > 0) {
-		anchor = anchor - 32;
-	}
-	$('.video-overlay').show();
-	video.siblings('.video-overlay').css({
-		'top': anchor,
-		'height': video.height()
-	});
-}
+// $('.video-overlay').hide();
+// function displayVideoOverlay(video, anchor) {
+// 	if ($('#wpadminbar').length > 0) {
+// 		anchor = anchor - 32;
+// 	}
+// 	$('.video-overlay').show();
+// 	video.siblings('.video-overlay').css({
+// 		'top': anchor,
+// 		'height': video.height()
+// 	});
+// }
 
 function findVideoAnchor(video) {
 	if (video.hasClass('top')) {
@@ -132,7 +120,7 @@ function linkVideoToMover(elem) {
 
 var curMoverLink = "";
 var videoAnchor = "";
-var overlayIndex = 0;
+// var overlayIndex = 0;
 
 $.each($('.move-video'), function() {
 	var mover = $(this);
@@ -155,7 +143,7 @@ function checkVideoPositions() {
 
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
-			displayVideoOverlay(curVideo, videoAnchor);
+			// displayVideoOverlay(curVideo, videoAnchor);
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport() || ($('.move-video.' + curMoverLink).offset().top < viewportTop)) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));

@@ -4256,13 +4256,6 @@ h2 {
   margin-left: calc(8.33333% - 21.66667px + 40px);
   width: 75%; }
 
-.video-overlay {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 100%); }
-
 .standalone-video-bg {
   padding: 6rem 0;
   background-color: #000000; }
@@ -4272,6 +4265,19 @@ h2 {
     height: auto;
     margin: 0 auto;
     text-align: center; }
+
+.grid-container {
+  width: calc(100% - 40px);
+  float: left;
+  margin-left: 20px; }
+
+.rel-side {
+  width: calc(41.66667% - 28.33333px);
+  float: left;
+  margin-left: 20px; }
+
+.push-7 {
+  margin-left: calc(58.33333% - 31.66667px + 40px); }
 
 .related-content .related-image {
   width: calc(100% - 40px);
@@ -4286,8 +4292,7 @@ h2 {
 .related-content .related-copy {
   width: calc(100% - 40px);
   float: left;
-  margin-left: 20px;
-  padding-top: 0.5rem; }
+  margin-left: 20px; }
   .related-content .related-copy h5 {
     padding-top: 1rem; }
   .related-content .related-copy p {

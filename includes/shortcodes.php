@@ -7,15 +7,29 @@ function print_hb_div_structure() {
 	if (is_page_template('page-network.php')) {
 		$opening = '<div class="container"><div class="row ' . $sidebar_layout . ' main-row"><div class="col-7 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody">';
 		$closing = '</div></div></article></div></div></div></div>';
-	} else if (is_page_template('page-thematic.php')) {
-		$opening = '<div class="container"><div class="row ' . $sidebar_layout . ' main-row"><div class="col-12 hb-main-content"><div class="single-blog-wrapper clearfix"><article class="' . $stored_post_class . '"><div class="single-post-content"><div class="entry-content clearfix" itemprop="articleBody"><div class="col-7">';
-		$closing = '</div></div></div></article></div></div></div></div>';
+	}
+	else if (is_page_template('page-thematic.php')) {
+		$opening = '<div class="container"><div class="row main-row"><div class="col-7">';
+		$closing = '</div></div></div>';
 	}
 	$div_sets = array(
 		'opening' => $opening,
 		'closing' => $closing
 	);
 	return $div_sets;
+}
+
+add_shortcode('full_width_featured_image', 'show_full_width_featured_image');
+function show_full_width_featured_image() {
+	$poster_src = get_the_post_thumbnail_url();
+	// $hb_div_structure = print_hb_div_structure();
+
+	// $poster  = $hb_div_structure['closing'];
+	$poster  = '<div class="featured-image-wrapper">';
+	$poster .= 	'<img src=' . $poster_src . '>';
+	$poster .= '</div>';
+	// $poster .= $hb_div_structure['opening'];
+	echo $poster;
 }
 
 add_shortcode('related_profile', 'show_related_profile');
@@ -35,29 +49,20 @@ function show_related_profile($atts) {
 			$profile_query->the_post();
 			$image = get_field('profile_snippet_thumbnail');
 			
-			$profile_box  = '</div>';
-			$profile_box .= '<div class="col-5 related-content">';
-			$profile_box .= 	'<div class="nest-container profile">';
-			$profile_box .= 		'<div class="inner-container">';
-			$profile_box .= 			'<div class="related-head">';
-			$profile_box .= 				'<h6>' . $profile_name . '</h6>';
-			$profile_box .= 			'</div>';
+			$profile_box  = 	'</div>';// break 7
+			$profile_box .= '</div>';// break row
+			$profile_box .= '<div class="row" style="position: relative;">';
+			$profile_box .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+			$profile_box .= 		'<div class="grid-container related-head">';
+			$profile_box .= 			'<h6><a href="' . get_the_permalink() . '"> ' . $profile_name . '</a></h6>';
 			$profile_box .= 		'</div>';
-			$profile_box .= 		'<div class="inner-container related-copy">';
+			$profile_box .= 		'<div class="grid-container related-copy">';
 			$profile_box .= 			'<div class="nest-container">';
 			$profile_box .= 				'<div class="inner-container">';
 			$profile_box .= 					'<div class="related_content_large_side">';
 			$profile_box .= 						'<h5>' . get_field('profile_snippet_title') . '</h5>';
 			$profile_box .= 						'<p class="aside">' . get_the_excerpt() . '</p>';
-			if ($type == 'reveal') {
-				$profile_box .= 					'<div class="reveal-content">';
-				$profile_box .= 						'<p class="aside">' . get_the_content() . '</p>';
-				$profile_box .= 					'</div>';
-				$profile_box .= 					'<p class="show-more reveal">Show More</p>';
-			}
-			elseif ($type == 'link') {
-				$profile_box .= 					'<p class="show-more"><a href="' . get_the_permalink() . '">View Profile</a></p>';
-			}
+			$profile_box .= 						'<p class="show-more"><a href="' . get_the_permalink() . '">View Profile</a></p>';
 			$profile_box .= 					'</div>';
 			$profile_box .= 					'<div class="related_content_small_side">';
 			$profile_box .= 						'<img src="' . $image['url'] . '" alt="' . $image['title'] . '">';
@@ -67,7 +72,8 @@ function show_related_profile($atts) {
 			$profile_box .= 		'</div>';
 			$profile_box .= 	'</div>';
 			$profile_box .= '</div>';
-			$profile_box .= '<div class="col-7">';
+			$profile_box .= '<div class="row">';
+			$profile_box .= 	'<div class="col-7">';
 		}
 		wp_reset_postdata();
 	}
@@ -88,24 +94,24 @@ function show_related_story($atts) {
 			$related_query->the_post();
 			$story_copy = wp_trim_words(get_the_excerpt(), 25);
 
-			$related_story  = '</div>';
-			$related_story .= '<div class="col-5 related-content">';
-			$related_story .= 	'<div class="nest-container">';
-			$related_story .= 		'<div class="inner-container">';
-			$related_story .= 			'<div class="related-image">';
-			$related_story .= 				'<a href="' . get_the_permalink() . '">';
-			$related_story .= 					get_the_post_thumbnail();
-			$related_story .= 				'</a>';
-			$related_story .= 			'</div>';
+			$related_story  = 	'</div>';// break 7
+			$related_story .= '</div>';// break row
+			$related_story .= '<div class="row" style="position: relative;">';
+			$related_story .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+			$related_story .= 		'<div class="grid-container related-image">';
+			$related_story .= 			'<a href="' . get_the_permalink() . '">';
+			$related_story .= 				get_the_post_thumbnail();
+			$related_story .= 			'</a>';
 			$related_story .= 		'</div>';
-			$related_story .= 		'<div class="inner-container related-copy">';
+			$related_story .= 		'<div class="grid-container related-copy">';
 			$related_story .= 			'<h5><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></h5>';
 			$related_story .= 			'<p class="aside">' . $story_copy . '</p>';
 			$related_story .= 			'<p class="show-more"><a href="' . get_the_permalink() . '">Read More</a></p>';
 			$related_story .= 		'</div>';
 			$related_story .= 	'</div>';
 			$related_story .= '</div>';
-			$related_story .= '<div class="col-7">';
+			$related_story .= '<div class="row">';
+			$related_story .= 	'<div class="col-7">';
 		}
 		wp_reset_postdata();
 	}
@@ -118,34 +124,21 @@ function show_related_image($atts) {
 	$image_source = $atts['src'];
 	$image_caption = $atts['caption'];
 
-	$related_image_markup  = '</div>';
-	$related_image_markup .= '<div class="col-5 related-content">';
-	$related_image_markup .= 	'<div class="nest-container">';
-	$related_image_markup .= 		'<div class="inner-container">';
-	$related_image_markup .= 			'<div class="related-image">';
-	$related_image_markup .= 				'<img src="' . $image_source . '" title="" alt="">';
-	$related_image_markup .= 			'</div>';
+	$related_image_markup  = 	'</div>';// break 7
+	$related_image_markup .= '</div>';// break row
+	$related_image_markup .= '<div class="row" style="position: relative;">';
+	$related_image_markup .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+	$related_image_markup .= 		'<div class="grid-container related-image">';
+	$related_image_markup .= 			'<img src="' . $image_source . '" title="" alt="">';
 	$related_image_markup .= 		'</div>';
-	$related_image_markup .= 		'<div class="inner-container related-copy">';
+	$related_image_markup .= 		'<div class="grid-container related-copy">';
 	$related_image_markup .= 			'<p class="aside">' . $image_caption . '</p>';
 	$related_image_markup .= 		'</div>';
 	$related_image_markup .= 	'</div>';
 	$related_image_markup .= '</div>';
-	$related_image_markup .= '<div class="col-7">';
+	$related_image_markup .= '<div class="row">';
+	$related_image_markup .= 	'<div class="col-7">';
 	return $related_image_markup;
-}
-
-add_shortcode('full_width_featured_image', 'show_full_width_featured_image');
-function show_full_width_featured_image() {
-	$poster_src = get_the_post_thumbnail_url();
-	$hb_div_structure = print_hb_div_structure();
-
-	$poster  = $hb_div_structure['closing'];
-	$poster .= '<div class="featured-image-wrapper">';
-	$poster .= 	'<img src=' . $poster_src . '>';
-	$poster .= '</div>';
-	$poster .= $hb_div_structure['opening'];
-	echo $poster;
 }
 
 add_shortcode('video_bg', 'display_background_video');
@@ -164,7 +157,7 @@ function display_background_video($atts) {
 	}
 	$hb_div_structure = print_hb_div_structure();
 
-	$bg_video  = $hb_div_structure['closing'];
+	$bg_video  = '</div></div></div>';
 	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
 	if (!empty($atts['poster'])) {
 		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
@@ -176,8 +169,7 @@ function display_background_video($atts) {
 		$bg_video .= 	'</video>';
 	}
 	$bg_video .= '</div>';
-	$bg_video .= '<div class="video-overlay"></div>';
-	$bg_video .= $hb_div_structure['opening'];
+	$bg_video .= '<div class="container"><div class="row main-row"><div class="col-7">';
 	return $bg_video;
 }
 
@@ -195,7 +187,9 @@ function move_video_up($atts) {
 add_shortcode('standalone_video', 'display_inner_video');
 function display_inner_video($atts) {
 	$video_src = $atts['src'];
-	$caption = $atts['caption'];
+	if (!empty($atts['caption'])) {
+		$caption = $atts['caption'];
+	}
 	if (empty($atts['youtube'])) {
 		$atts['youtube'] = '';
 	}

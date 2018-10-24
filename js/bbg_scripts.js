@@ -2,6 +2,11 @@
 (function($) {
 $(document).ready(function() {
 
+// SCROLL TO PROMPT VIDEO - USER INTERACT WITH DOCUMENT
+$('html, body').animate({
+	scrollTop: 1
+},500);
+
 function changeLogoOnSmallLargeScreens() {
 	var navLogoImg = $('.side-logo a span img'),
 		navLogoImgRetina = $('.side-logo a span img.retina'),
@@ -92,7 +97,7 @@ if ($('.profile').length > 0) {
 // if ($('.featured-image-wrapper').length > 0) {
 // 	$('.main-row').first().css('margin-top', '60rem');
 // }
-console.log('0');
+
 // KEEPS FEATURED MEDIA SCALED AT HD PROPORTIONS
 function featuredMediaHD() {
 	var hd_scale = 1.77778;

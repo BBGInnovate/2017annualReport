@@ -12,6 +12,9 @@
 				<img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Footer.png" alt="">
 			</div>
 			<div class="footer-col">
+				<?php wp_nav_menu(array('menu' => 'Fostering Press Freedom')); ?>
+			</div>
+			<div class="footer-col">
 				<?php wp_nav_menu(array('theme_location' => 'footer-menu')); ?>
 			</div>
 		</div>
