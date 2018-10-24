@@ -2,11 +2,22 @@
 (function($) {
 $(document).ready(function() {
 
-// SCROLL TO PROMPT VIDEO - USER INTERACT WITH DOCUMENT
-$('html, body').animate({
-	scrollTop: 1
-},500);
+// VIDEO: MAKE IFRAME YOUTUBE VIDEOS FULL WITDH OF PARENT COLUMN
+function iframeSizer() {
+	$.each($('iframe'), function() {
+		var mainColumnWidth = $(this).parent().width();
+		var dynamicHeight = mainColumnWidth / 1.77778
+		$(this).attr('width', mainColumnWidth);
+		$(this).attr('height', dynamicHeight);
+	});
+}
+iframeSizer();
 
+$(window).on('resize', function() {
+	iframeSizer();
+});
+
+// LOGO SIZE
 function changeLogoOnSmallLargeScreens() {
 	var navLogoImg = $('.side-logo a span img'),
 		navLogoImgRetina = $('.side-logo a span img.retina'),
