@@ -1,5 +1,7 @@
-a:link, a:visited {color: $white;}
-a:hover, a:active {color: $blue-light;}
+footer {
+	a:link, a:visited {color: $white;}
+	a:hover, a:active {color: $blue-light;}
+}
 
 #footer-logo {
 	margin-bottom: 1em;

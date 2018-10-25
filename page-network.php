@@ -9,6 +9,7 @@ require 'includes/shortcodes.php';
 require 'includes/custom_field_data.php';
 get_header();
 ?>
+
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <?php
 $main_content_style = "";
@@ -53,7 +54,7 @@ if (has_post_thumbnail()) {
 
 		<div class="row">
 			<div class="col-12">
-				<h1><?php echo get_the_title(); ?></h1>
+				<h2><?php echo get_the_title(); ?></h2>
 			</div>
 		</div>
 

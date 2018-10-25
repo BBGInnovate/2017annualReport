@@ -80,21 +80,21 @@ if ( hb_options("hb_footer_bg_image") ){
 		'style-11'=>array('1'=>'col-12', '2'=>'hidden', '3'=>'hidden', '4'=>'hidden'),
 	);
 	
-	$hb_footer_style = hb_options('hb_footer_layout');
-	if ( !$hb_footer_style ) {
-		$hb_footer_style = 'style-1';
-	}
+	// $hb_footer_style = hb_options('hb_footer_layout');
+	// if ( !$hb_footer_style ) {
+	// 	$hb_footer_style = 'style-1';
+	// }
 
-	$separator_class = "";
-	if (!hb_options('hb_enable_footer_separators')){
-		$separator_class = " no-separator";
-	}
+	// $separator_class = "";
+	// if (!hb_options('hb_enable_footer_separators')){
+	// 	$separator_class = " no-separator";
+	// }
 		 
-	for( $i = 1 ; $i <= 4 ; $i++ ){
-		echo '<div class="' . $hb_footer_class[$hb_footer_style][$i] . ' widget-column' . $separator_class . '">';
-		dynamic_sidebar('Footer ' . $i);
-		echo '</div>';
-	}
+	// for( $i = 1 ; $i <= 4 ; $i++ ){
+	// 	echo '<div class="' . $hb_footer_class[$hb_footer_style][$i] . ' widget-column' . $separator_class . '">';
+	// 	dynamic_sidebar('Footer ' . $i);
+	// 	echo '</div>';
+	// }
 
 	?>
 		</div>

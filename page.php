@@ -38,6 +38,12 @@ if ( vp_metabox('background_settings.hb_content_background_color') ){
 			     }
 			}
 		?>
+		
+		<div class="row">
+			<div class="col-12">
+				<h2><?php echo get_the_title(); ?></h2>
+			</div>
+		</div>
 
 		<div class="row <?php echo $sidebar_layout; ?> main-row">
 

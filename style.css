@@ -3864,7 +3864,7 @@ p.aside {
   color: #333333; }
 
 a:link, a:visited {
-  color: #283266;
+  color: #147bd1;
   text-decoration: none; }
 
 a:hover, a:active {
@@ -4032,6 +4032,9 @@ article.single.post .featured-image {
   overflow: hidden; }
   .full-feature-image img {
     width: 100%; }
+
+.vc_chart h2.wpb_heading {
+  font-size: 2.5rem; }
 
 .featured-image-wrapper {
   position: absolute;
@@ -4216,10 +4219,10 @@ article.single.post .featured-image {
     margin-left: 0;
     padding-left: 0; } }
 
-a:link, a:visited {
+footer a:link, footer a:visited {
   color: #ffffff; }
 
-a:hover, a:active {
+footer a:hover, footer a:active {
   color: #81b0d2; }
 
 #footer-logo {
@@ -4247,38 +4250,6 @@ a:hover, a:active {
     margin-right: 2.35765%;
     width: 31.76157%; }
     .footer-col:last-child {
-      margin-right: 0; } }
-
-#financials-copy {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 100%; }
-  #financials-copy:last-child {
-    margin-right: 0; }
-
-#financials-chart {
-  float: left;
-  display: block;
-  margin-right: 2.35765%;
-  width: 100%; }
-  #financials-chart:last-child {
-    margin-right: 0; }
-
-@media screen and (min-width: 600px) {
-  #financials-copy {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    #financials-copy:last-child {
-      margin-right: 0; }
-  #financials-chart {
-    float: left;
-    display: block;
-    margin-right: 2.35765%;
-    width: 48.82117%; }
-    #financials-chart:last-child {
       margin-right: 0; } }
 
 .video-wrapper {

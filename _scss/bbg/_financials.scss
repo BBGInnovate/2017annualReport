@@ -1,11 +1,11 @@
-#financials-copy {
-	@include span-columns(12);
-}
-#financials-chart {@include span-columns(12);}
+// #financials-copy {
+// 	@include span-columns(12);
+// }
+// #financials-chart {@include span-columns(12);}
 
 @include media($medium-screen) {
-	#financials-copy {@include span-columns(6);}
-	#financials-chart {@include span-columns(6);}
+	// #financials-copy {@include span-columns(6);}
+	// #financials-chart {@include span-columns(6);}
 }
 
 @include media($medium-screen) {

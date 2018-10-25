@@ -4,8 +4,12 @@
  * @subpackage Highend
  * Template name: Financials Page
  */
+get_header();
 ?>
-<?php get_header(); ?>
+
+<style>
+.wpb_heading {font-size: 2.5rem;}
+</style>
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <!-- BEGIN #main-content -->
