@@ -4136,6 +4136,27 @@ article.single.post .featured-image {
         .post-categories .side-cat .aside-text:last-child {
           margin-right: 0; } }
 
+#main-content .hb-sidebar {
+  padding-top: 0; }
+  #main-content .hb-sidebar .widget-item:first-of-type {
+    margin-bottom: 1.5rem; }
+    #main-content .hb-sidebar .widget-item:first-of-type a img {
+      width: 40%; }
+  #main-content .hb-sidebar .widget_text h4 {
+    font-size: 1.6rem;
+    margin-bottom: 15px; }
+  #main-content .hb-sidebar .textwidget .hb-counter {
+    text-align: left; }
+    #main-content .hb-sidebar .textwidget .hb-counter .count-number {
+      font-family: "Merriweather", "Georgia", "Cambria", "Times New Roman", "Times", serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #9f1d25;
+      text-align: left; }
+    #main-content .hb-sidebar .textwidget .hb-counter .count-subject {
+      color: #8b8278;
+      text-align: left; }
+
 #mobile-menu-wrap {
   background: #0071bc;
   border-left: none; }

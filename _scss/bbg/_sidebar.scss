@@ -1,0 +1,33 @@
+#main-content .hb-sidebar {
+	padding-top: 0;
+
+	.widget-item:first-of-type {
+		margin-bottom: 1.5rem;
+		a {
+			img {width: 40%;}
+		}
+	}
+	.widget_text {
+		h4 {
+			font-size: 1.6rem;
+			margin-bottom: 15px;
+		}
+	}
+	// TYPE OF WIDGETS
+	.textwidget {
+		.hb-counter {
+			text-align: left;
+			.count-number {
+				font-family: $font-serif;
+				font-size: 3rem;
+				font-weight: 700;
+				color: $red;
+				text-align: left;
+			}
+			.count-subject {
+				color: $tan;
+				text-align: left;
+			}
+		}
+	}
+}
