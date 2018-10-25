@@ -4,16 +4,29 @@ $(document).ready(function() {
 
 // VIDEO: MAKE IFRAME YOUTUBE VIDEOS FULL WITDH OF PARENT COLUMN
 function iframeSizer() {
-	$.each($('iframe'), function() {
-		var mainColumnWidth = $(this).parent().width();
-		var dynamicHeight = mainColumnWidth / 1.77778
-		$(this).attr('width', mainColumnWidth);
-		$(this).attr('height', dynamicHeight);
-	});
+	if ($('iframe').length > 0) {
+		$.each($('iframe'), function() {
+			var mainColumnWidth = $(this).parent().width();
+			var dynamicHeight = mainColumnWidth / 1.77778
+			$(this).attr('width', mainColumnWidth);
+			$(this).attr('height', dynamicHeight);
+		});
+	}
 }
 iframeSizer();
 
+// FEATURE IMAGE: NETWORK TEMPLATE. HD SCALE
+function networkFeatureImageSizer() {
+	if ($('.full-feature-image').length > 0) {
+		var featureImageW = $('.full-feature-image').width();
+		var dynamicHeight = featureImageW / 1.77778;
+		$('.full-feature-image').height(dynamicHeight);
+	}
+}
+networkFeatureImageSizer();
+
 $(window).on('resize', function() {
+	networkFeatureImageSizer();
 	iframeSizer();
 });
 

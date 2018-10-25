@@ -7,119 +7,93 @@
 
 require 'includes/shortcodes.php';
 require 'includes/custom_field_data.php';
-
-if( is_singular ( 'clients' ) ||
- 	is_singular ( 'hb_pricing_table' ) ) {
-	wp_redirect(home_url()); exit;
-} 
-
 get_header();
-// display_logo_home_button();
 ?>
-
-
-<div class="container">
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <?php
-$stored_post_class = get_post_class( get_post_format() . '-post-format single' );
-$stored_post_class = implode($stored_post_class, " ");
+$main_content_style = "";
+if ( vp_metabox('background_settings.hb_content_background_color') ){
+	$main_content_style = ' style="background-color: ' . vp_metabox('background_settings.hb_content_background_color') . ';"';
+	echo "<style type=\"text/css\">#pre-footer-area:after{border-top-color:" . vp_metabox('background_settings.hb_content_background_color') . "}</style>";
+}
 ?>
-	<?php 
-		$sidebar_layout = vp_metabox('layout_settings.hb_page_layout_sidebar'); 
-		$sidebar_name = vp_metabox('layout_settings.hb_choose_sidebar');
 
-		if ( $sidebar_layout == "default" || $sidebar_layout == "" ) {
-			$sidebar_layout = hb_options('hb_page_layout_sidebar'); 
-			$sidebar_name = hb_options('hb_choose_sidebar');
-		}
+<?php
+if (has_post_thumbnail()) {
+	echo '<div class="full-feature-image">';
+	echo 	get_the_post_thumbnail();
+	echo '</div>';
+}
+?>
 
-		$pagination_style = vp_metabox('page_settings.hb_pagination_settings.0.hb_pagination_style');
-		$blog_grid_column_class = vp_metabox('page_settings.hb_blog_grid_settings.0.hb_grid_columns');
-	?>
-	<div class="row <?php echo $sidebar_layout; ?> main-row">
-	<?php
-		if ( have_posts() ) : while ( have_posts() ) : the_post();
-			// remove_filter('the_content', 'wpautop');
-	?>
+<!-- BEGIN #main-content -->
+<div id="main-content"<?php echo $main_content_style; ?>>
+	<div class="container">
+	
+		<?php 
+			$sidebar_layout = vp_metabox('layout_settings.hb_page_layout_sidebar'); 
+			$sidebar_name = vp_metabox('layout_settings.hb_choose_sidebar');
 
-		<div class="col-12 hb-main-content">
-			<div class="single-blog-wrapper clearfix">
-				<article class="<?php echo $stored_post_class; ?>">
-					<?php
-					if ( hb_options('hb_blog_enable_featured_image') && vp_metabox('general_settings.hb_hide_featured_image') == 0 )
-						$page_content = get_the_content();
+			if ( $sidebar_layout == "default" || $sidebar_layout == "" ) 
+			{
+				$sidebar_layout = hb_options('hb_page_layout_sidebar');
+				$sidebar_name = hb_options('hb_choose_sidebar');
+			}
 
-						// DONT SHOW FEATURE IMAGE IN FULL WIDTH FEATURE IMAGE SHORTCODE IS USED
-						$feat_img_pos = strpos($page_content, '[full_width_featured_image]');
-						if (!is_numeric($feat_img_pos)) {
-							get_template_part('includes/single' , 'featured-format');
-						}
-					?>
-					<div class="single-post-content">
-						<?php
-							if (!is_attachment()) {	
-								echo '<div class="row">';
-								echo 	'<div class="post-header">';
-								echo 		'<h2 class="title entry-title" itemprop="headline">' . get_the_title(). '</h2>';
-								echo 	'</div>';
-								echo '</div>';
-							}
-						?>
-						
-						<?php
-						if (!has_post_format('quote') && !has_post_format('link') && !has_post_format('status')) {
-							echo '<div class="entry-content clearfix" itemprop="articleBody">';
-							the_content();
-							echo 	'<div class="page-links">';
-							wp_link_pages(
-								array(
-									'next_or_number'=>'next',
-									'previouspagelink' => ' <i class="icon-angle-left"></i> ',
-									'nextpagelink'=>' <i class="icon-angle-right"></i>'
-								)
-							);
-							echo '</div>';
-							echo '</div>';
-						}
-						?>
+			if ( vp_metabox('misc_settings.hb_onepage') ){
+				$sidebar_layout = 'fullwidth';
+			}
 
-						<?php 
-							if ( hb_options('hb_blog_enable_tags' ) )
-								the_tags('<div class="single-post-tags"><span>Tags: </span>','','</div>'); 
-						?>
-					</div>
-				</article>
+			if ( class_exists('bbPress') ) {
+			     if ( is_bbpress() ) {
+					$sidebar_layout = 'fullwidth';
+			     }
+			}
+		?>
 
-				<?php
-					if ( hb_options('hb_blog_author_info') && is_singular('post')) {
-						get_template_part('includes/post','author-info'); 
-					}
-					if ( hb_options('hb_blog_enable_related_posts') ) {
-						get_template_part('includes/post','related-articles'); 
-					}
-				?>
+		<div class="row">
+			<div class="col-12">
+				<h1><?php echo get_the_title(); ?></h1>
 			</div>
 		</div>
-		<!-- END .hb-main-content -->
-		<?php if ( $sidebar_layout != "fullwidth" ){ ?>
-			<!-- BEGIN .hb-sidebar -->
-			<div class="col-3  hb-equal-col-height hb-sidebar">
-			<?php 		
-				if ( $sidebar_name && function_exists('dynamic_sidebar') )
-					dynamic_sidebar($sidebar_name);
-			?>
-			</div>
-			<!-- END .hb-sidebar -->
-		<?php } ?>
-	<?php endwhile; endif; ?>
-	</div>
-</div>
-<?php
-	$fw_ess_grid = full_width_essential_grid();
-	if (!empty($fw_ess_grid)) {
-		echo $fw_ess_grid;
-	}
-?>
 
+		<div class="row <?php echo $sidebar_layout; ?> main-row">
+			<div id="page-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<!-- BEGIN .hb-main-content -->
+				<?php
+					if ( $sidebar_layout != 'fullwidth' ) {
+						echo '<div class="col-9 hb-equal-col-height hb-main-content">';
+					} else {
+						echo '<div class="col-12 hb-main-content">';
+					}
+					the_content();
+					wp_link_pages('before=<div id="hb-page-links">'.__('Pages:', 'hbthemes').'&after=</div>');
+					if ( comments_open() && hb_options('hb_disable_page_comments') ) comments_template();
+					echo '</div>' // ends 9 or 12 col;
+				?>
+				<!-- END .hb-main-content -->
+				<!-- BEGIN .hb-sidebar -->
+				<?php
+					if ( $sidebar_layout != 'fullwidth' ) {
+						echo '<div class="col-3  hb-equal-col-height hb-sidebar">';
+						if ( $sidebar_name && function_exists('dynamic_sidebar') ) {
+							dynamic_sidebar($sidebar_name);
+						}
+						echo '</div>';
+					}
+				?>
+				<!-- END .hb-sidebar -->
+			
+			</div><!-- END #page-ID -->
+		</div><!-- END .row -->
+	</div><!-- END .container -->
+	<?php
+		$fw_ess_grid = full_width_essential_grid();
+		if (!empty($fw_ess_grid)) {
+			echo $fw_ess_grid;
+		}
+	?>
+</div><!-- END #main-content -->
 
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/videoBG.js"></script>
+<?php endwhile; endif;?>
 <?php get_footer(); ?>

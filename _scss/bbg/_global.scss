@@ -90,6 +90,13 @@ article.single.post .featured-image {
 	padding: 0;
 }
 
+.full-feature-image {
+	width: 100%;
+	// HD Height Determined in bbg_script.js
+	overflow: hidden;
+	img {width: 100%;}
+}
+
 // SHORTCODE
 .featured-image-wrapper {
 	position: absolute;

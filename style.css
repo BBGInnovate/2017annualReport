@@ -4027,6 +4027,12 @@ article.single.post .featured-image {
   margin: 0 0 3rem 0;
   padding: 0; }
 
+.full-feature-image {
+  width: 100%;
+  overflow: hidden; }
+  .full-feature-image img {
+    width: 100%; }
+
 .featured-image-wrapper {
   position: absolute;
   top: 0;
