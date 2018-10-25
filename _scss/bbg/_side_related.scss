@@ -1,6 +1,13 @@
 .grid-container {@include grid-column(12);}
-.rel-side {@include grid-column(5);}
-.push-7 {@include grid-push(7);}
+
+@include media($medium-medium-screen) {
+	.related-grid-outer {
+		position: relative;
+		.related-grid-inner {position: absolute;}
+	}
+	.rel-side {@include grid-column(5);}
+	.push-7 {@include grid-push(7);}
+}
 
 .related-content {
 	.related-image {@include grid-column(12);}

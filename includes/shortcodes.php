@@ -19,19 +19,6 @@ function print_hb_div_structure() {
 	return $div_sets;
 }
 
-add_shortcode('full_width_featured_image', 'show_full_width_featured_image');
-function show_full_width_featured_image() {
-	$poster_src = get_the_post_thumbnail_url();
-	// $hb_div_structure = print_hb_div_structure();
-
-	// $poster  = $hb_div_structure['closing'];
-	$poster  = '<div class="featured-image-wrapper">';
-	$poster .= 	'<img src=' . $poster_src . '>';
-	$poster .= '</div>';
-	// $poster .= $hb_div_structure['opening'];
-	echo $poster;
-}
-
 add_shortcode('related_profile', 'show_related_profile');
 function show_related_profile($atts) {
 	$profile_name = $atts['name'];
@@ -51,8 +38,8 @@ function show_related_profile($atts) {
 			
 			$profile_box  = 	'</div>';// break 7
 			$profile_box .= '</div>';// break row
-			$profile_box .= '<div class="row" style="position: relative;">';
-			$profile_box .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+			$profile_box .= '<div class="row related-grid-outer">';
+			$profile_box .= 	'<div class="rel-side push-7 related-content related-grid-inner">';
 			$profile_box .= 		'<div class="grid-container related-head">';
 			$profile_box .= 			'<h6><a href="' . get_the_permalink() . '"> ' . $profile_name . '</a></h6>';
 			$profile_box .= 		'</div>';
@@ -96,8 +83,8 @@ function show_related_story($atts) {
 
 			$related_story  = 	'</div>';// break 7
 			$related_story .= '</div>';// break row
-			$related_story .= '<div class="row" style="position: relative;">';
-			$related_story .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+			$related_story .= '<div class="row related-grid-outer">';
+			$related_story .= 	'<div class="rel-side push-7 related-content related-grid-inner">';
 			$related_story .= 		'<div class="grid-container related-image">';
 			$related_story .= 			'<a href="' . get_the_permalink() . '">';
 			$related_story .= 				get_the_post_thumbnail();
@@ -126,8 +113,8 @@ function show_related_image($atts) {
 
 	$related_image_markup  = 	'</div>';// break 7
 	$related_image_markup .= '</div>';// break row
-	$related_image_markup .= '<div class="row" style="position: relative;">';
-	$related_image_markup .= 	'<div class="rel-side push-7 related-content" style="position: absolute;">';
+	$related_image_markup .= '<div class="row related-grid-outer">';
+	$related_image_markup .= 	'<div class="rel-side push-7 related-content related-grid-inner">';
 	$related_image_markup .= 		'<div class="grid-container related-image">';
 	$related_image_markup .= 			'<img src="' . $image_source . '" title="" alt="">';
 	$related_image_markup .= 		'</div>';

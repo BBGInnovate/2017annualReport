@@ -15,6 +15,7 @@ if( is_singular ( 'clients' ) ||
 
 get_header();
 // display_logo_home_button();
+
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
@@ -25,12 +26,20 @@ if (have_posts()) {
 }
 ?>
 
+<?php
+if (has_post_thumbnail()) {
+	echo '<div class="full-feature-image">';
+	echo 	get_the_post_thumbnail();
+	echo '</div>';
+}
+?>
+
 <div class="container">
 	<div class="row main-row">
 
-		<div class="col-12 post-header">
+<!-- 		<div class="col-12 post-header">
 			<h2 class="title entry-title"><?php echo $page_title; ?></h2>
-		</div>
+		</div> -->
 
 		<div class="col-7">
 			<?php echo do_shortcode($page_content); ?>
