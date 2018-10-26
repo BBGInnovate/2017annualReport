@@ -49,10 +49,7 @@ if ($('.video-wrapper').length > 0) {
 	}
 	// HD PROPORTIONS (PERCENTAGE)
 	pcx = 1.77778,
-	// videoOverlay = $('<div class="video-overlay"></div>');
-
 	windowVideoSize();
-	// videoWrappers.prepend(videoOverlay);
 }
 
 function getVideoTop() {
@@ -88,17 +85,6 @@ function lockVideo(video) {
 
 // GET ALL VIDEOS
 var videos = $('.video-wrapper');
-// $('.video-overlay').hide();
-// function displayVideoOverlay(video, anchor) {
-// 	if ($('#wpadminbar').length > 0) {
-// 		anchor = anchor - 32;
-// 	}
-// 	$('.video-overlay').show();
-// 	video.siblings('.video-overlay').css({
-// 		'top': anchor,
-// 		'height': video.height()
-// 	});
-// }
 
 function findVideoAnchor(video) {
 	if (video.hasClass('top')) {
@@ -119,7 +105,6 @@ function linkVideoToMover(elem) {
 
 var curMoverLink = "";
 var videoAnchor = "";
-// var overlayIndex = 0;
 
 $.each($('.move-video'), function() {
 	var mover = $(this);
@@ -142,7 +127,6 @@ function checkVideoPositions() {
 
 		if (curVideo.isInViewport() || $('.move-video.' + curMoverLink).isInViewport()) {
 			videoAnchor = findVideoAnchor(curVideo);
-			// displayVideoOverlay(curVideo, videoAnchor);
 			if (videoAnchor <= viewportTop) {
 				if ($('.move-video.' + curMoverLink).isInViewport() || ($('.move-video.' + curMoverLink).offset().top < viewportTop)) {
 					unlockVideo(curVideo, $('.move-video.' + curMoverLink));
