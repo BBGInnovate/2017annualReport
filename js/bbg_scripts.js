@@ -25,11 +25,6 @@ function networkFeatureImageSizer() {
 }
 networkFeatureImageSizer();
 
-$(window).on('resize', function() {
-	networkFeatureImageSizer();
-	iframeSizer();
-});
-
 // LOGO SIZE
 function changeLogoOnSmallLargeScreens() {
 	var navLogoImg = $('.side-logo a span img'),
@@ -54,13 +49,6 @@ function sizePostCats() {
 	postCatTextBox.css('height', postCatImgH);
 }
 sizePostCats();
-
-
-// FUNCTIONS TO RUN ON RESIZE
-$(window).on('resize', function() {
-	changeLogoOnSmallLargeScreens();
-	sizePostCats();
-});
 
 // BACKGROUND SCROLL FADER
 if ($('.scroll-fader').length != 0) {
@@ -117,29 +105,58 @@ if ($('.profile').length > 0) {
 	})
 }
 
-// SHORTCODES
-// if ($('.featured-image-wrapper').length > 0) {
-// 	$('.main-row').first().css('margin-top', '60rem');
-// }
-
 // KEEPS FEATURED MEDIA SCALED AT HD PROPORTIONS
 function featuredMediaHD() {
-	var hd_scale = 1.77778;
-	var containerW = $(window).width();
-	var dynHeight = containerW / hd_scale;
-	$('.featured-image-wrapper').width(containerW);
-	$('.featured-image-wrapper').height(dynHeight);
-	var contentTopMargin = dynHeight;
-	$('.main-row').first().css('margin-top', contentTopMargin);
-}
-if ($('.featured-image-wrapper').length > 0) {
-	featuredMediaHD();
-}
-
-$(window).on('resize', function() {
 	if ($('.featured-image-wrapper').length > 0) {
-		featuredMediaHD();
+		var hd_scale = 1.77778;
+		var containerW = $(window).width();
+		var dynHeight = containerW / hd_scale;
+		$('.featured-image-wrapper').width(containerW);
+		$('.featured-image-wrapper').height(dynHeight);
+		var contentTopMargin = dynHeight;
+		$('.main-row').first().css('margin-top', contentTopMargin);
 	}
+}
+featuredMediaHD();
+
+// CLICK TO INITIATE "VIDEO PLAY"
+if ($('video').length > 0) {
+	var video = $('video');
+	var videoElement = video.get(0);
+	$('.video-directions').on('click', function() {
+		var curScroll = $(window).scrollTop();
+		$(window).scrollTop(curScroll + 1);
+		if (videoElement.paused) {
+			$('.video-directions').hide();
+		}
+	});
+}
+// REMOVE VIDEO CONTROLS ON SMALL SIZES
+function videoControlsByWindowSize() {
+	if ($(window).width() < 768) {
+		if ($('.standalone-video-bg').children('.inner-video').attr('autoplay', '')) {
+			$('.standalone-video-bg').children('.inner-video').removeAttr('autoplay');
+		}
+		$('.standalone-video-bg').children('.inner-video').attr('controls', '');
+		$('.background-video').hide();
+		$('.video-directions').hide();
+	} else {
+		$('.standalone-video-bg').children('.inner-video').removeAttr('controls');
+		$('.standalone-video-bg').children('.inner-video').attr('autoplay', '');
+		$('.background-video').show();
+		$('.video-directions').show();
+	}
+}
+videoControlsByWindowSize()
+
+// FUNCTIONS TO RUN ON RESIZE
+$(window).on('resize', function() {
+	networkFeatureImageSizer();
+	iframeSizer();
+	changeLogoOnSmallLargeScreens();
+	sizePostCats();
+	featuredMediaHD();
+	videoControlsByWindowSize();
 });
 
 }); // END READY

@@ -79,27 +79,10 @@ if ( hb_options("hb_footer_bg_image") ){
 		'style-10'=>array('1'=>'col-9', '2'=>'col-3', '3'=>'hidden', '4'=>'hidden'),
 		'style-11'=>array('1'=>'col-12', '2'=>'hidden', '3'=>'hidden', '4'=>'hidden'),
 	);
-	
-	// $hb_footer_style = hb_options('hb_footer_layout');
-	// if ( !$hb_footer_style ) {
-	// 	$hb_footer_style = 'style-1';
-	// }
-
-	// $separator_class = "";
-	// if (!hb_options('hb_enable_footer_separators')){
-	// 	$separator_class = " no-separator";
-	// }
-		 
-	// for( $i = 1 ; $i <= 4 ; $i++ ){
-	// 	echo '<div class="' . $hb_footer_class[$hb_footer_style][$i] . ' widget-column' . $separator_class . '">';
-	// 	dynamic_sidebar('Footer ' . $i);
-	// 	echo '</div>';
-	// }
-
 	?>
 		</div>
 		<div id="footer-logo">
-			<img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Footer.png" alt="">
+			<a href="/"><img src="<?php echo content_url(); ?>/uploads/2018/03/BBG-AR_Logo_Footer.png" alt=""></a>
 		</div>
 		<div class="row">
 			<div class="footer-col">

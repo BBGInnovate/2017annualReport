@@ -4036,6 +4036,14 @@ article.single.post .featured-image {
 .vc_chart h2.wpb_heading {
   font-size: 2.5rem; }
 
+.video-directions {
+  position: absolute;
+  font-size: 14px;
+  font-style: italic;
+  padding: 0 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer; }
+
 .featured-image-wrapper {
   position: absolute;
   top: 0;
@@ -4254,7 +4262,12 @@ footer a:hover, footer a:active {
 
 .video-wrapper {
   position: absolute;
+  width: 100%;
   z-index: -1; }
+
+@media screen and (min-width: 600px) {
+  .video-wrapper {
+    width: inherit; } }
 
 .freeze-video-position {
   position: fixed;
@@ -4285,6 +4298,9 @@ h2 {
   width: calc(100% - 40px);
   float: left;
   margin-left: 20px; }
+
+.related-grid-outer a:link, .related-grid-outer a:visited {
+  color: #283266; }
 
 @media screen and (min-width: 768px) {
   .related-grid-outer {

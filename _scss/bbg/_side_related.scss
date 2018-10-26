@@ -1,4 +1,9 @@
 .grid-container {@include grid-column(12);}
+.related-grid-outer {
+	a:link, a:visited {color: $blue-dark;}
+}
+
+
 
 @include media($medium-medium-screen) {
 	.related-grid-outer {

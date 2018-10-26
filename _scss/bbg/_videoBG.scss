@@ -1,9 +1,14 @@
 // VIDEO_BG
 .video-wrapper {
 	position: absolute;
+	width: 100%;
 	z-index: -1;
 }
-
+@include media($medium-screen) {
+	.video-wrapper {
+		width: inherit;
+	}
+}
 .freeze-video-position {
 	position: fixed;
 	top: 0;

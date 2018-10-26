@@ -40,7 +40,6 @@ $(window).on('resize', function() {
 	}
 });
 
-console.log('ok');
 // INITIALIZE FULL WIDTH BACKGROUND VIDEO
 if ($('.video-wrapper').length > 0) {
 	var videoWrappers = $('.video-wrapper');

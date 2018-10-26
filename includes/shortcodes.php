@@ -105,7 +105,6 @@ function show_related_story($atts) {
 	return $related_story;
 }
 
-
 add_shortcode('related_image', 'show_related_image');
 function show_related_image($atts) {
 	$image_source = $atts['src'];
@@ -145,13 +144,16 @@ function display_background_video($atts) {
 	$hb_div_structure = print_hb_div_structure();
 
 	$bg_video  = '</div></div></div>';
+	if (empty($atts['poster'])) {
+		$bg_video .= '<span class="video-directions">click here to play video</span>';
+	}
 	$bg_video .= '<div class="' . $name . ' ' . $position .' video-wrapper"';
 	if (!empty($atts['poster'])) {
 		$bg_video .= 	'style="background: url(' . $poster . '); background-size: cover;"';
 	}
 	$bg_video .= '>';
 	if (!empty($video_src)) {
-		$bg_video .= 	'<video class="video video-tag" loop>';
+		$bg_video .= 	'<video class="video video-tag background-video" loop>';
 		$bg_video .= 		'<source src="' . $video_src . '" type="video/mp4">';
 		$bg_video .= 	'</video>';
 	}
@@ -183,6 +185,7 @@ function display_inner_video($atts) {
 	$hb_div_structure = print_hb_div_structure();
 
 	$inner_video  = $hb_div_structure['closing'];
+	$inner_video .= '<span class="video-directions">click here to play video</span>';
 	$inner_video .= '<div class="standalone-video-bg">';
 	if ($atts['youtube'] == 'youtube') {
 		$inner_video .= '<iframe class="embeded-youtube-standalone" src="' . $video_src . '" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
